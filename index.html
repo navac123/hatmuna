@@ -1,0 +1,1209 @@
+<!DOCTYPE html><html lang="he" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>התמונה הטמונה</title><style>
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Heebo:wght@300;400;500;700&family=Playfair+Display:wght@700;800&display=swap');
+:root{--p:#2c3e6b;--pl:#3d5a99;--a:#c9a84c;--al:#f0dfa0;--bg:#f7f4ee;--c:#fff;--t:#2d2a26;--tl:#6b6560;--b:#ddd5c9;--s:#4a8c6f;--e:#c45050;--r:12px}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--t);line-height:1.7;min-height:100vh}
+h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
+/* SPLASH */
+#splash{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#1a2a4f 0%,var(--p) 40%,#3d5a99 100%);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .8s ease,visibility .8s ease}
+#splash.hide{opacity:0;visibility:hidden;pointer-events:none}
+#splash .ic-sp{margin-bottom:1.5rem}
+#splash .sp-title{font-family:'Assistant',sans-serif;font-size:3.5rem;font-weight:800;color:#fff;margin-bottom:.5rem;opacity:0;animation:spFadeUp .8s .3s forwards}
+#splash .sp-sub{font-size:1.2rem;color:var(--al);font-weight:300;opacity:0;animation:spFadeUp .8s .6s forwards}
+#splash .sp-line{width:60px;height:3px;background:var(--a);border-radius:3px;margin:1.5rem 0;opacity:0;animation:spGrow .8s .9s forwards}
+#splash .sp-dots{display:flex;gap:.5rem;margin-top:1rem}
+#splash .sp-dot{width:8px;height:8px;background:rgba(255,255,255,.3);border-radius:50%;animation:spPulse 1.2s infinite}
+#splash .sp-dot:nth-child(2){animation-delay:.2s}
+#splash .sp-dot:nth-child(3){animation-delay:.4s}
+@keyframes spFloat{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-10px) scale(1.05)}}
+@keyframes spFadeUp{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes spGrow{0%{opacity:0;width:0}100%{opacity:1;width:60px}}
+@keyframes spPulse{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+/* LANDING */
+#landing{display:none;min-height:100vh;background:linear-gradient(180deg,#1a2a4f 0%,var(--p) 50%,#2c3e6b 100%);color:#fff;text-align:center;overflow:hidden}
+#landing.show{display:flex;flex-direction:column;align-items:center;justify-content:center;animation:fi .6s ease}
+.ln-wrap{max-width:700px;padding:2rem 1.5rem}
+.ln-icon{margin-bottom:1rem}
+.ln-title{font-family:'Assistant',sans-serif;font-size:3rem;font-weight:800;margin-bottom:.6rem;background:linear-gradient(135deg,#fff 0%,var(--al) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ln-sub{font-size:1.15rem;color:var(--al);font-weight:300;margin-bottom:2rem}
+.ln-desc{font-size:1rem;line-height:2;color:rgba(255,255,255,.85);margin-bottom:2.5rem;max-width:560px;margin-left:auto;margin-right:auto}
+.ln-features{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem}
+.ln-feat{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:1.2rem 1rem;width:160px;text-align:center;transition:transform .3s,background .3s}
+.ln-feat:hover{transform:translateY(-4px);background:rgba(255,255,255,.14)}
+.ln-feat .lf-icon{font-size:1.8rem;margin-bottom:.5rem}.ln-feat .lf-ic{margin:0 auto .6rem}
+.ln-feat .lf-txt{font-size:.82rem;font-weight:400;color:rgba(255,255,255,.8)}
+.ln-start{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 3rem;background:linear-gradient(135deg,var(--a),#d4b35c);color:var(--p);font-family:'Assistant',sans-serif;font-size:1.2rem;font-weight:700;border:none;border-radius:50px;cursor:pointer;transition:all .3s;box-shadow:0 4px 25px rgba(201,168,76,.4);text-decoration:none}
+.ln-start:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(201,168,76,.6)}
+.ln-credit{margin-top:2.5rem;font-size:.82rem;color:rgba(255,255,255,.45)}
+/* MAIN APP */
+#appWrap{display:none}
+#appWrap.show{display:block}
+.hdr{background:linear-gradient(135deg,#3d5a8a,#2c4570,#34506e);color:#fff;padding:2rem 1rem 1.8rem;text-align:center;position:relative;overflow:hidden;border-bottom:3px solid rgba(180,120,130,.35)}
+.hdr::before{content:'';position:absolute;top:-50%;right:-20%;width:300px;height:300px;background:radial-gradient(circle,rgba(201,168,76,.12) 0%,transparent 70%);border-radius:50%}
+.hdr::after{content:'';position:absolute;bottom:-40%;left:-15%;width:250px;height:250px;background:radial-gradient(circle,rgba(180,120,130,.1) 0%,transparent 70%);border-radius:50%}
+.hdr h1{font-size:2.2rem;font-weight:800;margin-bottom:.2rem;position:relative;z-index:1}.hdr .sub{font-size:1rem;font-weight:300;color:var(--al);position:relative;z-index:1}
+.hdr .hdr-line{width:80px;height:2px;background:linear-gradient(90deg,transparent,rgba(180,120,130,.5),var(--al),rgba(180,120,130,.5),transparent);margin:.8rem auto 0;position:relative;z-index:1}
+.sbar{background:var(--c);border-bottom:1px solid var(--b);padding:1rem 1.5rem;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;justify-content:center;box-shadow:0 2px 12px rgba(44,62,107,.08)}
+.sbar label{font-size:.88rem;font-weight:500;color:var(--tl)}.sbar input,.sbar select{padding:.45rem .75rem;border:1px solid var(--b);border-radius:8px;font-family:'Heebo',sans-serif;font-size:.92rem;background:var(--bg);margin-right:.4rem}
+.pcon{background:var(--c);padding:1.2rem 1.5rem;border-bottom:1px solid var(--b);position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.snav{display:flex;justify-content:center;gap:.3rem;flex-wrap:wrap;max-width:900px;margin:0 auto}
+.sbtn{display:flex;align-items:center;gap:.35rem;padding:.45rem .9rem;border:2px solid #bbb5ab;border-radius:25px;background:0 0;color:#bbb5ab;font-family:'Heebo',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;transition:all .3s;white-space:nowrap}
+.sbtn.act{background:#a8c4e0;border-color:#a8c4e0;color:#fff}.sbtn.done{background:#a8c4e0;border-color:#a8c4e0;color:#fff;opacity:.85}
+.sbtn:hover{border-color:#a8c4e0;color:#a8c4e0}
+.sn{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;background:rgba(255,255,255,.2)}
+.opr{max-width:900px;margin:.7rem auto 0;display:flex;align-items:center;gap:.8rem;font-size:.82rem;color:var(--tl)}
+.pbg{flex:1;height:10px;background:var(--b);border-radius:5px;overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.06)}.pfl{height:100%;background:linear-gradient(90deg,#c9a3ab,var(--a),#a8c4e0);border-radius:5px;transition:width .5s ease;width:0;box-shadow:0 0 6px rgba(201,168,76,.3)}
+.mc{max-width:860px;margin:0 auto;padding:1.5rem 1rem 4rem}
+.ss{display:none;animation:fi .5s ease-out}.ss.act{display:block}@keyframes fi{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.sc{background:var(--c);border-radius:var(--r);padding:2rem;margin-bottom:2rem;box-shadow:0 2px 12px rgba(44,62,107,.08);border:1px solid var(--b);border-right:3px solid var(--a);position:relative;overflow:hidden}
+.sc::before{content:'';position:absolute;top:0;right:0;width:100px;height:100px;background:radial-gradient(circle,rgba(201,168,76,.06) 0%,transparent 70%);border-radius:50%}
+.st{font-size:1.5rem;color:#5a86b5;margin-bottom:.6rem;padding-bottom:.5rem;border-bottom:2px solid transparent;border-image:linear-gradient(90deg,var(--a) 0%,rgba(201,168,76,.15) 60%,transparent 100%) 1;display:flex;align-items:center;gap:.5rem;position:relative;z-index:1}
+.sd{color:var(--tl);font-size:.92rem;margin-bottom:1.5rem;border-bottom:1px solid var(--b);padding-bottom:1rem}
+.fg{margin-bottom:1.3rem;position:relative}.fg label{display:block;font-weight:500;font-size:.92rem;margin-bottom:.35rem;color:var(--t)}
+.fg .hn{font-size:.82rem;color:var(--tl);margin-bottom:.35rem}
+.fg input[type=text],.fg textarea,.fg select{width:100%;padding:.7rem 1rem;border:1px solid var(--b);border-radius:8px;font-family:'Heebo',sans-serif;font-size:.95rem;background:var(--bg);transition:border-color .2s,box-shadow .2s;line-height:1.6}
+.fg input:focus,.fg textarea:focus,.fg select:focus{outline:0;border-color:var(--a);box-shadow:0 0 0 3px rgba(201,168,76,.15),0 0 8px rgba(201,168,76,.08)}.fg textarea{min-height:100px;resize:vertical}
+.mt{width:100%;border-collapse:collapse;margin:1rem 0}.mt th{background:var(--p);color:#fff;padding:.7rem;font-size:.88rem;font-weight:500}
+.mt td{padding:.5rem;border:1px solid var(--b)}.mt input{width:100%;padding:.5rem;border:1px solid var(--b);border-radius:6px;font-family:'Heebo',sans-serif;font-size:.9rem;background:var(--bg)}
+.mt input:focus{outline:0;border-color:var(--pl)}.mt .ac{text-align:center;font-size:1.2rem;color:var(--a);width:40px}
+.arb,.rrb{padding:.4rem .9rem;border:1px dashed var(--pl);background:0 0;color:var(--pl);border-radius:8px;font-family:'Heebo',sans-serif;font-size:.85rem;cursor:pointer;margin-top:.5rem;transition:all .2s}
+.arb:hover{background:var(--p);color:#fff;border-style:solid}.rrb{border-color:var(--e);color:var(--e);font-size:.8rem;padding:.2rem .5rem}.rrb:hover{background:var(--e);color:#fff}
+.so{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem}
+.sopt input[type=radio]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}.sopt label{padding:.4rem 1rem;border:1px solid var(--b);border-radius:20px;font-size:.85rem;cursor:pointer;transition:all .2s}
+.sopt input:checked+label{background:var(--p);color:#fff;border-color:var(--p)}
+.pp{background:#1a1a2e;color:#e8e8e8;padding:1.2rem;border-radius:8px;font-family:monospace;font-size:.88rem;direction:ltr;text-align:left;line-height:1.7;margin:1rem 0;white-space:pre-wrap;position:relative}
+.cpb{position:absolute;top:3rem;right:8px;padding:.35rem .7rem;background:var(--a);color:var(--p);border:none;border-radius:6px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:'Heebo',sans-serif;z-index:2}.cpb:hover{background:var(--al)}
+.uz{border:2px dashed var(--b);border-radius:var(--r);padding:2rem;text-align:center;cursor:pointer;transition:all .3s;background:var(--bg);margin:1rem 0}
+.uz:hover{border-color:var(--pl);background:#f0edea}.uz.hi{border-style:solid;border-color:var(--s)}.uz img{max-width:100%;max-height:350px;border-radius:8px;margin-top:.5rem}
+.uz .ut{font-size:.95rem;color:var(--tl)}.uz .ui{font-size:2rem;margin-bottom:.5rem}.uz input[type=file]{display:none}
+.to{display:flex;flex-wrap:wrap;gap:.5rem;margin:.5rem 0}.to input[type=radio]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.to label{padding:.4rem 1rem;border:1px solid var(--b);border-radius:20px;font-size:.85rem;cursor:pointer;transition:all .2s}
+.to input:checked+label{background:var(--a);color:var(--p);border-color:var(--a);font-weight:600}
+.rq{margin-bottom:1.2rem}.rq .qt{font-weight:500;font-size:.95rem;margin-bottom:.4rem;color:var(--p)}
+.nb{display:flex;justify-content:space-between;margin-top:2rem;gap:1rem}
+.btn{padding:.7rem 2rem;border:none;border-radius:8px;font-family:'Heebo',sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.4rem}
+.bp{background:var(--p);color:#fff}.bp:hover{background:var(--pl)}.bs{background:0 0;color:var(--p);border:1px solid var(--p)}.bs:hover{background:var(--p);color:#fff}
+.ba{background:linear-gradient(135deg,var(--a),#d4b35c);color:var(--p);font-weight:600;box-shadow:0 2px 10px rgba(201,168,76,.3)}.ba:hover{box-shadow:0 4px 16px rgba(201,168,76,.5)}
+.sb{background:var(--bg);border:1px solid var(--b);border-radius:8px;padding:1.2rem;margin-bottom:1rem}
+.sb h4{color:var(--p);font-size:1rem;margin-bottom:.5rem;border-bottom:1px solid var(--b);padding-bottom:.3rem}
+.sb .fl{margin-bottom:.4rem;font-size:.9rem}.sb .fl strong{color:var(--p)}.sb .si{max-width:300px;border-radius:8px;margin:.5rem 0}
+.eb{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.5rem}
+.af{text-align:center;padding:1.5rem;font-size:.82rem;color:var(--tl);border-top:1px solid var(--b);background:var(--c);margin-top:2rem}
+.dd{display:flex;align-items:center;justify-content:center;gap:1rem;margin:1.2rem 0;flex-wrap:wrap}
+.db{flex:1;min-width:200px;max-width:300px;padding:1rem;border-radius:10px;text-align:center}
+.db.sr{background:#f5e8eb;border:2px solid #c9a3ab}.db.tg{background:#e0e8f5;border:2px solid #83a3c4}
+.db .dl{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}.da{font-size:2rem;color:var(--a)}
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--p);color:#fff;padding:.8rem 1.5rem;border-radius:10px;font-size:.9rem;z-index:1000;transition:transform .3s;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.toast.sh{transform:translateX(-50%) translateY(0)}
+.ogp{font-weight:700;color:var(--p);padding:.3rem 0;font-size:.88rem;margin-top:.5rem;border-top:1px solid var(--b)}
+/* article upload zone */
+.art-zone{background:linear-gradient(135deg,rgba(44,62,107,.03),rgba(201,168,76,.05));border:2px dashed var(--b);border-radius:var(--r);padding:1.5rem;margin:1rem 0;transition:all .3s}
+.art-zone:hover{border-color:var(--pl)}
+.art-zone h4{color:var(--p);font-size:1rem;margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem}
+.art-file{display:flex;align-items:center;gap:.8rem;background:var(--c);padding:.6rem 1rem;border-radius:8px;margin:.4rem 0;border:1px solid var(--b);font-size:.88rem}
+.art-file .af-name{flex:1;font-weight:500}.art-file .af-remove{color:var(--e);cursor:pointer;font-size:1.1rem;padding:0 .3rem}
+.art-cite{margin-top:.8rem}
+/* icon circles */
+.ic{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(180,120,130,.1);border:1px solid rgba(180,120,130,.18);flex-shrink:0}
+.ic svg{width:18px;height:18px;stroke:#9e6b73;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ic-lg{width:80px;height:80px;border-radius:50%;background:rgba(201,168,76,.12);border:2px solid rgba(201,168,76,.25);margin:0 auto 1rem}
+.ic-lg svg{width:36px;height:36px;stroke:var(--a);stroke-width:1.5}
+.ic-sp{width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.1);border:2px solid rgba(201,168,76,.4);margin-bottom:1.5rem}
+.ic-sp svg{width:48px;height:48px;stroke:var(--al);stroke-width:1.3}
+.lf-ic{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;margin:0 auto .6rem}
+.lf-ic svg{width:22px;height:22px;stroke:var(--al);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+/* expandable panels */
+.exp-panel{background:linear-gradient(135deg,rgba(44,62,107,.03),rgba(201,168,76,.05));border:1px solid var(--b);border-radius:var(--r);margin:1rem 0;overflow:hidden}
+.exp-head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;cursor:pointer;font-weight:600;color:var(--p);font-size:.95rem;transition:background .2s;user-select:none}
+.exp-head:hover{background:rgba(44,62,107,.05)}
+.exp-head .exp-arrow{transition:transform .3s;font-size:.8rem}
+.exp-panel.open .exp-arrow{transform:rotate(180deg)}
+.exp-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.exp-panel.open .exp-body{max-height:3000px}
+.exp-inner{padding:0 1.2rem 1.2rem;font-size:.88rem;line-height:1.9;color:var(--t)}
+.exp-inner h4{color:var(--p);font-size:.95rem;margin:1rem 0 .4rem;padding-bottom:.3rem;border-bottom:1px solid var(--b)}
+.exp-inner ul{margin:.4rem 0 .8rem 1.2rem}.exp-inner li{margin-bottom:.3rem}
+.exp-inner .tip-ex{background:linear-gradient(135deg,var(--bg),rgba(201,168,76,.06));border-right:4px solid var(--a);padding:.8rem 1rem;border-radius:8px;margin:.6rem 0;font-size:.85rem;direction:ltr;text-align:left;font-family:monospace;line-height:1.6;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+/* notebook */
+.nb-fab{position:fixed;bottom:2rem;right:2rem;width:56px;height:56px;background:linear-gradient(135deg,var(--p),var(--pl));color:#fff;border:none;border-radius:50%;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 20px rgba(44,62,107,.3);z-index:500;transition:all .3s;display:flex;align-items:center;justify-content:center}
+.nb-fab:hover{transform:scale(1.1);box-shadow:0 6px 25px rgba(44,62,107,.4)}
+.nb-fab.has-notes{animation:nbPulse 2s infinite}
+@keyframes nbPulse{0%,100%{box-shadow:0 4px 20px rgba(44,62,107,.3)}50%{box-shadow:0 4px 20px rgba(44,62,107,.3),0 0 0 8px rgba(44,62,107,.1)}}
+.nb-panel{position:fixed;top:0;right:-420px;width:400px;height:100%;background:var(--c);z-index:600;box-shadow:-4px 0 30px rgba(0,0,0,.15);transition:right .4s ease;display:flex;flex-direction:column}
+.nb-panel.open{right:0}
+.nb-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.3);z-index:550;opacity:0;visibility:hidden;transition:all .3s}
+.nb-overlay.open{opacity:1;visibility:visible}
+.nb-hdr{background:linear-gradient(135deg,var(--p),#1a2a4f);color:#fff;padding:1.2rem;display:flex;align-items:center;justify-content:space-between}
+.nb-hdr h3{font-size:1.1rem;display:flex;align-items:center;gap:.5rem}
+.nb-close{background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;padding:.3rem}
+.nb-tabs{display:flex;border-bottom:2px solid var(--b);background:var(--bg)}
+.nb-tab{flex:1;padding:.7rem;text-align:center;font-size:.82rem;font-weight:500;cursor:pointer;color:var(--tl);border-bottom:2px solid transparent;transition:all .2s;margin-bottom:-2px}
+.nb-tab.act{color:var(--p);border-bottom-color:var(--a);background:var(--c)}
+.nb-content{flex:1;overflow-y:auto;padding:1rem}
+.nb-entry{background:var(--bg);border:1px solid var(--b);border-radius:8px;padding:.8rem;margin-bottom:.8rem}
+.nb-entry .nb-meta{font-size:.75rem;color:var(--tl);margin-bottom:.3rem;display:flex;justify-content:space-between}
+.nb-entry textarea{width:100%;min-height:70px;border:1px solid var(--b);border-radius:6px;padding:.5rem;font-family:'Heebo',sans-serif;font-size:.88rem;background:var(--c);resize:vertical}
+.nb-add{display:flex;gap:.5rem;padding:1rem;border-top:1px solid var(--b);background:var(--bg)}
+.nb-add input{flex:1;padding:.5rem .8rem;border:1px solid var(--b);border-radius:8px;font-family:'Heebo',sans-serif;font-size:.88rem}
+.nb-add button{padding:.5rem 1rem;background:var(--p);color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:'Heebo',sans-serif;font-size:.85rem}
+.nb-badge{position:absolute;top:-4px;right:-4px;background:var(--a);color:var(--p);font-size:.65rem;font-weight:700;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+/* reading list */
+.rl-item{display:flex;gap:.8rem;align-items:flex-start;padding:.7rem 0;border-bottom:1px solid rgba(221,213,201,.5)}
+.rl-item:last-child{border-bottom:none}
+.rl-icon{font-size:1.2rem;margin-top:.1rem}.rl-info{flex:1}
+.rl-info a{color:var(--pl);text-decoration:none;font-weight:500;font-size:.9rem}.rl-info a:hover{text-decoration:underline}
+.rl-info .rl-desc{font-size:.8rem;color:var(--tl);margin-top:.1rem}
+@media(max-width:640px){.hdr h1{font-size:1.8rem}.sc{padding:1.4rem 1.2rem;margin-bottom:1.5rem}.mc{padding:1.2rem .8rem 4rem}.sbar{flex-direction:column;align-items:stretch}.snav{gap:.2rem}.sbtn{padding:.35rem .6rem;font-size:.75rem}.dd{flex-direction:column}.da{transform:rotate(90deg)}.nb:not(.nb-add){flex-direction:column}.ln-title{font-size:2.2rem}.ln-features{flex-direction:column;align-items:center}.ln-feat{width:80%}.nb-panel{width:100%;right:-100%}.nb-fab{bottom:1rem;right:1rem;width:48px;height:48px;font-size:1.2rem}.fg{margin-bottom:1.1rem}}
+@media print{.pcon,.sbar,.eb,.arb,.rrb,.cpb,.art-zone,#landing,#splash,.nb-fab,.nb-panel,.nb-overlay,.exp-panel,.nb:not(.sb){display:none!important}.ss{display:block!important;page-break-inside:avoid}.sc{box-shadow:none;border:1px solid #ccc;page-break-inside:avoid}body{background:#fff}.hdr{background:var(--p)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+/* CONSENT DIALOG */
+.consent-ov{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10000;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .4s;pointer-events:none}
+.consent-ov.show{opacity:1;pointer-events:auto}
+.consent-box{background:#fff;border-radius:14px;max-width:540px;width:92%;padding:2rem 2rem 1.5rem;box-shadow:0 20px 60px rgba(0,0,0,.3);direction:rtl;transform:scale(.92);transition:transform .35s}
+.consent-ov.show .consent-box{transform:scale(1)}
+.consent-box h3{font-family:'Assistant',sans-serif;color:var(--p);font-size:1.3rem;margin-bottom:.5rem;text-align:center}
+.consent-box .cb-sub{text-align:center;font-size:.88rem;color:var(--a);margin-bottom:1rem}
+.consent-box p{font-size:.9rem;color:var(--t);line-height:1.7;margin-bottom:.5rem}
+.consent-box .cb-list{margin:.5rem 0 1rem;font-size:.86rem;color:var(--tl);line-height:1.9}
+.consent-box .cb-list div{padding:.15rem 0}
+.consent-box .cb-list div::before{content:"• ";color:var(--a);font-weight:700}
+.consent-lbl{display:flex;align-items:flex-start;gap:.6rem;margin:1rem 0;font-size:.88rem;line-height:1.6;cursor:pointer;background:var(--c);padding:.8rem;border-radius:8px;border:1px solid var(--b)}
+.consent-lbl input{margin-top:.25rem;min-width:18px;min-height:18px;accent-color:var(--p)}
+.consent-btn{display:block;margin:1rem auto 0;background:var(--p);color:#fff;border:none;padding:.7rem 2.2rem;border-radius:8px;font-size:1rem;font-family:'Assistant',sans-serif;font-weight:700;cursor:pointer;opacity:.4;pointer-events:none;transition:opacity .3s,transform .15s}
+.consent-btn.enabled{opacity:1;pointer-events:auto}
+.consent-btn.enabled:hover{transform:scale(1.03)}
+.consent-box .cb-note{text-align:center;font-size:.78rem;color:var(--tl);margin-top:.8rem}
+
+/* INTRO UNIT */
+
+/* INTERACTIVE THINK-REVEAL */
+.intro-challenge{background:linear-gradient(135deg,#f0e6d3,#faf6ef);border:2px dashed #b47882;border-radius:var(--r);padding:2rem;margin:1.5rem 0;text-align:center}
+.intro-challenge h3{color:#b47882;font-size:1.2rem;margin-bottom:.8rem}
+.intro-challenge p{color:var(--t);margin-bottom:1rem;line-height:1.7}
+.intro-challenge textarea{width:100%;min-height:120px;border:1px solid var(--b);border-radius:8px;padding:1rem;font-family:'David Libre',serif;font-size:1rem;direction:rtl;resize:vertical;background:#fff}
+.intro-challenge textarea:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px rgba(44,62,107,.12)}
+.intro-reveal-btn{display:inline-block;margin-top:1rem;padding:.7rem 1.8rem;background:var(--p);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:1rem;font-family:'Assistant',sans-serif;transition:all .3s}
+.intro-reveal-btn:hover{background:#3d5a99;transform:scale(1.03)}
+.intro-revealed{display:none;margin-top:1.5rem;text-align:right}
+.intro-revealed.show{display:block;animation:fi .6s ease}
+.intro-rule-card{background:#fff;border-radius:10px;padding:1.2rem 1.5rem;margin-bottom:.8rem;border-right:4px solid var(--p);box-shadow:0 2px 8px rgba(44,62,107,.06)}
+.intro-rule-card.dont{border-right-color:#b47882}
+.intro-rule-card strong{display:block;margin-bottom:.3rem;font-size:1.05rem}
+.intro-rule-card p{margin:0;line-height:1.7;color:#555}
+.intro-rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+@media(max-width:700px){.intro-rules-grid{grid-template-columns:1fr}}
+.intro-rules-col h4{color:var(--p);font-size:1.1rem;margin-bottom:.8rem;padding-bottom:.4rem;border-bottom:2px solid rgba(44,62,107,.15)}
+.intro-rules-col.dont h4{color:#b47882;border-bottom-color:rgba(180,120,130,.2)}
+.fn-link{color:var(--p);text-decoration:none;border-bottom:1px dotted var(--p)}
+.fn-link:hover{color:#b47882}
+
+
+/* COLLAPSIBLE APPENDICES */
+.intro-details{margin:1rem 0;border:1px solid var(--b);border-radius:10px;overflow:hidden;background:#fff}
+.intro-details summary{cursor:pointer;padding:1rem 1.4rem;font-family:'Assistant',sans-serif;font-weight:700;font-size:1.05rem;color:var(--p);background:rgba(44,62,107,.04);list-style:none;display:flex;align-items:center;gap:.5rem;transition:background .2s}
+.intro-details summary:hover{background:rgba(44,62,107,.08)}
+.intro-details summary::before{content:'◂';display:inline-block;transition:transform .3s;font-size:.9rem}
+.intro-details[open] summary::before{transform:rotate(-90deg)}
+.intro-details .details-body{padding:1.2rem 1.5rem;line-height:2;font-size:.95rem;border-top:1px solid var(--b)}
+.intro-details .details-body p{margin-bottom:.8rem}
+.intro-details .details-body h4{color:#5a86b5;font-size:1rem;margin:1.2rem 0 .5rem;font-weight:700}
+.intro-example{background:linear-gradient(135deg,#f8f4ee,#faf6ef);border-right:3px solid #b47882;padding:1rem 1.2rem;border-radius:8px;margin:.8rem 0;font-size:.93rem;line-height:1.9}
+.intro-example .ex-label{color:#b47882;font-weight:700;font-size:.88rem;margin-bottom:.3rem}
+.intro-mapping{display:grid;grid-template-columns:1fr auto 1fr;gap:.5rem;align-items:center;margin:.8rem 0;font-size:.92rem}
+.intro-mapping .map-arrow{color:var(--p);font-size:1.2rem;text-align:center}
+.intro-mapping .map-side{background:rgba(44,62,107,.05);padding:.6rem .8rem;border-radius:6px;text-align:center}
+
+#introUnit{display:none;min-height:100vh;background:var(--bg);color:var(--t);overflow-y:auto}
+#introUnit.show{display:block;animation:fi .6s ease}
+.intro-wrap{max-width:820px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.intro-hero{background:linear-gradient(135deg,#1a2a4f,var(--p),#3d5a99);color:#fff;padding:2.5rem 2rem;border-radius:var(--r);text-align:center;margin-bottom:2rem}
+.intro-hero h1{font-family:'Assistant',sans-serif;font-size:2.2rem;font-weight:800;margin-bottom:.4rem;background:linear-gradient(135deg,#fff,var(--al));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.intro-hero .intro-sub{color:var(--al);font-size:1rem;font-weight:300}
+.intro-sec{background:var(--c);border-radius:var(--r);padding:1.8rem;margin-bottom:1.2rem;border:1px solid var(--b);box-shadow:0 2px 12px rgba(44,62,107,.06)}
+.intro-sec h2{color:#5a86b5;font-size:1.3rem;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:2px solid rgba(180,120,130,.15);display:flex;align-items:center;gap:.5rem}
+.intro-sec h3{color:var(--p);font-size:1.05rem;margin:1rem 0 .4rem}
+.intro-sec p{line-height:2;margin-bottom:.8rem;font-size:.95rem}
+.intro-sec .fn{font-size:.78rem;color:var(--pl);cursor:help;vertical-align:super;font-weight:600}
+.intro-tbl{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.9rem}
+.intro-tbl th{background:var(--p);color:#fff;padding:.6rem;text-align:center}
+.intro-tbl td{padding:.6rem .8rem;border:1px solid var(--b);line-height:1.6}
+.intro-tbl tr:nth-child(even){background:rgba(44,62,107,.03)}
+.intro-bib{font-size:.85rem;line-height:2;color:var(--tl)}
+.intro-bib p{margin-bottom:.3rem;padding-right:2rem;text-indent:-2rem}
+.intro-fn-section{background:rgba(44,62,107,.03);padding:1.2rem;border-radius:8px;margin-top:1.5rem;font-size:.82rem;line-height:1.9;color:var(--tl)}
+.intro-fn-section h3{color:var(--p);font-size:.95rem;margin-bottom:.5rem}
+.intro-fn-section p{margin-bottom:.2rem}
+.intro-proceed{text-align:center;margin-top:2rem}
+.intro-proceed button{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 3rem;background:linear-gradient(135deg,var(--a),#d4b35c);color:var(--p);font-family:'Assistant',sans-serif;font-size:1.2rem;font-weight:700;border:none;border-radius:50px;cursor:pointer;transition:all .3s;box-shadow:0 4px 25px rgba(201,168,76,.4)}
+.intro-proceed button:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(201,168,76,.6)}
+.intro-back{text-align:center;margin-top:1rem}
+.intro-back button{background:none;border:1px solid var(--b);padding:.5rem 1.5rem;border-radius:8px;font-family:'Heebo',sans-serif;color:var(--tl);cursor:pointer;font-size:.88rem}
+.intro-back button:hover{border-color:var(--pl);color:var(--pl)}
+.intro-ol{margin:.5rem 0 .8rem 1.2rem;line-height:2;font-size:.93rem}
+.intro-ol li{margin-bottom:.3rem}
+.vld-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.45);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}.vld-modal.show{opacity:1;pointer-events:auto}.vld-box{background:#fff;border-radius:16px;padding:1.8rem;max-width:480px;width:90%;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3);direction:rtl}.vld-title{font-family:'Assistant',sans-serif;font-weight:700;font-size:1.2rem;color:var(--p);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}.vld-ok{color:#2d8a4e;font-size:.95rem;margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}.vld-warn{color:#c0392b;font-size:.95rem;margin-bottom:.6rem;padding:.5rem .7rem;background:#fef2f2;border-radius:8px;border-right:3px solid #c0392b}.vld-info{color:#7f8c8d;font-size:.85rem;margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}.vld-actions{display:flex;gap:.6rem;margin-top:1.2rem;justify-content:center}.vld-btn{padding:.6rem 1.4rem;border-radius:10px;border:none;cursor:pointer;font-family:'Heebo',sans-serif;font-size:.95rem;font-weight:500;transition:all .2s}.vld-btn-p{background:var(--p);color:#fff}.vld-btn-p:hover{background:#5a1e2b}.vld-btn-s{background:#f0ebe3;color:var(--t)}.vld-btn-s:hover{background:#e0d9cf}.vld-score{text-align:center;margin:1rem 0;font-size:1.5rem;font-weight:700;color:var(--p)}.vld-bar{height:8px;border-radius:4px;background:#e8e2d8;margin:.8rem 0;overflow:hidden}.vld-bar-fill{height:100%;border-radius:4px;transition:width .5s}
+</style></head><body>
+<!-- CONSENT DIALOG -->
+<div class="consent-ov" id="consentOv">
+<div class="consent-box">
+<h3>הסכמה מדעת — שמירת נתונים</h3>
+<div class="cb-sub">ד״ר נאוה כהן | אוניברסיטת בר-אילן</div>
+<p>אפליקציית <strong>״התמונה הטמונה״</strong> שומרת את התוצרים שלכם (טקסטים, תמונות ופרומפטים) באופן מקומי בדפדפן שלכם, ומאפשרת ייצוא לקובץ.</p>
+<p>המידע הנשמר עשוי לשמש למטרות:</p>
+<div class="cb-list">
+<div>מעקב אחרי ההתקדמות האישית שלכם לאורך התהליך</div>
+<div>ייצוא תוצר סופי (PDF / HTML / JSON) להגשה</div>
+<div>מחקר אקדמי ושיפור הקורס (בצורה אנונימית, ללא פרטים מזהים)</div>
+</div>
+<label class="consent-lbl">
+<input type="checkbox" id="consentCb" onchange="document.getElementById('consentBtn').classList.toggle('enabled',this.checked)">
+<span>אני מסכים/ה לשמירת הנתונים שלי כמתואר לעיל, ומבין/ה שאוכל למחוק את הנתונים בכל עת מהדפדפן שלי.</span>
+</label>
+<button class="consent-btn" id="consentBtn" onclick="acceptConsent()">אישור והמשך →</button>
+<div class="cb-note">ניתן לחזור ולמחוק את הנתונים דרך הגדרות הדפדפן בכל עת</div>
+</div>
+</div>
+<!-- SPLASH SCREEN -->
+<div id="splash">
+<div class="ic ic-sp" style="animation:spFloat 2s ease-in-out infinite alternate"><svg viewBox="0 0 24 24"><path d="M12 3L2 7l10 4 10-4-10-4z"/><path d="M2 17l10 4 10-4"/><path d="M2 12l10 4 10-4"/></svg></div>
+<div class="sp-title">התמונה הטמונה</div>
+<div class="sp-line"></div>
+<div class="sp-sub">כלי ניתוח מטפורי באמצעות בינה מלאכותית</div>
+<div class="sp-dots"><div class="sp-dot"></div><div class="sp-dot"></div><div class="sp-dot"></div></div>
+</div>
+<!-- LANDING PAGE -->
+<div id="landing">
+<div class="ln-wrap">
+<div style="margin-bottom:1.2rem"><svg viewBox="0 0 200 160" width="180" height="144" xmlns="http://www.w3.org/2000/svg">
+<!-- stems -->
+<path d="M100 155 Q95 120 85 95" fill="none" stroke="#7a9e8a" stroke-width="2" opacity=".7"/>
+<path d="M100 155 Q105 115 115 90" fill="none" stroke="#7a9e8a" stroke-width="2" opacity=".7"/>
+<path d="M100 155 Q90 110 70 80" fill="none" stroke="#6b8f7b" stroke-width="1.8" opacity=".6"/>
+<path d="M100 155 Q110 105 130 78" fill="none" stroke="#6b8f7b" stroke-width="1.8" opacity=".6"/>
+<path d="M100 155 Q100 100 100 72" fill="none" stroke="#7a9e8a" stroke-width="2.2" opacity=".7"/>
+<!-- leaves -->
+<ellipse cx="72" cy="110" rx="14" ry="6" transform="rotate(-35 72 110)" fill="#8aab97" opacity=".5"/>
+<ellipse cx="128" cy="108" rx="14" ry="6" transform="rotate(30 128 108)" fill="#7a9e8a" opacity=".5"/>
+<ellipse cx="60" cy="92" rx="12" ry="5" transform="rotate(-50 60 92)" fill="#92b5a3" opacity=".45"/>
+<ellipse cx="140" cy="90" rx="12" ry="5" transform="rotate(45 140 90)" fill="#92b5a3" opacity=".45"/>
+<ellipse cx="90" cy="100" rx="10" ry="4.5" transform="rotate(-20 90 100)" fill="#8aab97" opacity=".4"/>
+<ellipse cx="112" cy="98" rx="10" ry="4.5" transform="rotate(15 112 98)" fill="#8aab97" opacity=".4"/>
+<!-- flowers - center -->
+<circle cx="100" cy="62" r="11" fill="#e8c84a" opacity=".8"/>
+<circle cx="100" cy="62" r="6" fill="#d4a84c" opacity=".6"/>
+<circle cx="93" cy="55" r="8" fill="#f0d86a" opacity=".5"/>
+<circle cx="107" cy="55" r="8" fill="#f0d86a" opacity=".5"/>
+<circle cx="95" cy="68" r="7" fill="#ecd05a" opacity=".45"/>
+<circle cx="105" cy="68" r="7" fill="#ecd05a" opacity=".45"/>
+<!-- flowers - left -->
+<circle cx="70" cy="72" r="9" fill="#e8c84a" opacity=".7"/>
+<circle cx="70" cy="72" r="5" fill="#d4a84c" opacity=".5"/>
+<circle cx="64" cy="67" r="6.5" fill="#f0d86a" opacity=".45"/>
+<circle cx="76" cy="67" r="6.5" fill="#f0d86a" opacity=".45"/>
+<!-- flowers - right -->
+<circle cx="130" cy="70" r="9" fill="#e8c84a" opacity=".7"/>
+<circle cx="130" cy="70" r="5" fill="#d4a84c" opacity=".5"/>
+<circle cx="124" cy="65" r="6.5" fill="#f0d86a" opacity=".45"/>
+<circle cx="136" cy="65" r="6.5" fill="#f0d86a" opacity=".45"/>
+<!-- small buds -->
+<circle cx="82" cy="82" r="5" fill="#ecd05a" opacity=".5"/>
+<circle cx="118" cy="80" r="5" fill="#ecd05a" opacity=".5"/>
+<circle cx="60" cy="85" r="3.5" fill="#f0d86a" opacity=".35"/>
+<circle cx="140" cy="83" r="3.5" fill="#f0d86a" opacity=".35"/>
+<!-- soft glow -->
+<circle cx="100" cy="85" r="50" fill="url(#flGlow)" opacity=".15"/>
+<defs><radialGradient id="flGlow"><stop offset="0%" stop-color="#f0d86a"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs>
+</svg></div>
+<h1 class="ln-title">התמונה הטמונה</h1>
+<div class="ln-sub">כלי ניתוח מטפורי באמצעות בינה מלאכותית</div>
+<p class="ln-desc">כלי אינטראקטיבי המנחה אתכם בתהליך של ניתוח מטפורות מקראיות — מבחירת פסוק וחשיפת המיפוי המטפורי, דרך יצירת תמונה באמצעות AI, ועד רפלקציה על התהליך כולו.</p>
+<div class="ln-features">
+<div class="ln-feat"><div class="lf-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></div><div class="lf-txt">חשיפת מיפויים מטפוריים</div></div>
+<div class="ln-feat"><div class="lf-ic"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/><circle cx="12" cy="12" r="10"/></svg></div><div class="lf-txt">יצירת תמונה באמצעות AI</div></div>
+<div class="ln-feat"><div class="lf-ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg></div><div class="lf-txt">שילוב פרשנות מקראית</div></div>
+<div class="ln-feat"><div class="lf-ic"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg></div><div class="lf-txt">ייצוא תוצר מקצועי</div></div>
+</div>
+<button class="ln-start" onclick="startApp()">התחילו את התהליך ←</button>
+<div class="ln-credit">ד״ר נאוה כהן | אוניברסיטת בר-אילן | הקורס: התמונה הטמונה</div>
+</div>
+</div>
+
+<!-- INTRO UNIT -->
+<div id="introUnit">
+<div class="intro-wrap">
+<div style="text-align:center;margin-bottom:1.5rem"><button onclick="enterAppFromIntro()" style="background:rgba(44,62,107,.07);border:2px solid var(--p);color:var(--p);padding:.8rem 2.2rem;border-radius:50px;font-family:'Assistant',sans-serif;font-size:1.05rem;font-weight:600;cursor:pointer;transition:all .3s;box-shadow:0 2px 8px rgba(44,62,107,.1);letter-spacing:.02em" onmouseover="this.style.background='var(--p)';this.style.color='#fff';this.style.borderColor='var(--p)';this.style.boxShadow='0 4px 16px rgba(44,62,107,.25)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(44,62,107,.07)';this.style.color='var(--p)';this.style.borderColor='var(--p)';this.style.boxShadow='0 2px 8px rgba(44,62,107,.1)';this.style.transform='translateY(0)'">דלגו על המבוא ←</button></div>
+<div class="intro-hero">
+<h1>יחידת מבוא: המטפורה במקרא</h1>
+<div class="intro-sub">מהתורה הקלאסית ועד המחקר העכשווי — רקע תיאורטי מקיף לניתוח מטפורות בטקסטים מקראיים</div>
+</div>
+
+<!-- ═══ פרק 1: מבוא ═══ -->
+<div class="intro-sec">
+<h2>📖 פרק 1: מבוא — מדוע ללמוד תורת המטפורה?</h2>
+<p>המטפורה אינה רק כלי רטורי או קישוט לשוני — היא אחד המנגנונים המרכזיים שבאמצעותם בני אדם מבינים ומפרשים את המציאות. כשאנחנו אומרים "הזמן רץ", "הוויכוח התלקח" או "מחירי הדיור טיפסו", אנחנו חושבים באמצעות מטפורות מבלי להבחין בכך. יחידה זו נועדה לספק מפה מקיפה של תורת המטפורה — מהתפיסה העתיקה של אריסטו ועד המחקר הקוגניטיבי והתקשורתי של ימינו — ולהראות כיצד כלים אלה מאירים את המטפורות במקרא בעומק חדש.</p>
+<p>בלימודי המקרא, ניתוח מטפורי מאפשר לחשוף רבדים של משמעות שנותרים סמויים בקריאה שטחית. כאשר ישעיהו אומר "כל הגויים כמר מדלי" (ישעיהו מ, טו), הוא אינו משתמש בהשוואה בלבד — הוא מפעיל מנגנון קוגניטיבי שממפה את העולם הזעיר והחולף על המציאות הפוליטית של עוצמה לאומית. הבנת המנגנון הזה היא מפתח לקריאה עשירה יותר של טקסטים מקראיים.</p>
+<p>היחידה מציגה בהרחבה את התורות המרכזיות בחקר המטפורה, את המהפכה הקוגניטיבית שחוללה שינוי יסודי בהבנת המטפורה, ואת ההתפתחויות האחרונות בתחום. כל פרק מלווה בדוגמאות מקראיות ובנספחים מתקפלים המרחיבים על נושאים ספציפיים, כדי לאפשר הבנה מעמיקה גם למי שאינם מכירים את התחום מקודם. בסוף היחידה מוצגים עקרונות מעשיים ומשימה אינטראקטיבית להכנה לעבודה באפליקציה.</p>
+</div>
+
+<!-- ═══ פרק 2: התורה הקלאסית ═══ -->
+<div class="intro-sec">
+<h2>📜 פרק 2: התורה הקלאסית — מאריסטו ועד המאה העשרים</h2>
+
+<h3>2.1 אריסטו ותורת ההחלפה</h3>
+<p>הדיון המערבי במטפורה מתחיל אצל אריסטו (המאה הרביעית לפנה"ס), שהגדיר את המטפורה כ"העברת שם השייך לדבר אחד על דבר אחר"<span class="fn"><a class="fn-link" href="https://www.loebclassics.com/view/aristotle-poetics/1995/pb_LCL199.25.xml" target="_blank" title="Aristotle, Poetics, 1457b, trans. Halliwell (1995).">1</a></span>. לפי הגדרה זו, כאשר אומרים "אכילס הוא אריה", מדובר בהעברת השם "אריה" מבעל החיים אל הלוחם, על סמך דמיון באומץ ובעוצמה. תפיסה זו מכונה תורת ההחלפה (substitution theory): המטפורה היא מעין שם חלופי, ותמיד ניתן "לתרגם" אותה חזרה לשפה מילולית.</p>
+<p>תורת ההחלפה שלטה בחשיבה הלשונית והפילוסופית במשך כאלפיים שנה. היא ביססה שתי הנחות מרכזיות: ראשית, שהמטפורה היא עניין של מילים בלבד (לא של חשיבה); שנית, שהמטפורה היא "סטייה" מהשפה ה"רגילה" — קישוט רטורי שניתן להסירו מבלי לאבד מהמשמעות. הנחות אלה יעמדו במרכז הביקורת שתבוא במאה העשרים.</p>
+
+<details class="intro-details">
+<summary>נספח: אריסטו על המטפורה — הרחבה</summary>
+<div class="details-body">
+<p>אריסטו דן במטפורה בשני חיבורים מרכזיים: ב<em>פואטיקה</em> וב<em>רטוריקה</em>. ב<em>פואטיקה</em> (1457b) הוא מגדיר ארבעה סוגים של העברת שם: מסוג לזן (genus to species), מזן לסוג (species to genus), מזן לזן (species to species), ועל דרך האנלוגיה (analogy). הסוג הרביעי — אנלוגיה — הוא החשוב ביותר: הוא מבוסס על פרופורציה (A ביחס ל-B כמו C ביחס ל-D). לדוגמה: "כוס היא לדיוניסוס כמו שמגן הוא לארס" — ולכן ניתן לומר "כוסו של ארס" (במקום מגן) או "מגנו של דיוניסוס" (במקום כוס).</p>
+<p>ב<em>רטוריקה</em> אריסטו מוסיף שהמטפורה חשובה לא רק בשירה אלא גם בנאום משכנע, כיוון שהיא מעניקה חיוניות וחידוש. הוא גם קושר בין מטפורה לדימוי (simile): הדימוי הוא מטפורה מורחבת עם מילת השוואה ("כמו"), ואילו המטפורה היא דימוי מקוצר.</p>
+<h4>דוגמה מקראית</h4>
+<div class="intro-example">
+<div class="ex-label">דוגמה: תהילים כג, א</div>
+<p>"ה' רועי לא אחסר" — לפי תורת ההחלפה של אריסטו, השם "רועה" הועבר מתחום הרעייה על האל, על סמך דמיון בהנהגה ובהגנה. בגישה זו, ניתן "לתרגם" את המטפורה: "ה' מנהיג אותי ומגן עליי כמו רועה על צאנו". אך שימו לב: "תרגום" זה מאבד משהו — התחושה של קרבה, של טיפול אישי, של שדה ירוק. נקודה זו תעמוד במרכז הביקורת של תורת האינטראקציה.</p>
+</div>
+</div>
+</details>
+
+<h3>2.2 ריצ'רדס ותורת האינטראקציה</h3>
+<p>במאה העשרים חלה תפנית משמעותית בחקר המטפורה. ריצ'רדס (1936) הציג את מודל האינטראקציה בספרו<span class="fn"><a class="fn-link" href="https://archive.org/details/philosophyofrhet0000rich" target="_blank" title="Richards, I. A. (1936). The Philosophy of Rhetoric. Oxford University Press.">2</a></span>, וטען שהמטפורה אינה רק תחליף למילה — היא דרך חשיבה בפני עצמה. המטפורה אינה "סטייה" מהשפה אלא חלק מהותי ממנה.</p>
+<p>ריצ'רדס הציג שני מושגים שהפכו יסודיים בתחום: טנור (tenor) — הנושא שעליו מדברים, וכלי (vehicle) — הדימוי שבאמצעותו מדברים. כאשר אומרים "ה' סלעי", הטנור הוא האל, והכלי הוא הסלע. החידוש של ריצ'רדס היה בטענה שהמשמעות המטפורית נולדת מהמפגש בין הטנור לכלי — מהאינטראקציה ביניהם — ולא מהחלפה פשוטה. זוהי משמעות שאינה קיימת באף אחד מהמרכיבים בנפרד.</p>
+<p>עוד הדגיש ריצ'רדס שהמטפורה היא כל-כך מרכזית בשפה, שאין כמעט משפט שאינו מכיל מטפורה כלשהי — לעיתים מבלי שנרגיש בכך. תובנה זו תהפוך ליסוד מרכזי בתורה הקוגניטיבית שתבוא ארבעים שנה מאוחר יותר.</p>
+
+<h3>2.3 בלאק ופיתוח מודל האינטראקציה</h3>
+<p>בלאק (1954; 1979) פיתח את מודל האינטראקציה של ריצ'רדס הלאה<span class="fn"><a class="fn-link" href="https://www.jstor.org/stable/4544549" target="_blank" title="Black, M. (1954). Metaphor. Proceedings of the Aristotelian Society, 55, 273–294.">3</a></span>. לפי בלאק, כאשר שני מושגים נפגשים במטפורה, הם משפיעים זה על זה באופן הדדי ויוצרים משמעות חדשה שאינה קיימת באף אחד מהיסודות בנפרד. בלאק כינה תופעה זו "מערכת של מקומות משותפים" (system of associated commonplaces): כשאנחנו שומעים "האדם הוא זאב", לא רק שמאפייני הזאב (טריפה, ערמומיות, חיים בלהקה) מוטלים על האדם, אלא גם תפיסתנו את הזאב עצמו עשויה להשתנות.</p>
+<p>תרומה חשובה נוספת של בלאק היא ההבחנה בין מטפורות "מתות" (dead metaphors) כמו "רגל הכיסא" — שבהן כבר איש אינו חש במטפורה — לבין מטפורות "חיות" שעדיין יוצרות מתח בין שני התחומים ומזמינות חשיבה חדשה. הבחנה זו חשובה במיוחד לניתוח מקראי, כיוון שמטפורות שהיו "חיות" בעת הכתיבה עשויות להיתפס כ"מתות" לקורא המודרני.</p>
+
+<details class="intro-details">
+<summary>נספח: טנור, כלי ואינטראקציה — דוגמאות מקראיות</summary>
+<div class="details-body">
+<h4>ניתוח לפי מודל ריצ'רדס–בלאק</h4>
+<div class="intro-example">
+<div class="ex-label">דוגמה 1: "ה' סלעי ומצודתי ומפלטי" (תהילים יח, ג)</div>
+<p>טנור: ה' (האל) | כלי: סלע, מצודה, מפלט</p>
+<p>האינטראקציה: מאפייני הסלע (יציבות, נצחיות, חוסר מוות) מוטלים על האל. אך בד בבד, הסלע עצמו "מתעלה" — הוא כבר לא רק אבן אלא סמל של הגנה מוחלטת. המשמעות החדשה: קיום שהוא מוצק ובלתי-מעורער, מקום מחסה שלא ייפול.</p>
+</div>
+<div class="intro-example">
+<div class="ex-label">דוגמה 2: "כל בשר חציר וכל חסדו כציץ השדה" (ישעיהו מ, ו)</div>
+<p>טנור: חיי אנוש | כלי: חציר וציץ השדה</p>
+<p>האינטראקציה: מאפייני הצמח (ירוק ורענן לזמן קצר, נובל ומתייבש) מוטלים על חיי האדם. אך בשונה מ"תרגום" פשוט (="חיי האדם קצרים"), המטפורה מעוררת תמונה חושית: ריח השדה, ירוק שמצהיב, פרח שעלי הכותרת שלו נושרים. התמונה הזו <em>עושה</em> משהו שהמשפט המילולי אינו מסוגל לעשות.</p>
+</div>
+
+</div>
+</details>
+
+<h3>2.4 מטפורה ודימוי: מה ההבדל?</h3>
+<p>בהקשר המקראי חשוב להבחין בין מטפורה (זיהוי ישיר: "ה' סלעי ומצודתי", תהילים יח, ג) לבין דימוי (השוואה מפורשת באמצעות "כ-": "כאיל תערוג על אפיקי מים", תהילים מב, ב). המסורת הרטורית הקלאסית, בעקבות אריסטו, ראתה בדימוי מטפורה "מוחלשת" או "מורחבת". אולם התורות הקוגניטיביות המודרניות מלמדות שגם דימוי וגם מטפורה מפעילים את אותו מנגנון קוגניטיבי של מיפוי — ההבדל הוא בדרגת הישירות של הזיהוי, לא במנגנון עצמו.</p>
+<p>עם זאת, בטקסט מקראי, הבחירה בין מטפורה לדימוי עשויה לשקף כוונה רטורית שונה. מטפורה ישירה ("ה' רועי") יוצרת זיהוי מלא ומיידי, ואילו דימוי ("כרועה עדרו ירעה", ישעיהו מ, יא) שומר על מרחק מסוים ומדגיש את ההשוואה. ניתוח טוב יתחשב בהבדל הזה.</p>
+</div>
+
+<!-- ═══ פרק 3: המהפכה הקוגניטיבית ═══ -->
+<div class="intro-sec">
+<h2>🧠 פרק 3: המהפכה הקוגניטיבית — תורת המטפורה המושגית</h2>
+
+<h3>3.1 לייקוף וג'ונסון: המטפורה כדרך חשיבה</h3>
+<p>בשנת 1980 חוללו לייקוף וג'ונסון מהפכה בחקר המטפורה עם ספרם <em>Metaphors We Live By</em><span class="fn"><a class="fn-link" href="https://press.uchicago.edu/ucp/books/book/chicago/M/bo3637992.html" target="_blank" title="Lakoff, G. & Johnson, M. (1980). Metaphors We Live By. University of Chicago Press.">4</a></span>. הטענה המרכזית שלהם הייתה פשוטה אך מהפכנית: המטפורה אינה רק עניין של שפה — היא עניין של חשיבה. בני אדם אינם רק <em>מדברים</em> במטפורות; הם <em>חושבים</em> במטפורות. המטפורה אינה אמצעי רטורי שאפשר להסיר מהשפה; היא מנגנון קוגניטיבי יסודי שדרכו אנחנו מבינים מושגים מופשטים באמצעות חוויות קונקרטיות.</p>
+<p>לייקוף וג'ונסון הראו שהשפה היומיומית רוויה מטפורות שאיננו מרגישים בהן. כשאנחנו אומרים "אני לא רואה את הנקודה שלך", "האם אתה יכול להאיר את העיניים שלי?", "הטיעון שלו לא ברור" — כל הביטויים האלה מפעילים את אותה מטפורה מושגית: הבנה היא ראייה. זו אינה סתם משחק מילים; היא משקפת את האופן שבו המוח שלנו מעבד את מושג ההבנה באמצעות חוויית הראייה.</p>
+
+<h3>3.2 מהי מטפורה מושגית?</h3>
+<p>מטפורה מושגית (conceptual metaphor) היא מיפוי שיטתי ויציב מתחום מושגי אחד על תחום מושגי אחר<span class="fn"><a class="fn-link" href="https://global.oup.com/academic/product/metaphor-9780195374940" target="_blank" title="Kövecses, Z. (2010). Metaphor: A Practical Introduction (2nd ed.). OUP, pp. 4–10.">5</a></span>. התחום שמספק את הדימויים הקונקרטיים נקרא תחום המקור (source domain), והתחום המופשט שמקבל את הדימויים נקרא תחום היעד (target domain). הנוסחה הקצרה היא: היעד הוא המקור.</p>
+<p>ניקח דוגמה מפורטת. המטפורה המושגית החיים הם מסע ממפה את תחום המסעות (מקור) על תחום החיים (יעד). המיפוי הוא שיטתי — כלומר, יש התאמות קבועות בין מרכיבי המקור למרכיבי היעד:</p>
+<div class="intro-mapping">
+<div class="map-side"><strong>תחום המקור: מסע</strong><br>נוסע<br>נקודת ההתחלה<br>פרשת דרכים<br>מכשולים בדרך<br>היעד<br>אורך הדרך</div>
+<div class="map-arrow">→<br>→<br>→<br>→<br>→<br>→</div>
+<div class="map-side"><strong>תחום היעד: חיים</strong><br>האדם<br>לידה<br>רגע של בחירה<br>קשיים<br>מטרת חיים<br>משך החיים</div>
+</div>
+<p>שימו לב: המיפוי הזה מסביר מדוע ביטויים רבים בשפה היומיומית "עובדים": "הוא הלך בדרך הנכונה", "הם חצו את הקו", "היא נמצאת בצומת", "הגענו לסוף הדרך". כל הביטויים האלה הם ביטויים לשוניים (linguistic metaphors) שנובעים מאותה מטפורה מושגית (conceptual metaphor) אחת.</p>
+<p>ההבחנה בין מטפורה מושגית לביטוי מטפורי היא קריטית: מטפורה מושגית היא תבנית חשיבה (כמו: זמן הוא כסף), ואילו ביטוי מטפורי הוא מימוש לשוני ספציפי שלה (כמו: "אתה מבזבז את הזמן שלי", "תחסוך לי כמה דקות", "השקעתי שעות בזה").</p>
+
+<details class="intro-details">
+<summary>נספח: מטפורות מושגיות נפוצות — טבלת דוגמאות</summary>
+<div class="details-body">
+<table class="intro-tbl">
+<tr><th>מטפורה מושגית</th><th>ביטויים לשוניים</th><th>דוגמה מקראית</th></tr>
+<tr><td>זמן הוא כסף</td><td>"מבזבז זמן", "חוסך זמן", "משקיע שעות"</td><td>"הנה ימים באים" (עמוס ח, יא) — הזמן כמשאב שמגיע</td></tr>
+<tr><td>ויכוח הוא מלחמה</td><td>"הגן על עמדתך", "תקף את הטיעון", "הפסיד"</td><td>"ריבו ריב ה'" (ירמיהו נ, לד) — דיון משפטי כמלחמה</td></tr>
+<tr><td>חיים הם מסע</td><td>"הלך בדרך הישר", "פרשת דרכים", "סוף הדרך"</td><td>"הודיעני ה' דרכיך" (תהילים כה, ד)</td></tr>
+<tr><td>רגשות הם נוזלים במכל</td><td>"גולש מאושר", "התמלא כעס", "שפך את לבו"</td><td>"שפכי כמים לבך" (איכה ב, יט)</td></tr>
+<tr><td>עליונות היא גובה</td><td>"מעמד גבוה", "שפל", "על העליונה"</td><td>"וירם קרנו" (שמ"א ב, י), "ישפילנו עד ארץ" (ישע' כו, ה)</td></tr>
+<tr><td>ידע הוא אור</td><td>"האיר עיניו", "בורות", "נאורות"</td><td>"נר לרגלי דברך ואור לנתיבתי" (תהילים קיט, קה)</td></tr>
+</table>
+</div>
+</details>
+
+<h3>3.3 עקרונות מרכזיים בתורת המטפורה המושגית</h3>
+<p>תורת המטפורה המושגית (CMT) מבוססת על מספר עקרונות מרכזיים שחשוב להכיר לפני שניגשים לניתוח:</p>
+<p><em>א. חד-כיווניות המיפוי</em> — המיפוי הוא תמיד מתחום המקור (הקונקרטי, הגופני, המוכר) אל תחום היעד (המופשט, הלא-מוכר). "החיים הם מסע" ממפה מאפייני מסע על חיים, ולא להפך. אנחנו משתמשים בקונקרטי כדי להבין את המופשט. זהו עיקרון יסודי: חד-כיווניות המיפוי אומרת שלא ניתן פשוט להפוך את המטפורה. "זמן הוא כסף" לא אומר ש"כסף הוא זמן".</p>
+<p><em>ב. חלקיות המיפוי</em> — המיפוי אינו מלא לעולם. כשאומרים "זמן הוא כסף", מועתקים מאפיינים כמו "ניתן לבזבז", "ניתן לחסוך", "בעל ערך מוגבל". אך מאפיינים אחרים של כסף — למשל שהוא עשוי מתכת, שאפשר לגנוב אותו פיזית — אינם מועתקים. חלקיות המיפוי היא לא חיסרון; היא חלק מהותי מהאופן שבו המטפורה עובדת.</p>
+<p><em>ג. הסתרה והדגשה</em> (highlighting and hiding) — כל מטפורה מדגישה היבטים מסוימים של תחום היעד ומסתירה אחרים. המטפורה "ויכוח הוא מלחמה" מדגישה את ההיבט של ניצחון והפסד. אך היא מסתירה את ההיבט השיתופי של ויכוח: את האפשרות שבוויכוח שני הצדדים מגלים אמת חדשה יחד. אם היינו חושבים דרך מטפורה אחרת — למשל "ויכוח הוא ריקוד" — היבטים אחרים היו מודגשים.</p>
+<p><em>ד. עיקרון הגלמה</em> (embodiment) — לייקוף וג'ונסון טענו שמטפורות מושגיות נובעות מחוויה גופנית. אנחנו חושבים על רגשות כחום כי כעס באמת מחמם את הגוף; אנחנו חושבים על מעמד כגובה כי מי שעמד גבוה ממש (על הר, על כיסא מלוכה) אכן שלט. העובדה שהמטפורות מושתתות בגוף מסבירה מדוע מטפורות רבות משותפות לתרבויות שונות.</p>
+
+<details class="intro-details">
+<summary>נספח: הדגשה והסתרה — דוגמאות מקראיות</summary>
+<div class="details-body">
+<h4>אלוהים כרועה לעומת אלוהים כלוחם</h4>
+<p>במקרא, האל מתואר דרך מטפורות מושגיות שונות. כל אחת מדגישה היבט אחר:</p>
+<div class="intro-example">
+<div class="ex-label">אלוהים הוא רועה (תהילים כג)</div>
+<p>מדגיש: הגנה, טיפול אישי, הנהגה עדינה, מנוחה, שפע ("בנאות דשא ירביצני").</p>
+<p>מסתיר: עוצמה, רוגז, שיפוט, עונש.</p>
+</div>
+<div class="intro-example">
+<div class="ex-label">אלוהים הוא לוחם (שמות טו, ג)</div>
+<p>"ה' איש מלחמה" — מדגיש: עוצמה, הרס האויב, שליטה מוחלטת, גבורה.</p>
+<p>מסתיר: רחמים, טיפול אישי, עדינות, קרבה.</p>
+</div>
+<p>שתי המטפורות "נכונות" אך כל אחת בונה דימוי שונה לחלוטין של האל. מודעות להדגשה והסתרה מאפשרת לשאול: מה הטקסט רוצה שנראה? ומה הוא משאיר בצל?</p>
+</div>
+</details>
+
+<h3>3.4 שלושה סוגים של מטפורות מושגיות</h3>
+<p>לייקוף וג'ונסון הבחינו בין שלושה סוגים מרכזיים של מטפורות מושגיות:</p>
+<p><em>א. מטפורות מבניות</em> (structural metaphors) — תחום מושגי אחד מבנה את ההבנה של תחום אחר באופן מפורט ושיטתי. לדוגמה: ויכוח הוא מלחמה — תחום המלחמה מספק את המבנה להבנת ויכוח (יש "צדדים", "תקיפה", "הגנה", "ניצחון"). במקרא: "ריבו ריב ה'" (ירמיהו נ, לד) — המשפט האלוהי מובנה כקרב משפטי.</p>
+<p><em>ב. מטפורות כיווניות</em> (orientational metaphors) — מטפורות המבוססות על כיוון מרחבי: מעלה/מטה, פנים/חוץ, קדימה/אחורה. אלו אינן שרירותיות אלא נובעות מחוויה גופנית. "שמח = למעלה" כי כשאנחנו שמחים הגוף זקוף; "עצוב = למטה" כי בעצב הגוף שוכב. במקרא: "וירם קרנו" (שמואל א ב, י) — עליית מעמד כתנועה מעלה; "וישפילנו עד ארץ" (ישעיהו כו, ה) — נפילה כתנועה מטה.</p>
+<p><em>ג. מטפורות אונטולוגיות</em> (ontological metaphors) — מטפורות שבהן מושגים מופשטים נתפסים כישויות, חומרים, או מכלים. כשאנחנו אומרים "האינפלציה אוכלת את הכסף", אנחנו הופכים תהליך כלכלי מופשט לישות שיכולה "לאכול". במקרא: "ותאכל אש את שני מאתים וחמשים איש" (במדבר יז, לה) — האש כישות טורפת; "שפכי כמים לבך" (איכה ב, יט) — רגשות כנוזל שאפשר לשפוך ממכל.</p>
+
+<details class="intro-details">
+<summary>נספח: סוגי מטפורות מושגיות — דוגמאות מקראיות מפורטות</summary>
+<div class="details-body">
+<h4>מטפורות מבניות במקרא</h4>
+<div class="intro-example">
+<div class="ex-label">חיים הם מסע</div>
+<p>"הודיעני ה' דרכיך, אורחותיך למדני" (תהילים כה, ד) — החיים הנכונים הם דרך שצריך ללכת בה; האל הוא המורה שמלמד את הדרך; חטא הוא סטייה מהדרך.</p>
+</div>
+<div class="intro-example">
+<div class="ex-label">ישראל הם כרם</div>
+<p>"כרם היה לידידי בקרן בן שמן" (ישעיהו ה, א) — האומה היא כרם; האל הוא הכורם; הענבים הטובים הם מעשים טובים; הבאושים הם חטאים; ההרס הוא עונש. מטפורה מבנית שלמה.</p>
+</div>
+<h4>מטפורות כיווניות במקרא</h4>
+<div class="intro-example">
+<div class="ex-label">קדושה/טוב = מעלה; חטא/רוע = מטה</div>
+<p>"מי יעלה בהר ה' ומי יקום במקום קדשו" (תהילים כד, ג) — הקדושה בגובה; "ירדו חיים שאולה" (במדבר טז, לג) — המוות והעונש למטה.</p>
+</div>
+<h4>מטפורות אונטולוגיות במקרא</h4>
+<div class="intro-example">
+<div class="ex-label">רגשות כנוזלים</div>
+<p>"שפכי כמים לבך" (איכה ב, יט) — הלב כמכל של נוזל; הרגשות כנוזלים; ביטוי רגשי כשפיכה. גם: "וישפוך עלי חרונו" (איוב ל, כב); "חמתי נשפכה" (ירמיהו ז, כ).</p>
+</div>
+</div>
+</details>
+
+<h3>3.5 סכמות דימוי</h3>
+<p>תורת המטפורה המושגית מדגישה גם את התפקיד של סכמות דימוי (image schemas)<span class="fn"><a class="fn-link" href="https://archive.org/details/philosophyinfles00lako" target="_blank" title="Lakoff, G. & Johnson, M. (1999). Philosophy in the Flesh. Basic Books, Ch. 3.">6</a></span> — מבנים קוגניטיביים בסיסיים הנובעים מחוויה גופנית חוזרת. אלו אינם תמונות מפורטות אלא תבניות מופשטות של חוויה:</p>
+<p>סכמת מכל (container): פנים/חוץ/גבול — "נכנסתי לצרה", "יצאתי מזה". במקרא: "ותפקחנה עיני שניהם" (בראשית ג, ז) — העיניים כמכל שנפתח. סכמת נתיב (path): מוצא–דרך–יעד — "הלך בדרך ישרה", "הגיע למטרה". במקרא: "הודיעני ה' דרכיך". סכמת מעלה/מטה (up/down): טוב = למעלה, רע = למטה — "מרגיש מרומם", "שקוע בעצב". במקרא: "וירם קרנו". סכמת כוח (force): דחיפה, משיכה, חסימה — "נדחק לפינה", "מושך אותי אליו". במקרא: "ויסר את לב פרעה" (שמות ח, יא) — כוח שמפנה לב לכיוון אחר.</p>
+<p>סכמות הדימוי הן הבסיס הקוגניטיבי למיפויים מטפוריים רבים. הן מסבירות מדוע מטפורות דומות מופיעות בתרבויות שונות: החוויה הגופנית של "למעלה = יותר" משותפת לכל בני האדם.</p>
+</div>
+
+
+<h3>3.6 עקרון השמירה (The Invariance Principle)</h3>
+<p>עקרון מרכזי שהוסיף לייקוף (1990) לתורת המטפורה המושגית הוא <strong>עקרון השמירה</strong> (Invariance Principle): כאשר מטפורה ממפה מתחום המקור לתחום היעד, היא חייבת <em>לשמר את המבנה הלוגי</em> של תחום המקור. המיפוי אינו העתקה שרירותית — היחסים הפנימיים בין מרכיבי המקור חייבים להישמר גם ביעד.</p>
+<p>כפי שניסח זאת Chau (2015, עמ' 378): "היחסים הלוגיים של תחום המקור — כלומר, המרכיבים המטפוריים עצמם — חייבים להתאים למבנה היחסים הלוגי בתחום היעד". במילים אחרות: אם במטפורה "ה' רועי" הרועה מנהיג, מגן ומכיר כל כבש בעדרו — אז גם במיפוי על האל, יחסי ההנהגה, ההגנה וההכרה האישית חייבים להישמר. פרשנות שמפרה את עקרון השמירה (למשל, רועה שמזניח את עדרו) שוברת את הקוהרנטיות המטפורית.</p>
+
+<details class="intro-details">
+<summary>נספח: עקרון השמירה — דוגמה מקראית מפורטת</summary>
+<div class="details-body">
+<div class="intro-example">
+<div class="ex-label">דוגמה: "אבן מאסו הבונים היתה לראש פינה" (תהילים קיח, כב)</div>
+<p>המטפורה כוללת רצף לוגי של שלושה שלבים: (1) <strong>דחייה</strong> — הבונים מאסו באבן; (2) <strong>ערך נסתר</strong> — האבן מכילה פוטנציאל שלא זוהה; (3) <strong>היפוך ומרכזיות</strong> — האבן הופכת לאבן הפינה, המרכיב המרכזי ביותר.</p>
+<p>לפי עקרון השמירה, כל פרשנות — מילולית או חזותית — <strong>חייבת לשמר את הרצף הזה</strong>. פרשנות שמציגה רק הרמוניה אדריכלית בלי דחייה והיפוך שוברת את המבנה הלוגי. פרשנות שמציגה דחייה בלי שמהפך שוברת את הרצף. כלי זה מאפשר להעריך עד כמה פרשנות — מילולית או חזותית — נאמנה למבנה המטפורה.</p>
+</div>
+</div>
+</details>
+
+<!-- ═══ פרק 4: התפתחויות עכשוויות ═══ -->
+<div class="intro-sec">
+<h2>🔀 פרק 4: התפתחויות עכשוויות</h2>
+
+<h3>4.1 תורת המיזוג המושגי</h3>
+<p>פוקוניה וטרנר (2002) הרחיבו את התורה הקוגניטיבית באמצעות מודל המיזוג המושגי (Conceptual Blending)<span class="fn"><a class="fn-link" href="https://archive.org/details/waywethinkconcep00gill" target="_blank" title="Fauconnier, G. & Turner, M. (2002). The Way We Think. Basic Books.">7</a></span>. לפי מודל CMT של לייקוף וג'ונסון, המיפוי הוא חד-כיווני: מתחום מקור לתחום יעד. אך פוקוניה וטרנר הראו שלעיתים נוצר משהו מורכב יותר: כששני מרחבים מנטליים (input spaces) נפגשים, נוצר מרחב שלישי — המיזוג (blend) — שבו צומחת משמעות חדשה שאינה קיימת באף אחד מהמרחבים המקוריים.</p>
+<p>המודל כולל ארבעה מרחבים: שני מרחבי קלט (input spaces), מרחב גנרי (generic space) שמכיל את המבנה המשותף לשניהם, ומרחב המיזוג (blended space) שבו נוצרת המשמעות החדשה. המרחב השלישי אינו חיבור פשוט של שני המקורות; הוא יוצר מבנה ייחודי — תהליך שפוקוניה וטרנר כינו "מבנה צומח" (emergent structure).</p>
+
+<details class="intro-details">
+<summary>נספח: מודל המיזוג — דוגמאות מקראיות מפורטות</summary>
+<div class="details-body">
+<div class="intro-example">
+<div class="ex-label">דוגמה 1: "ה' רועי לא אחסר" (תהילים כג)</div>
+<p>מרחב קלט 1: רועה (מנהיג עדר, מוביל למרעה, מגן מטורפים, מכיר כל כבש)</p>
+<p>מרחב קלט 2: אלוהים (בורא עולם, שליט עליון, נצחי, כל-יכול)</p>
+<p>מרחב גנרי: דמות שמנהיגה ומגנה על מי שבאחריותה</p>
+<p>מרחב המיזוג: אל-רועה — דמות שמשלבת את הקרבה האישית של הרועה עם העוצמה הנצחית של האל. במיזוג, "בנאות דשא ירביצני" אינו רק תיאור של שדה — הוא תיאור של שלווה קוסמית.</p>
+</div>
+<div class="intro-example">
+<div class="ex-label">דוגמה 2: הושע יג, ד–ח — אל-מושיע שהופך לדוב טורף</div>
+<p>מרחב קלט 1: אל מושיע ("אנוכי ה' אלהיך מארץ מצרים")</p>
+<p>מרחב קלט 2: דוב שכול טורף ("אפגשם כדוב שכול ואקרע סגור לבם")</p>
+<p>מרחב גנרי: ישות בעלת כוח רב שיכולה להציל או להרוס</p>
+<p>מרחב המיזוג: דמות אלוהית מורכבת שהיא בו-זמנית מגנה ומאיימת — אותו אל שהציל ממצרים יכול גם לטרוף כדוב. מודל ה-CMT הפשוט אינו מסוגל ללכוד מורכבות זו — רק תורת המיזוג מאפשרת זאת.</p>
+</div>
+</div>
+</details>
+
+<h3>4.2 תורת המטפורה המכוונת</h3>
+<p>סטין (2008) הציג ממד נוסף בחקר המטפורה<span class="fn"><a class="fn-link" href="https://doi.org/10.1080/10926480802426753" target="_blank" title="Steen, G. J. (2008). The Paradox of Metaphor. Metaphor and Symbol, 23(4), 213–241.">8</a></span>: ההבחנה בין מטפורה שהיא תופעה קוגניטיבית בלבד לבין מטפורה שהיא גם אמצעי תקשורתי מכוון. בתורת המטפורה המושגית של לייקוף וג'ונסון, כל מטפורה מושגית פועלת "מאחורי הקלעים" — היא מבנה חשיבה שאיננו מודעים לו. אך סטין שואל: מה קורה כשמישהו <em>בכוונה</em> מזמין אותנו לחשוב דרך מטפורה?</p>
+<p>סטין מבחין בין מטפורה "שגרתית" (conventional metaphor) — שאינה מורגשת כמטפורה בזמן השימוש (כמו "הוא פיצח את הבעיה") — לבין מטפורה "מכוונת" (deliberate metaphor) שבה הדובר מתכוון שהנמען יחשוב בצורה מטפורית. במחקרים נמצא שרק כ-4.4% מהמטפורות בשיח רגיל הן מכוונות<span class="fn"><a class="fn-link" href="https://benjamins.com/catalog/celcr.14" target="_blank" title="Steen et al. (2010). A Method for Linguistic Metaphor Identification. John Benjamins, p. 765.">9</a></span>, אך בשירה ובטקסטים מקראיים השיעור גבוה משמעותית.</p>
+<p>ההבחנה של סטין חשובה במיוחד לניתוח מקראי. כאשר ישעיהו אומר "כל בשר חציר וכל חסדו כציץ השדה", אין ספק שמדובר במטפורה מכוונת — הנביא מזמין את השומע לחשוב במודע על חיי אדם דרך דימוי הצמח. לעומת זאת, כאשר נאמר "ידע שור קונהו וחמור אבוס בעליו" (ישעיהו א, ג), יש לשאול: האם המטפורה מכוונת או שגרתית?</p>
+
+<h3>4.3 יישום התורות לניתוח מקראי</h3>
+<p>הכלים התורתיים שהוצגו לעיל ישימים במיוחד לניתוח מטפורות במקרא<span class="fn"><a class="fn-link" href="https://doi.org/10.1177/1476993X20987952" target="_blank" title="Lancaster, M. D. (2021). Metaphor Research and the Hebrew Bible. Currents in Biblical Research, 19(3), 235–285.">10</a></span>. כל תורה מאירה היבט אחר של הטקסט:</p>
+<p>תורת המטפורה המושגית (CMT) מסייעת לזהות מיפויים שיטתיים: מהו תחום המקור? מהו תחום היעד? אילו מאפיינים מועתקים ואילו לא? תורת המיזוג מאפשרת להבין משמעויות מורכבות שנולדות מהמפגש בין שני תחומים, במיוחד כשהתוצאה אינה ניתנת לתיאור כמיפוי חד-כיווני. ותורת המטפורה המכוונת מסייעת להבחין בין מטפורות שגרתיות למטפורות שנועדו ליצור אפקט תקשורתי מודע.</p>
+<p>חשוב להדגיש, בעקבות ג'ינדו (2010)<span class="fn"><a class="fn-link" href="https://brill.com/display/book/edcoll/9789004368187/B9789004368187-s013.xml" target="_blank" title="Jindo, J. Y. (2010). Biblical Metaphor Reconsidered. Eisenbrauns.">11</a></span>, כי יש להיזהר מכפיית תורה אחת בלבד על כל הטקסטים. הגמישות בשימוש בכלים שונים היא חלק מהותי מהניתוח הטוב.</p>
+
+<h3>4.4 מטפורות "חיות" ו"מתות" במקרא</h3>
+<p>ההבחנה של בלאק בין מטפורות "חיות" ל"מתות" (ראו סעיף 2.3) מקבלת משמעות מיוחדת בהקשר המקראי. כשקורא עברי מודרני שומע "יד ה׳", ביטוי זה עשוי להישמע כמטפורה "מתה" — פשוט "כוחו של ה׳". אבל בעולם המקראי, שבו האנתרופומורפיזם היה חי ופעיל, "יד ה׳" עשויה להיות מטפורה "חיה" שמעוררת תמונה ממשית של זרוע מושטת. השאלה "האם הקורא המקראי הרגיש במטפורה?" היא שאלה מרכזית בניתוח — והתשובה עליה משפיעה על הפרשנות כולה.</p>
+</div>
+
+<!-- ═══ פרק 5: סיכום התורות ═══ -->
+<div class="intro-sec">
+<h2>📊 פרק 5: סיכום התורות — טבלה משווה</h2>
+<p>להלן סיכום של התפתחות החשיבה על מטפורה, מאריסטו ועד ימינו:</p>
+<table class="intro-tbl">
+<tr><th>תקופה</th><th>תורה / חוקר</th><th>תפיסת המטפורה</th><th>מושגי מפתח</th></tr>
+<tr><td>המאה ה-4 לפנה"ס</td><td>אריסטו — תורת ההחלפה</td><td>העברת שם; קישוט לשוני</td><td>אנלוגיה, דמיון</td></tr>
+<tr><td>1936</td><td>ריצ'רדס — תורת האינטראקציה</td><td>משמעות נולדת ממפגש בין שני מושגים</td><td>טנור, כלי</td></tr>
+<tr><td>1954</td><td>בלאק — פיתוח האינטראקציה</td><td>השפעה הדדית; יצירת משמעות חדשה</td><td>מקומות משותפים, חיה/מתה</td></tr>
+<tr><td>1980</td><td>לייקוף וג'ונסון — CMT</td><td>המטפורה כדרך חשיבה; מיפוי שיטתי</td><td>מקור/יעד, חד-כיווניות, הדגשה/הסתרה</td></tr>
+<tr><td>1999</td><td>לייקוף וג'ונסון — גלמה</td><td>מטפורות נובעות מחוויה גופנית</td><td>סכמות דימוי, עיקרון הגלמה</td></tr>
+<tr><td>2002</td><td>פוקוניה וטרנר — מיזוג מושגי</td><td>משמעות חדשה צומחת ממיזוג מרחבים</td><td>מרחבי קלט, מיזוג, מבנה צומח</td></tr>
+<tr><td>2008</td><td>סטין — מטפורה מכוונת</td><td>הבחנה בין חשיבה לתקשורת מטפורית</td><td>שגרתית/מכוונת</td></tr>
+</table>
+</div>
+
+
+<!-- ═══ שלוש עדשות לניתוח חזותי ═══ -->
+<div class="intro-sec">
+<h2>🔎 מתורה לתמונה: שלוש עדשות לניתוח חזותי של מטפורות</h2>
+<p>באפליקציה זו תתבקשו לא רק <em>לנתח</em> מטפורה מקראית אלא גם <em>להמחיש</em> אותה חזותית באמצעות בינה מלאכותית, ולאחר מכן <em>לנתח את התמונה שיצרתם</em>. הכלים התיאורטיים שלמדתם משמשים כשלוש "עדשות" משלימות לניתוח חזותי:</p>
+
+<h3>עדשה א׳: עקרון השמירה — האם התמונה משמרת את המבנה הלוגי?</h3>
+<p>כל מטפורה מקראית מכילה מבנה לוגי פנימי — רצף של יחסים בין מרכיביה. כאשר אתם יוצרים תמונה, השאלה המרכזית היא: <strong>האם התמונה משמרת את הרצף הזה?</strong> האם היא מציגה את כל השלבים של המטפורה (למשל: דחייה ← גילוי ← היפוך), או שהיא "מדלגת" על חלקם? תמונה שמשמרת את המבנה הלוגי מעידה על הבנה עמוקה של המטפורה.</p>
+
+<h3>עדשה ב׳: מיזוג מושגי — האם נוצרה משמעות חדשה?</h3>
+<p>תמונה חזקה אינה רק "תרגום" של מטפורה לתמונה — היא יוצרת <strong>משמעות חדשה</strong> שלא הייתה קיימת לא בתחום המקור ולא בתחום היעד בנפרד. לדוגמה: אם מטפורת "אבן הפינה" ממוחשת כאבן שבורה שמאירה מבפנים — השבירה-כתנאי-להארה היא משמעות חדשה שנולדה מהמיזוג. חפשו את הרגע הזה בתמונה שלכם: מה <em>צומח</em> מהמפגש בין הדימוי הקונקרטי למשמעות המופשטת?</p>
+
+<h3>עדשה ג׳: מטפורה מגולמת ומרחבית — כיצד הגוף והמרחב מבטאים משמעות?</h3>
+<p>כשאנחנו יוצרים תמונה, אנחנו משתמשים באופן טבעי בסכמות גופניות ומרחביות לביטוי משמעות. שימו לב לבחירות החזותיות שלכם:</p>
+<div class="intro-mapping">
+<div class="map-side"><strong>בחירה חזותית</strong><br>גבוה / נמוך<br>מרכז / שוליים<br>אור / חושך<br>תנועה / קיפאון<br>חלק / מחוספס<br>גדול / קטן</div>
+<div class="map-arrow">→<br>→<br>→<br>→<br>→<br>→</div>
+<div class="map-side"><strong>משמעות מטפורית</strong><br>חשוב, קדוש / נחות, נדחה<br>מהותי / שולי, מודר<br>גילוי, אמת / סתר, אי-ידיעה<br>שינוי, גאולה / קיבעון<br>מעובד, מוכר / גולמי, לא-מזוהה<br>עוצמה / חולשה, שוליות</div>
+</div>
+<p>בחירות אלו אינן אסתטיות בלבד — הן <strong>ביטוי קוגניטיבי</strong>. כאשר אתם מניחים אובייקט במרכז התמונה, אתם מבטאים את חשיבותו; כאשר אתם משתמשים באור, אתם מבטאים גילוי. מודעות לבחירות האלה מעמיקה את הניתוח.</p>
+
+<div class="intro-example" style="background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(44,62,107,.05));border:1px solid rgba(201,168,76,.3);padding:1.2rem;border-radius:10px;margin-top:1rem">
+<div class="ex-label" style="color:var(--a)">💡 חשוב: תפקיד ה-AI כשותף ליצירה</div>
+<p>כאשר אתם יוצרים תמונה באמצעות כלי בינה מלאכותית, התוצר הוא פרי <strong>שיתוף פעולה</strong> בינכם לבין המודל. חלק מהבחירות החזותיות — קומפוזיציה, תאורה, פרטים — נובעות מהמודל ולא מכוונתכם. לכן חשוב לשאול: <strong>מה אני ביקשתי ומה ה-AI הוסיף מעצמו?</strong> האם התוספות משפרות את הביטוי של המטפורה, או מסיטות ממנה? מודעות לשאלה הזו מחדדת את החשיבה שלכם ואת איכות הניתוח.</p>
+</div>
+</div>
+
+<!-- ═══ פרק 6: עשה ואל תעשה ═══ -->
+<div class="intro-sec">
+<h2>🎯 פרק 6: עקרונות מעשיים — עשה ואל תעשה בניתוח מטפורי</h2>
+
+<div class="intro-challenge">
+<h3>💡 לפני שממשיכים — נסו בעצמכם!</h3>
+<p>על סמך מה שקראתם עד כה, נסו לנסח לפחות שלושה כללים — מה כדאי לעשות ומה כדאי להימנע ממנו כשמנתחים מטפורה בטקסט מקראי?</p>
+<textarea id="introThinkBox" placeholder="כתבו כאן את הכללים שלכם...&#10;&#10;לדוגמה:&#10;עשה: ...&#10;אל תעשה: ..."></textarea>
+<br>
+<button class="intro-reveal-btn" onclick="document.getElementById('introRevealedRules').classList.add('show');this.style.display='none'">גמרתי — הראו לי את הכללים המומלצים ←</button>
+</div>
+
+<div id="introRevealedRules" class="intro-revealed">
+<p style="text-align:center;color:var(--p);font-size:1.05rem;margin-bottom:1.2rem">הנה הכללים שגיבשנו על סמך התורות שלמדנו:</p>
+<div class="intro-rules-grid">
+<div class="intro-rules-col">
+<h4>✅ עשה</h4>
+<div class="intro-rule-card"><strong>1. זהו תחום מקור ותחום יעד</strong><p>השלב הראשון בכל ניתוח: מהו הדימוי הקונקרטי (מקור) ומהו המושג המופשט (יעד)? לדוגמה: "כל בשר חציר" — מקור: צמח, יעד: חיי אנוש.</p></div>
+<div class="intro-rule-card"><strong>2. מפו את ההעתקות ממקור ליעד</strong><p>אילו מאפיינים מועתקים? החציר נובל = האדם נפטר; החציר רענן = צעירות. אילו מאפיינים <em>לא</em> מועתקים?</p></div>
+<div class="intro-rule-card"><strong>3. שאלו מה מודגש ומה מוסתר</strong><p>כל מטפורה מדגישה היבטים ומסתירה אחרים. "ה' רועי" מדגיש הגנה וטיפול, אך מסתיר עוצמה ודין.</p></div>
+<div class="intro-rule-card"><strong>4. בדקו צירופים ומיזוגים</strong><p>בטקסט מקראי לעיתים מטפורות חופפות או מתמזגות. ניתוח המיזוג מסייע להבין משמעויות שלא ניתנות לפירוק.</p></div>
+<div class="intro-rule-card"><strong>5. שאלו: מכוונת או שגרתית?</strong><p>האם הכותב מתכוון שהקורא יחשוב דרך הדימוי? מטפורות נבואיות הן לרוב מכוונות; ביטויים כמו "יד ה'" — לאו דווקא.</p></div>
+<div class="intro-rule-card"><strong>6. שימו לב להקשר התרבותי</strong><p>מטפורת "הרועה" במזרח הקדום נושאת משמעות מלכותית — שונה מהאסוציאציה הפסטורלית המודרנית.</p></div>
+<div class="intro-rule-card"><strong>7. השתמשו בכלים כמשלימים</strong><p>CMT, מיזוג מושגי ומטפורה מכוונת — כל תורה מאירה היבט אחר. התאימו את הכלי לטקסט.</p></div>
+</div>
+<div class="intro-rules-col dont">
+<h4>❌ אל תעשה</h4>
+<div class="intro-rule-card dont"><strong>1. אין לראות במטפורה רק קישוט</strong><p>המטפורה מעצבת את החשיבה עצמה, לא רק את הלשון. "קישוט" היא ההנחה של תורת ההחלפה שנדחתה.</p></div>
+<div class="intro-rule-card dont"><strong>2. אין לחפש התאמה מלאה</strong><p>המיפוי הוא תמיד חלקי. לא כל מאפייני המקור מועתקים ליעד. אין לדרוש "קו לקו".</p></div>
+<div class="intro-rule-card dont"><strong>3. אין להפוך את כיוון המיפוי</strong><p>המיפוי הוא חד-כיווני: מהקונקרטי למופשט. "החיים הם מסע" ≠ "המסע הוא חיים".</p></div>
+<div class="intro-rule-card dont"><strong>4. אין להתעלם מהקשר תרבותי</strong><p>טקסט מקראי נכתב בתרבות ספציפית. סמלים נושאים משמעויות שונות מהמודרניות.</p></div>
+<div class="intro-rule-card dont"><strong>5. אין לכפות תורה אחת</strong><p>לא כל מטפורה מתאימה ל-CMT, ולא כל אחת צריכה מיזוג. התאימו כלי לטקסט.</p></div>
+<div class="intro-rule-card dont"><strong>6. אין לפרש מטפורה מילולית</strong><p>אך גם אין "לתרגם" אותה לגמרי. משהו תמיד אובד בתרגום — זכרו את ריצ'רדס ובלאק.</p></div>
+</div>
+</div>
+
+<table class="intro-tbl" style="margin-top:1.5rem">
+<tr><th>עשה ✅</th><th>אל תעשה ❌</th></tr>
+<tr><td>לזהות תחום מקור ותחום יעד</td><td>אין לראות במטפורה רק קישוט</td></tr>
+<tr><td>למפות את ההעתקות ממקור ליעד</td><td>אין לחפש התאמה מלאה</td></tr>
+<tr><td>לשאול מה מודגש ומה מוסתר</td><td>אין להפוך את כיוון המיפוי</td></tr>
+<tr><td>לבדוק צירופים ומיזוגים</td><td>אין להתעלם מהקשר תרבותי</td></tr>
+<tr><td>לשאול אם המטפורה מכוונת</td><td>אין לכפות תורה אחת על הכול</td></tr>
+<tr><td>לשים לב להקשר התרבותי</td><td>אין לפרש מטפורה מילולית בלבד</td></tr>
+<tr><td>להשתמש בכלים כמשלימים</td><td></td></tr>
+</table>
+</div>
+</div>
+
+<!-- ═══ פרק 7: סיכום ═══ -->
+<div class="intro-sec">
+<h2>📝 פרק 7: סיכום</h2>
+<p>יחידה זו הציגה את המסע מתורת ההחלפה הקלאסית של אריסטו — שראתה במטפורה קישוט לשוני בלבד — דרך מהפכת האינטראקציה של ריצ'רדס ובלאק, שהראו שהמטפורה יוצרת משמעות חדשה, ועד למהפכה הקוגניטיבית של לייקוף וג'ונסון, שחשפו שהמטפורה אינה רק עניין של שפה אלא דרך חשיבה יסודית.</p>
+<p>ראינו שמטפורה מושגית היא מיפוי שיטתי מתחום מקור קונקרטי לתחום יעד מופשט, ושמיפוי זה הוא חד-כיווני, חלקי, ומדגיש היבטים מסוימים תוך הסתרת אחרים. למדנו על שלושה סוגים של מטפורות (מבניות, כיווניות, אונטולוגיות), על סכמות דימוי הנובעות מחוויה גופנית, על תורת המיזוג שמאפשרת לנתח מורכבויות שלא נתפסות במיפוי פשוט, ועל תורת המטפורה המכוונת שמוסיפה ממד תקשורתי.</p>
+<p>במקרא, המטפורה משמשת להעמקת רעיונות תיאולוגיים, מוסריים, חברתיים ורגשיים. הכלים שהוצגו כאן מספקים מסגרת שיטתית ומגוונת לניתוח. באפליקציה זו המלווה את הקורס ניתן ליישם את העקרונות הללו הלכה למעשה.</p>
+<p>בעת הניתוח באפליקציה, מוזמנים לשוב ליחידה זו ולפתוח את הנספחים הרלוונטיים. שאלו: האם זיהיתי נכון את תחום המקור והיעד? האם בחנתי מה מודגש ומה מוסתר? האם שקלתי את המורכבות (מיזוג)? האם בדקתי אם המטפורה מכוונת? עקרונות אלו ילוו את כל שלבי הניתוח.</p>
+</div>
+
+<!-- ═══ ביבליוגרפיה ═══ -->
+<div class="intro-sec intro-bib">
+<h2>📚 ביבליוגרפיה</h2>
+<p>Aristotle (c. 335 BCE). <em>Poetics</em> (trans. S. Halliwell, 1995). Loeb Classical Library. <a class="fn-link" href="https://www.loebclassics.com/view/aristotle-poetics/1995/pb_LCL199.25.xml" target="_blank">[קישור]</a></p>
+<p>Black, M. (1954). Metaphor. <em>Proceedings of the Aristotelian Society</em>, 55, 273–294. <a class="fn-link" href="https://www.jstor.org/stable/4544549" target="_blank">[DOI]</a></p>
+<p>Fauconnier, G. & Turner, M. (2002). <em>The Way We Think</em>. Basic Books. <a class="fn-link" href="https://archive.org/details/waywethinkconcep00gill" target="_blank">[קישור]</a></p>
+<p>Jindo, J. Y. (2010). <em>Biblical Metaphor Reconsidered</em>. Eisenbrauns. <a class="fn-link" href="https://brill.com/display/book/edcoll/9789004368187/B9789004368187-s013.xml" target="_blank">[DOI]</a></p>
+<p>Kövecses, Z. (2010). <em>Metaphor: A Practical Introduction</em> (2nd ed.). Oxford University Press. <a class="fn-link" href="https://global.oup.com/academic/product/metaphor-9780195374940" target="_blank">[DOI]</a></p>
+<p>Lakoff, G. & Johnson, M. (1980). <em>Metaphors We Live By</em>. University of Chicago Press. <a class="fn-link" href="https://press.uchicago.edu/ucp/books/book/chicago/M/bo3637992.html" target="_blank">[קישור]</a></p>
+<p>Lakoff, G. & Johnson, M. (1999). <em>Philosophy in the Flesh</em>. Basic Books. <a class="fn-link" href="https://archive.org/details/philosophyinfles00lako" target="_blank">[DOI]</a></p>
+<p>Lancaster, M. D. (2021). Metaphor Research and the Hebrew Bible. <em>Currents in Biblical Research</em>, 19(3), 235–285. <a class="fn-link" href="https://doi.org/10.1177/1476993X20987952" target="_blank">[DOI]</a></p>
+<p>Richards, I. A. (1936). <em>The Philosophy of Rhetoric</em>. Oxford University Press. <a class="fn-link" href="https://archive.org/details/philosophyofrhet0000rich" target="_blank">[קישור]</a></p>
+<p>Steen, G. J. (2008). The Paradox of Metaphor. <em>Metaphor and Symbol</em>, 23(4), 213–241. <a class="fn-link" href="https://doi.org/10.1080/10926480802426753" target="_blank">[DOI]</a></p>
+<p>Steen, G. J. et al. (2010). <em>A Method for Linguistic Metaphor Identification</em>. John Benjamins. <a class="fn-link" href="https://benjamins.com/catalog/celcr.14" target="_blank">[DOI]</a></p>
+</div>
+
+<!-- ═══ הערות ═══ -->
+<div class="intro-fn-section">
+<h3>הערות</h3>
+<p><sup>1</sup> Aristotle, <em>Poetics</em>, 1457b, trans. Halliwell (1995). <a class="fn-link" href="https://www.loebclassics.com/view/aristotle-poetics/1995/pb_LCL199.25.xml" target="_blank">↗</a></p>
+<p><sup>2</sup> Richards, I. A. (1936). <em>The Philosophy of Rhetoric</em>. Oxford University Press. <a class="fn-link" href="https://archive.org/details/philosophyofrhet0000rich" target="_blank">↗</a></p>
+<p><sup>3</sup> Black, M. (1954). Metaphor. <em>Proceedings of the Aristotelian Society</em>, 55, 273–294. <a class="fn-link" href="https://www.jstor.org/stable/4544549" target="_blank">↗</a></p>
+<p><sup>4</sup> Lakoff, G. & Johnson, M. (1980). <em>Metaphors We Live By</em>. University of Chicago Press. <a class="fn-link" href="https://press.uchicago.edu/ucp/books/book/chicago/M/bo3637992.html" target="_blank">↗</a></p>
+<p><sup>5</sup> Kövecses, Z. (2010). <em>Metaphor: A Practical Introduction</em> (2nd ed.). OUP, pp. 4–10. <a class="fn-link" href="https://global.oup.com/academic/product/metaphor-9780195374940" target="_blank">↗</a></p>
+<p><sup>6</sup> Lakoff, G. & Johnson, M. (1999). <em>Philosophy in the Flesh</em>. Basic Books, Ch. 3. <a class="fn-link" href="https://archive.org/details/philosophyinfles00lako" target="_blank">↗</a></p>
+<p><sup>7</sup> Fauconnier, G. & Turner, M. (2002). <em>The Way We Think</em>. Basic Books. <a class="fn-link" href="https://archive.org/details/waywethinkconcep00gill" target="_blank">↗</a></p>
+<p><sup>8</sup> Steen, G. J. (2008). The Paradox of Metaphor. <em>Metaphor and Symbol</em>, 23(4), 213–241. <a class="fn-link" href="https://doi.org/10.1080/10926480802426753" target="_blank">↗</a></p>
+<p><sup>9</sup> Steen et al. (2010). <em>A Method for Linguistic Metaphor Identification</em>. John Benjamins, p. 765. <a class="fn-link" href="https://benjamins.com/catalog/celcr.14" target="_blank">↗</a></p>
+<p><sup>10</sup> Lancaster, M. D. (2021). Metaphor Research and the Hebrew Bible. <em>Currents in Biblical Research</em>, 19(3), 235–285. <a class="fn-link" href="https://doi.org/10.1177/1476993X20987952" target="_blank">↗</a></p>
+<p><sup>11</sup> Jindo, J. Y. (2010). <em>Biblical Metaphor Reconsidered</em>. Eisenbrauns. <a class="fn-link" href="https://brill.com/display/book/edcoll/9789004368187/B9789004368187-s013.xml" target="_blank">↗</a></p>
+</div>
+
+<div class="intro-proceed">
+<button onclick="enterAppFromIntro()">התחילו בניתוח ←</button>
+</div>
+<div class="intro-back">
+<button onclick="backToLanding()">→ חזרה למסך הפתיחה</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- MAIN APP -->
+<div id="appWrap" role="main">
+<header class="hdr" role="banner"><h1>התמונה הטמונה</h1><div class="sub">כלי ניתוח מטפורי באמצעות בינה מלאכותית</div><div class="hdr-line"></div></header>
+<div class="sbar"><div><label>שם הסטודנט/ית:</label><input type="text" id="studentName" data-field="studentName" placeholder="שם מלא"></div>
+<div><label>נושא:</label><select id="productNum" data-field="productNum" onchange="showTopicArticles()"><option value="נושא 1 — גוף האדם כמטפורה">נושא 1 — גוף האדם כמטפורה</option><option value="נושא 2 — מטפורות מעולם הטבע">נושא 2 — מטפורות מעולם הטבע</option><option value="נושא 3 — מטפורות מעולם החי">נושא 3 — מטפורות מעולם החי</option><option value="נושא 4 — אור וחושך, ראייה ועיוורון">נושא 4 — אור וחושך, ראייה ועיוורון</option><option value="נושא 5 — מטפורות מרחביות">נושא 5 — מטפורות מרחביות</option><option value="נושא 6 — אלוקים כמלך, לוחם, רועה ואב">נושא 6 — אלוקים כמלך, לוחם, רועה ואב</option></select></div>
+<div><button class="btn bs" onclick="saveL()" style="font-size:.82rem;padding:.4rem .8rem">💾 שמירה</button> <button class="btn bs" onclick="loadL()" style="font-size:.82rem;padding:.4rem .8rem">📂 טעינה</button></div></div>
+<div class="pcon" role="navigation"><div class="snav" id="snav"></div><div class="opr"><span>שלמות:</span><div class="pbg"><div class="pfl" id="pfl"></div></div><span id="ppc">0%</span><button onclick="backToIntro()" style="background:none;border:none;color:var(--tl);font-size:.78rem;cursor:pointer;font-family:'Heebo',sans-serif;text-decoration:underline;margin-right:.8rem;white-space:nowrap" title="חזרה ליחידת המבוא">→ חזרה למבוא</button></div></div>
+<div class="mc">
+<!-- S1 --><div class="ss act" id="s1"><div class="sc"><h2 class="st"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span> שלב 1 — בחירת הפסוק והמטפורה</h2><p class="sd">בחרו פסוק מקראי המכיל מטפורה, וציינו את הקטגוריה ואת הסיבה לבחירתכם.</p>
+<div class="fg"><label>קטגוריית מטפורה</label>
+<select data-field="category"><option value="">— בחרו קטגוריה —</option>
+<option class="ogp" disabled>── גוף האדם (נושא 1) ──</option>
+<option value="גוף האדם — איברים (עין, יד, לב)">גוף האדם — איברים (עין, יד, לב)</option>
+<option value="גוף האדם — רגשות דרך הגוף">גוף האדם — רגשות דרך הגוף</option>
+<option value="גוף האדם — אנתרופומורפיזם">גוף האדם — אנתרופומורפיזם</option>
+<option class="ogp" disabled>── עולם הטבע (נושא 2) ──</option>
+<option value="טבע — מים (נהר, ים, גשם, מעיין)">טבע — מים (נהר, ים, גשם, מעיין)</option>
+<option value="טבע — צמחייה (עץ, פרח, שורש, זמורה)">טבע — צמחייה (עץ, פרח, שורש, זמורה)</option>
+<option value="טבע — הרים ומדבר">טבע — הרים ומדבר</option>
+<option value="טבע — רוח, אש, אדמה">טבע — רוח, אש, אדמה</option>
+<option class="ogp" disabled>── עולם החי (נושא 3) ──</option>
+<option value="בעלי חיים — טורפים (אריה, דוב, נשר)">בעלי חיים — טורפים (אריה, דוב, נשר)</option>
+<option value="בעלי חיים — נטרפים (כבש, יונה, צבי)">בעלי חיים — נטרפים (כבש, יונה, צבי)</option>
+<option value="בעלי חיים — שרצים ורמשים (תולעת, נחש)">בעלי חיים — שרצים ורמשים (תולעת, נחש)</option>
+<option class="ogp" disabled>── אור וחושך, ראייה ועיוורון (נושא 4) ──</option>
+<option value="אור — כידיעה, צדקה, נוכחות אלוהית">אור — כידיעה, צדקה, נוכחות אלוהית</option>
+<option value="חושך — סכנה, מוות, גלות">חושך — סכנה, מוות, גלות</option>
+<option value="ראייה ועיוורון — הבנה וסירוב">ראייה ועיוורון — הבנה וסירוב</option>
+<option class="ogp" disabled>── מרחב: שערים, חומות, פנים וחוץ (נושא 5) ──</option>
+<option value="מרחב — שערים וחומות (קודש/חול)">מרחב — שערים וחומות (קודש/חול)</option>
+<option value="מרחב — דרך ונתיב">מרחב — דרך ונתיב</option>
+<option value="מרחב — סף, דלת, פנים וחוץ">מרחב — סף, דלת, פנים וחוץ</option>
+<option value="מרחב — עיר ומדבר, שייכות וגלות">מרחב — עיר ומדבר, שייכות וגלות</option>
+<option class="ogp" disabled>── דימויי האל (נושא 6) ──</option>
+<option value="האל כמלך — ריבונות ושלטון">האל כמלך — ריבונות ושלטון</option>
+<option value="האל כלוחם — מלחמה וצבא">האל כלוחם — מלחמה וצבא</option>
+<option value="האל כרועה — דאגה והנהגה">האל כרועה — דאגה והנהגה</option>
+<option value="האל כאב/אם — קרבה ורחמים">האל כאב/אם — קרבה ורחמים</option>
+<option class="ogp" disabled>── קטגוריות נוספות ──</option>
+<option value="משפט ודין">משפט ודין</option>
+<option value="אוכל ושתייה">אוכל ושתייה</option>
+<option value="מוזיקה ושירה">מוזיקה ושירה</option>
+<option value="בניין וארכיטקטורה">בניין וארכיטקטורה</option>
+<option value="לבוש">לבוש</option>
+<option value="חקלאות וכרם">חקלאות וכרם</option>
+<option value="מחלה וריפוי">מחלה וריפוי</option>
+<option value="קוסמולוגיה">קוסמולוגיה</option>
+<option value="אחר">אחר (פרטו בהערות)</option>
+</select></div>
+<div class="fg"><label>הפסוק (ציטוט מלא)</label><textarea data-field="verse" placeholder='לדוגמה: "ה׳ רֹעִי לֹא אֶחְסָר"'></textarea></div>
+<div class="fg"><label>מקור (ספר, פרק, פסוק)</label><input type="text" data-field="source" placeholder="לדוגמה: תהלים כ״ג, א׳"></div>
+<div class="fg"><label>מדוע בחרתם בפסוק זה?</label><textarea data-field="whyVerse" placeholder="הסבירו מה מושך אתכם בפסוק ובמטפורה שבו..."></textarea></div>
+<details class="intro-details" id="topicArticles" style="margin:0 0 1rem 0">
+<summary>📚 מאמרים מומלצים לנושא זה</summary>
+<div class="details-body" id="topicArticlesList" style="font-size:.88rem;line-height:1.9">
+<p style="color:var(--tl);font-style:italic">בחרו נושא בתפריט הנפתח למעלה כדי לראות מאמרים רלוונטיים.</p>
+</div>
+</details>
+</div>
+<div class="nb"><div></div><button class="btn bp" onclick="checkBeforeNext(1,2)">שלב הבא ←</button></div></div>
+<!-- S2 --><div class="ss" id="s2"><div class="sc"><h2 class="st"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></span> שלב 2 — חשיפת המטפורה</h2><p class="sd">מה הוא תחום המקור (הקונקרטי) ומה תחום היעד (המופשט)?</p>
+<div class="dd"><div class="db sr"><div class="dl">תחום המקור (Source)</div><div class="hn">התחום המוכר והקונקרטי</div><input type="text" data-field="sourceDomain" placeholder="למשל: רועה צאן" style="text-align:center;margin-top:.5rem;width:100%;padding:.5rem;border:1px solid var(--b);border-radius:6px;font-family:'Heebo',sans-serif"></div>
+<div class="da">→</div><div class="db tg"><div class="dl">תחום היעד (Target)</div><div class="hn">התחום המופשט</div><input type="text" data-field="targetDomain" placeholder="למשל: אלוהים" style="text-align:center;margin-top:.5rem;width:100%;padding:.5rem;border:1px solid var(--b);border-radius:6px;font-family:'Heebo',sans-serif"></div></div>
+<div class="fg"><label>המטפורה המושגית</label><div class="hn">נסחו בנוסחה: X הוא Y</div><input type="text" data-field="conceptualMetaphor" placeholder='למשל: "אלוהים הוא רועה"'></div>
+<div class="fg"><label>טבלת מיפוי מטפורי</label><table class="mt" id="mtbl"><thead><tr><th style="width:42%">תחום המקור</th><th style="width:5%"></th><th style="width:42%">תחום היעד</th><th style="width:11%"></th></tr></thead>
+<tbody><tr><td><input data-mapping="source" placeholder="מרכיב"></td><td class="ac">→</td><td><input data-mapping="target" placeholder="משמעות"></td><td><button class="rrb" onclick="rr(this)">✕</button></td></tr>
+<tr><td><input data-mapping="source" placeholder="מרכיב"></td><td class="ac">→</td><td><input data-mapping="target" placeholder="משמעות"></td><td><button class="rrb" onclick="rr(this)">✕</button></td></tr>
+<tr><td><input data-mapping="source" placeholder="מרכיב"></td><td class="ac">→</td><td><input data-mapping="target" placeholder="משמעות"></td><td><button class="rrb" onclick="rr(this)">✕</button></td></tr></tbody></table>
+<button class="arb" onclick="ar()">+ הוסיפו שורה</button></div>
+<div class="fg"><label>הסבר המיפוי</label><textarea data-field="mappingExplanation" placeholder="הסבירו את הקשרים..."></textarea></div>
+<!-- ARTICLE UPLOAD -->
+<div class="art-zone">
+<h4><span class="ic" style="width:28px;height:28px"><svg viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span> מאמר אקדמי תיאורטי</h4>
+<p style="font-size:.85rem;color:var(--tl);margin-bottom:.8rem">העלו מאמר אקדמי הקשור למטפורה שבחרתם. צטטו ממנו והסבירו כיצד הוא תומך בניתוח.</p>
+<div class="uz" id="uzArt" role="button" tabindex="0" aria-label="העלאת תמונה" onclick="document.getElementById('fiArt').click()" onkeydown="if(event.key==='Enter')this.click()" style="min-height:60px;padding:1rem">
+<div class="ut" style="font-size:.85rem">לחצו להעלאת מאמר (PDF / תמונה)</div>
+<input type="file" id="fiArt" accept=".pdf,image/*" onchange="handleArt(this)"></div>
+<div id="artFiles"></div>
+<div class="art-cite">
+<div class="fg" style="margin-top:.8rem"><label>הפניה ביבליוגרפית</label><input type="text" data-field="articleRef" placeholder="שם המחבר/ת, שנה, כותרת המאמר, כתב העת..."></div>
+<div class="fg"><label>ציטוט רלוונטי מהמאמר</label><textarea data-field="articleQuote" placeholder='העתיקו ציטוט מדויק מהמאמר שתומך בניתוח המטפורה שלכם. ציינו מספר עמוד.'></textarea></div>
+<div class="fg"><label>כיצד המאמר תומך בניתוח המטפורה?</label><textarea data-field="articleAnalysis" placeholder="הסבירו את הקשר בין המאמר התיאורטי לבין המטפורה שאתם מנתחים..."></textarea></div>
+</div>
+</div>
+</div>
+<div class="nb"><button class="btn bs" onclick="go(1)">→ שלב קודם</button><button class="btn bp" onclick="checkBeforeNext(2,3)">שלב הבא ←</button></div></div>
+<!-- S3 --><div class="ss" id="s3"><div class="sc"><h2 class="st"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span> שלב 3 — בניית הפרומפט</h2><p class="sd">בנו פרומפט לכלי יצירת התמונה שתייצג את המטפורה.</p>
+<div class="fg"><label>נושא מרכזי</label><input type="text" data-field="promptSubject" placeholder="מה הנושא המרכזי של התמונה?"></div>
+<div class="fg"><label>דמויות או אלמנטים</label><textarea data-field="promptElements" placeholder="אילו דמויות או אלמנטים?"></textarea></div>
+<div class="fg"><label>רקע וסביבה</label><input type="text" data-field="promptBackground" placeholder="תארו את הרקע"></div>
+<div class="fg"><label>צבעים ואווירה</label><input type="text" data-field="promptColors" placeholder="אילו צבעים ואווירה?"></div>
+<div class="fg"><label>סגנון אמנותי</label><div class="so" id="sopt">
+<span class="sopt"><input type="radio" name="artStyle" id="st1" value="oil painting"><label for="st1">ציור שמן</label></span>
+<span class="sopt"><input type="radio" name="artStyle" id="st2" value="watercolor"><label for="st2">אקוורל</label></span>
+<span class="sopt"><input type="radio" name="artStyle" id="st3" value="Eastern miniature"><label for="st3">מיניאטורה מזרחית</label></span>
+<span class="sopt"><input type="radio" name="artStyle" id="st4" value="fresco"><label for="st4">פרסקו</label></span>
+<span class="sopt"><input type="radio" name="artStyle" id="st5" value="stained glass"><label for="st5">ויטראז׳</label></span>
+<span class="sopt"><input type="radio" name="artStyle" id="st6" value="digital art"><label for="st6">גרפיקה דיגיטלי</label></span>
+<span class="sopt"><input type="radio" name="artStyle" id="st7" value="surrealist photography"><label for="st7">צילום סוריאליסטי</label></span>
+<span class="sopt"><input type="radio" name="artStyle" id="st8" value="impressionism"><label for="st8">אימפרסיוניזם</label></span>
+<span class="sopt"><input type="radio" name="artStyle" id="st9" value="expressionism"><label for="st9">אקספרסיוניזם</label></span>
+<span class="sopt"><input type="radio" name="artStyle" id="st10" value="Byzantine art"><label for="st10">ביזנטי</label></span></div></div>
+<div class="fg"><label>הוספות חופשיות</label><textarea data-field="promptExtra" placeholder="פרטים נוספים..."></textarea></div>
+<div class="fg"><label>תצוגה מקדימה של הפרומפט</label><div class="pp" id="ppv">Create an image. High quality, detailed, artistic.</div><button class="cpb" onclick="cp()">העתקה</button></div>
+<div style="background:linear-gradient(135deg,rgba(44,62,107,.04),rgba(201,168,76,.06));padding:1rem;border-radius:8px;margin-top:1rem;border:1px solid var(--b)"><strong>כיצד ליצור את התמונה?</strong><br>העתיקו את הפרומפט והדביקו באחד מהכלים:<br><span style="color:var(--pl)">Gemini</span> | <span style="color:var(--pl)">ChatGPT + DALL-E</span> | <span style="color:var(--pl)">Midjourney</span></div>
+<!-- PROMPT TIPS PANEL -->
+<div class="exp-panel" id="tipPanel">
+<div class="exp-head" onclick="this.parentElement.classList.toggle('open')">
+<span><span class="ic" style="width:28px;height:28px;margin-left:.5rem"><svg viewBox="0 0 24 24" style="width:14px;height:14px"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span> מדריך טיפים לכתיבת פרומפט אפקטיבי</span><span class="exp-arrow">▼</span>
+</div>
+<div class="exp-body"><div class="exp-inner">
+<h4>מבנה תיאור התמונה</h4>
+<p>פרומפט טוב בנוי מרכיבים ברורים. ככל שתהיו מדויקים יותר, התוצאה תהיה קרובה יותר לדמיון שלכם:</p>
+<ul>
+<li><strong>נושא/סצנה:</strong> מה מופיע בתמונה? תארו את הדמויות, האובייקטים, הפעולה</li>
+<li><strong>סגנון אמנותי:</strong> ציור שמן, אקוורל, פרסקו, צילום סוריאליסטי וכו׳</li>
+<li><strong>רקע וסביבה:</strong> נוף מדברי, שמיים סוערים, חלל ריק, מקדש עתיק</li>
+<li><strong>תאורה:</strong> אור זהוב, אור דרמטי מהצד, אור רך מפוזר</li>
+<li><strong>צבעים ואווירה:</strong> טונים חמים, פלטה כחולה-כסופה, ניגודיות גבוהה</li>
+<li><strong>מצב רוח:</strong> דרמטי, שליו, מסתורי, חגיגי, נוגה</li>
+</ul>
+<h4>דוגמאות לפרומפטים טובים</h4>
+<div class="tip-ex">Create an oil painting of a mighty eagle soaring above a desert canyon at sunset. Golden light illuminates the eagle's wings. The canyon below is deep with dramatic red and orange rock layers. Mood: majestic and powerful. High detail, cinematic composition.</div>
+<div class="tip-ex">A watercolor painting of a shepherd leading a flock through a narrow valley with towering cliffs. Soft morning light filters through mist. Pastel color palette with greens and golds. Peaceful, contemplative atmosphere.</div>
+<h4>טעויות נפוצות</h4>
+<ul>
+<li><strong>תיאור עמום מדי:</strong> "ציור יפה של טבע" — חסרים פרטים ספציפיים</li>
+<li><strong>יותר מדי הנחיות סותרות:</strong> שילוב סגנונות שלא הולכים יחד</li>
+<li><strong>התעלמות מתאורה:</strong> התאורה משפיעה מאוד על האווירה</li>
+<li><strong>שכחת הקומפוזיציה:</strong> ציינו נקודת מבט (תקריב, מבט ציפור, פנורמה)</li>
+</ul>
+<h4>השוואת כלי AI</h4>
+<ul>
+<li><strong>Gemini (Google):</strong> חינמי, תוצאות טובות, תומך בעברית חלקית</li>
+<li><strong>DALL-E (ChatGPT):</strong> איכות גבוהה, יצירתי, דורש מנוי ChatGPT Plus</li>
+<li><strong>Midjourney:</strong> תוצאות אמנותיות מרשימות, דורש מנוי</li>
+</ul>
+<h4>טיפים מתקדמים</h4>
+<ul>
+<li>כתבו את הפרומפט <strong>באנגלית</strong> — הכלים מבינים אנגלית טוב יותר</li>
+<li>הוסיפו <strong>"high quality, detailed, 4K"</strong> לשיפור האיכות</li>
+<li>נסו <strong>איטרציות</strong> — שנו פרט אחד בכל פעם ובדקו את ההשפעה</li>
+<li>שלבו <strong>מונחים אמנותיים</strong>: chiaroscuro, golden ratio, rule of thirds</li>
+<li>ציינו מה <strong>לא</strong> לכלול: "no text, no watermark, no modern elements"</li>
+</ul>
+<h4 style="margin-top:1.5rem;border-top:1px solid rgba(180,120,130,.2);padding-top:1rem">🎨 מילון גווני צבע לפרומפט</h4>
+<p>הוסיפו את המונח באנגלית לפרומפט כדי לשלוט בפלטת הצבעים:</p>
+<table style="width:100%;border-collapse:collapse;font-size:.85rem;margin:.8rem 0">
+<tr style="background:var(--p);color:#fff"><th style="padding:.5rem;text-align:right;width:30%">מונח באנגלית</th><th style="padding:.5rem;text-align:right">הסבר</th></tr>
+<tr style="border-bottom:1px solid var(--b)"><td style="padding:.4rem .5rem"><strong>Warm tones</strong></td><td style="padding:.4rem .5rem">אדום, כתום, צהוב וחום — תחושה נעימה, מזמינה או אנרגטית</td></tr>
+<tr style="border-bottom:1px solid var(--b);background:var(--c)"><td style="padding:.4rem .5rem"><strong>Cool tones</strong></td><td style="padding:.4rem .5rem">כחול, ירוק וסגול — תחושה רגועה, שלווה או מלנכולית</td></tr>
+<tr style="border-bottom:1px solid var(--b)"><td style="padding:.4rem .5rem"><strong>Muted / Pastel tones</strong></td><td style="padding:.4rem .5rem">צבעים רכים ופחות רוויים — מראה עדין או בסגנון וינטאג׳</td></tr>
+<tr style="border-bottom:1px solid var(--b);background:var(--c)"><td style="padding:.4rem .5rem"><strong>Vibrant / Saturated tones</strong></td><td style="padding:.4rem .5rem">צבעים עזים ורוויים, בולטים ומושכים את העין</td></tr>
+<tr style="border-bottom:1px solid var(--b)"><td style="padding:.4rem .5rem"><strong>Monochromatic</strong></td><td style="padding:.4rem .5rem">גוונים שונים של צבע יחיד — מראה מינימליסטי ואחיד</td></tr>
+<tr style="border-bottom:1px solid var(--b);background:var(--c)"><td style="padding:.4rem .5rem"><strong>Complementary colors</strong></td><td style="padding:.4rem .5rem">צבעים מהצד ההפוך של גלגל הצבעים — ניגודיות גבוהה ועניין חזותי</td></tr>
+<tr style="border-bottom:1px solid var(--b)"><td style="padding:.4rem .5rem"><strong>Analogous colors</strong></td><td style="padding:.4rem .5rem">צבעים סמוכים על גלגל הצבעים — פלטה הרמונית</td></tr>
+<tr style="border-bottom:1px solid var(--b);background:var(--c)"><td style="padding:.4rem .5rem"><strong>Triadic colors</strong></td><td style="padding:.4rem .5rem">שלושה צבעים מפוזרים באופן שווה על גלגל הצבעים — מגוון עם איזון</td></tr>
+<tr style="border-bottom:1px solid var(--b)"><td style="padding:.4rem .5rem"><strong>Sepia</strong></td><td style="padding:.4rem .5rem">גוון חום-צהבהב — תחושה עתיקה ונוסטלגית</td></tr>
+<tr><td style="padding:.4rem .5rem"><strong>Grayscale</strong></td><td style="padding:.4rem .5rem">שחור, לבן וגוונים של אפור — מראה קלאסי ומרגיע</td></tr>
+</table>
+<h4 style="margin-top:1.5rem;border-top:1px solid rgba(180,120,130,.2);padding-top:1rem">📐 זוויות צילום (Camera Angle)</h4>
+<p>שליטה בזווית הצילום משנה את כל האופי של התמונה:</p>
+<table style="width:100%;border-collapse:collapse;font-size:.85rem;margin:.8rem 0">
+<tr style="background:var(--p);color:#fff"><th style="padding:.5rem;text-align:right;width:30%">מונח באנגלית</th><th style="padding:.5rem;text-align:right">הסבר</th></tr>
+<tr style="border-bottom:1px solid var(--b)"><td style="padding:.4rem .5rem"><strong>Bird's-eye view</strong></td><td style="padding:.4rem .5rem">זווית עילית/אווירית המביטה מלמעלה על הסצנה</td></tr>
+<tr style="border-bottom:1px solid var(--b);background:var(--c)"><td style="padding:.4rem .5rem"><strong>Worm's-eye view</strong></td><td style="padding:.4rem .5rem">זווית נמוכה מהקרקע, מביטה כלפי מעלה — הנושא נראה גדול ומרשים</td></tr>
+<tr style="border-bottom:1px solid var(--b)"><td style="padding:.4rem .5rem"><strong>Eye-level view</strong></td><td style="padding:.4rem .5rem">המצלמה בגובה העיניים של הנושא — מבט טבעי ואישי</td></tr>
+<tr style="border-bottom:1px solid var(--b);background:var(--c)"><td style="padding:.4rem .5rem"><strong>Over-the-shoulder</strong></td><td style="padding:.4rem .5rem">מבט מאחורי הנושא, מעל כתפו — תחושה של שיתוף</td></tr>
+<tr style="border-bottom:1px solid var(--b)"><td style="padding:.4rem .5rem"><strong>Three-quarter view</strong></td><td style="padding:.4rem .5rem">הנושא בזווית של כ-45° מהמצלמה — מעניק עומק ומימד</td></tr>
+<tr style="border-bottom:1px solid var(--b);background:var(--c)"><td style="padding:.4rem .5rem"><strong>Profile view</strong></td><td style="padding:.4rem .5rem">הנושא מוצג מהצד, בפרופיל</td></tr>
+<tr style="border-bottom:1px solid var(--b)"><td style="padding:.4rem .5rem"><strong>Close-up</strong></td><td style="padding:.4rem .5rem">המצלמה קרובה מאוד — ממלאה את מסגרת התמונה בנושא</td></tr>
+<tr style="border-bottom:1px solid var(--b);background:var(--c)"><td style="padding:.4rem .5rem"><strong>Extreme close-up</strong></td><td style="padding:.4rem .5rem">תקריב קיצוני המתמקד בפרט קטן מהנושא</td></tr>
+<tr style="border-bottom:1px solid var(--b)"><td style="padding:.4rem .5rem"><strong>Long shot</strong></td><td style="padding:.4rem .5rem">מבט רחוק המציג את הסצנה השלמה — הנושא קטן בתוך הנוף</td></tr>
+<tr><td style="padding:.4rem .5rem"><strong>Medium shot</strong></td><td style="padding:.4rem .5rem">בין תקריב למבט רחוק — הנושא מהמותניים ומעלה</td></tr>
+</table>
+<h4 style="margin-top:1.5rem;border-top:1px solid rgba(180,120,130,.2);padding-top:1rem">💡 סוגי תאורה (Lighting)</h4>
+<p>התאורה היא מרכיב קריטי שקובע את האווירה, העומק וה-mood של התמונה:</p>
+<table style="width:100%;border-collapse:collapse;font-size:.85rem;margin:.8rem 0">
+<tr style="background:var(--p);color:#fff"><th style="padding:.5rem;text-align:right;width:30%">מונח באנגלית</th><th style="padding:.5rem;text-align:right">הסבר</th></tr>
+<tr style="border-bottom:1px solid var(--b)"><td style="padding:.4rem .5rem"><strong>Flat lighting</strong></td><td style="padding:.4rem .5rem">תאורה אחידה ללא הצללות — מראה נקי ופשוט</td></tr>
+<tr style="border-bottom:1px solid var(--b);background:var(--c)"><td style="padding:.4rem .5rem"><strong>Dramatic lighting</strong></td><td style="padding:.4rem .5rem">ניגודיות גבוהה בין אור וצל — אפקט קולנועי ומרגש</td></tr>
+<tr style="border-bottom:1px solid var(--b)"><td style="padding:.4rem .5rem"><strong>Backlighting</strong></td><td style="padding:.4rem .5rem">מקור האור מאחורי הנושא — יוצר סילואט או הילה מקיפה</td></tr>
+<tr style="border-bottom:1px solid var(--b);background:var(--c)"><td style="padding:.4rem .5rem"><strong>Sidelight</strong></td><td style="padding:.4rem .5rem">אור מהצד — מוסיף עומק ומימד לסצנה</td></tr>
+<tr style="border-bottom:1px solid var(--b)"><td style="padding:.4rem .5rem"><strong>Toplight</strong></td><td style="padding:.4rem .5rem">מקור האור מלמעלה — צלליות כלפי מטה</td></tr>
+<tr style="border-bottom:1px solid var(--b);background:var(--c)"><td style="padding:.4rem .5rem"><strong>Soft lighting</strong></td><td style="padding:.4rem .5rem">תאורה מפוזרת ורכה — ממזערת צלליות, מראה עדין ומחמיא</td></tr>
+<tr style="border-bottom:1px solid var(--b)"><td style="padding:.4rem .5rem"><strong>Hard lighting</strong></td><td style="padding:.4rem .5rem">תאורה ממוקדת — צלליות חדות ומוגדרות, אפקט דרמטי</td></tr>
+<tr style="border-bottom:1px solid var(--b);background:var(--c)"><td style="padding:.4rem .5rem"><strong>Natural lighting</strong></td><td style="padding:.4rem .5rem">אור יום טבעי — בחוץ או דרך חלונות</td></tr>
+<tr style="border-bottom:1px solid var(--b)"><td style="padding:.4rem .5rem"><strong>Artificial lighting</strong></td><td style="padding:.4rem .5rem">תאורה ממקורות יד-אדם — מנורות, פנסים, תאורת סטודיו</td></tr>
+<tr><td style="padding:.4rem .5rem"><strong>Chiaroscuro</strong></td><td style="padding:.4rem .5rem">ניגוד קיצוני בין אור וצל — טכניקה המזוהה עם ציור הרנסנס</td></tr>
+</table>
+</div></div></div>
+</div>
+<div class="nb"><button class="btn bs" onclick="go(2)">→ שלב קודם</button><button class="btn bp" onclick="checkBeforeNext(3,4)">שלב הבא ←</button></div></div>
+<!-- S4 --><div class="ss" id="s4"><div class="sc"><h2 class="st"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span> שלב 4 — העלאת התמונה הראשונית</h2><p class="sd">לאחר שיצרתם תמונה בכלי ה-AI, העלו אותה כאן.</p>
+<div class="fg"><label>העלאת תמונה</label><div class="uz" id="uz1" role="button" tabindex="0" aria-label="העלאת תמונה" onclick="document.getElementById('fi1').click()" onkeydown="if(event.key==='Enter')this.click()"><div class="ui"><span class="ic" style="width:40px;height:40px"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span></div><div class="ut">לחצו כאן או גררו תמונה</div><input type="file" id="fi1" accept="image/*" onchange="hu(this,'uz1','image1')"></div></div>
+<div class="fg"><label>הפרומפט ששימש ליצירה</label><textarea data-field="usedPrompt1" placeholder="הדביקו את הפרומפט"></textarea></div>
+<div class="fg"><label>באיזה כלי נוצרה?</label><div class="to">
+<span><input type="radio" name="aiTool" id="t1" value="Gemini"><label for="t1">Gemini</label></span>
+<span><input type="radio" name="aiTool" id="t2" value="DALL-E / ChatGPT"><label for="t2">DALL-E / ChatGPT</label></span>
+<span><input type="radio" name="aiTool" id="t3" value="Midjourney"><label for="t3">Midjourney</label></span>
+<span><input type="radio" name="aiTool" id="t4" value="אחר"><label for="t4">אחר</label></span></div></div>
+<div class="fg"><label>מה מייצגת התמונה? כיצד היא מבטאת את המטפורה?</label><textarea data-field="imageRepresents"></textarea></div>
+<div class="fg"><label>מה הפתיע אתכם?</label><textarea data-field="imageSurprise"></textarea></div>
+<div class="fg"><label>ניסיונות נוספים (אופציונלי)</label><div class="uz" id="uzx" role="button" tabindex="0" aria-label="העלאת תמונה" onclick="document.getElementById('fix').click()" onkeydown="if(event.key==='Enter')this.click()" style="min-height:60px;padding:1rem"><div class="ut" style="font-size:.85rem">לחצו להעלאת תמונות נוספות</div><input type="file" id="fix" accept="image/*" multiple onchange="hmu(this,'uzx')"></div>
+<textarea data-field="extraPrompts" placeholder="פרומפטים נוספים..." style="margin-top:.5rem"></textarea></div></div>
+<div class="fg" style="margin-top:1.5rem;padding-top:1rem;border-top:2px solid var(--a)">
+<h3 style="color:var(--p);font-size:1.05rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem"><span class="ic" style="width:28px;height:28px"><svg viewBox="0 0 24 24" style="width:14px;height:14px"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></span> ניתוח התמונה — שלוש עדשות</h3>
+<p style="font-size:.85rem;color:var(--tl);margin-bottom:1rem">נתחו את התמונה שיצרתם באמצעות שלוש העדשות התיאורטיות שלמדתם ביחידת המבוא:</p>
+<label style="font-weight:600;color:var(--p);font-size:.9rem">🔹 עדשה א׳ — שימור המבנה הלוגי (Invariance)</label>
+<p style="font-size:.82rem;color:var(--tl);margin-bottom:.3rem">האם התמונה משמרת את הרצף הלוגי של המטפורה? אילו שלבים מוצגים בה?</p>
+<textarea data-field="lensInvariance" style="min-height:80px" placeholder="לדוגמה: התמונה מציגה את שלב הדחייה דרך... ואת ההיפוך דרך..."></textarea>
+<label style="font-weight:600;color:var(--p);font-size:.9rem;margin-top:.8rem;display:block">🔹 עדשה ב׳ — משמעות חדשה (Blending)</label>
+<p style="font-size:.82rem;color:var(--tl);margin-bottom:.3rem">איזו משמעות חדשה עולה מהתמונה שלא קיימת בתחום המקור או היעד בנפרד?</p>
+<textarea data-field="lensBlending" style="min-height:80px" placeholder="לדוגמה: השילוב בין... ל... יוצר תובנה חדשה על..."></textarea>
+<label style="font-weight:600;color:var(--p);font-size:.9rem;margin-top:.8rem;display:block">🔹 עדשה ג׳ — בחירות מרחביות וגופניות (Embodied)</label>
+<p style="font-size:.82rem;color:var(--tl);margin-bottom:.3rem">אילו בחירות מרחביות עשיתם? (מיקום, תאורה, כיוון תנועה, ניגודים חזותיים) וכיצד הן מבטאות את המטפורה?</p>
+<textarea data-field="lensEmbodied" style="min-height:80px" placeholder="לדוגמה: הנחתי את... במרכז כי... השתמשתי באור כדי לבטא..."></textarea>
+<label style="font-weight:600;color:var(--p);font-size:.9rem;margin-top:.8rem;display:block">🤖 תפקיד ה-AI — מה שלכם ומה של המודל</label>
+<p style="font-size:.82rem;color:var(--tl);margin-bottom:.3rem">מה ביקשתם מכלי ה-AI ומה הוא הוסיף מעצמו? האם התוספות שיפרו את הביטוי של המטפורה?</p>
+<textarea data-field="aiRole" style="min-height:80px" placeholder="לדוגמה: ביקשתי... אבל ה-AI הוסיף... מה שדווקא חיזק / שינה את..."></textarea>
+<label style="font-weight:600;color:var(--p);font-size:.9rem;margin-top:.8rem;display:block">🪞 פער בין הבנה לביצוע</label>
+<p style="font-size:.82rem;color:var(--tl);margin-bottom:.3rem">האם התמונה מעבירה בהצלחה את מה שאתם מבינים על המטפורה? מה כן ומה פחות?</p>
+<textarea data-field="executionGap" style="min-height:80px" placeholder="לדוגמה: התמונה מצליחה לבטא את... אבל לא הצלחתי לשדר את..."></textarea>
+</div>
+<div class="nb"><button class="btn bs" onclick="go(3)">→ שלב קודם</button><button class="btn bp" onclick="checkBeforeNext(4,5)">שלב הבא ←</button></div></div>
+<!-- S5 --><div class="ss" id="s5"><div class="sc"><h2 class="st"><span class="ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg></span> שלב 5 — פרשנות ויצירה מחודשת</h2><p class="sd">בחרו פרשן מקראי ובדקו כיצד פרשנותו משנה את הבנת המטפורה. צרו תמונה חדשה.<br><span style="font-size:.85rem;color:var(--a)">תוכלו לייבא מאתרים כמו על-התורה או ספריא</span></p>
+<div class="fg"><label>שם הפרשן או הגישה</label><input type="text" data-field="commentatorName" placeholder='רש"י, אבן עזרא...'></div>
+<div class="fg"><label>תוכן הפרשנות</label><textarea data-field="commentaryContent" style="min-height:120px"></textarea></div>
+<div class="fg"><label>כיצד הפרשנות משנה את הבנת המטפורה?</label><textarea data-field="commentaryImpact"></textarea></div>
+<div class="fg"><label>כיצד שיניתם את הפרומפט?</label><textarea data-field="promptChanges"></textarea></div>
+<div class="fg"><label>הפרומפט החדש</label><textarea data-field="newPrompt"></textarea></div>
+<div class="fg"><label>התמונה המעודכנת</label><div class="uz" id="uz2" role="button" tabindex="0" aria-label="העלאת תמונה" onclick="document.getElementById('fi2').click()" onkeydown="if(event.key==='Enter')this.click()"><div class="ui"><span class="ic" style="width:40px;height:40px"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span></div><div class="ut">לחצו להעלאת תמונה מעודכנת</div><input type="file" id="fi2" accept="image/*" onchange="hu(this,'uz2','image2')"></div></div>
+<div class="fg"><label>ההבדל בין התמונות</label><textarea data-field="imageComparison" style="min-height:120px"></textarea></div></div>
+<div class="fg" style="margin-top:1.5rem;padding-top:1rem;border-top:2px solid var(--a)">
+<h3 style="color:var(--p);font-size:1.05rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem"><span class="ic" style="width:28px;height:28px"><svg viewBox="0 0 24 24" style="width:14px;height:14px"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></span> ניתוח התמונה המעודכנת — שלוש עדשות</h3>
+<p style="font-size:.85rem;color:var(--tl);margin-bottom:1rem">כיצד הפרשנות שינתה את הביטוי החזותי? נתחו את התמונה החדשה:</p>
+<label style="font-weight:600;color:var(--p);font-size:.9rem">🔹 שימור מבנה — האם הפרשנות שינתה את הרצף הלוגי של המטפורה בתמונה?</label>
+<textarea data-field="lens2Invariance" style="min-height:70px" placeholder="לדוגמה: הפרשנות הדגישה שלב אחר במטפורה..."></textarea>
+<label style="font-weight:600;color:var(--p);font-size:.9rem;margin-top:.8rem;display:block">🔹 משמעות חדשה — איזו משמעות חדשה צמחה מהמפגש בין הפרשנות לתמונה?</label>
+<textarea data-field="lens2Blending" style="min-height:70px" placeholder="לדוגמה: הפרשנות הוסיפה רובד של... מה שיצר..."></textarea>
+<label style="font-weight:600;color:var(--p);font-size:.9rem;margin-top:.8rem;display:block">🔹 שינויים מרחביים — מה השתנה בבחירות החזותיות? (מיקום, אור, ניגודים)</label>
+<textarea data-field="lens2Embodied" style="min-height:70px" placeholder="לדוגמה: בתמונה הראשונה האבן הייתה למטה, עכשיו..."></textarea>
+</div>
+<div class="nb"><button class="btn bs" onclick="go(4)">→ שלב קודם</button><button class="btn bp" onclick="checkBeforeNext(5,6)">שלב הבא ←</button></div></div>
+<!-- S6 --><div class="ss" id="s6"><div class="sc"><h2 class="st"><span class="ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span> שלב 6 — רפלקציה</h2><p class="sd">חשבו על התהליך שעברתם:</p>
+<div class="rq"><div class="qt">1. מה למדתם על המטפורה דרך ההמחשה החזותית שלא הייתם מגלים רק דרך קריאת הטקסט?</div><textarea data-field="reflection1"></textarea></div>
+<div class="rq"><div class="qt">2. כיצד שינתה יצירת התמונה את הבנתכם של המטפורה? האם נחשפו רבדים חדשים של משמעות?</div><textarea data-field="reflection2"></textarea></div>
+<div class="rq"><div class="qt">3. אילו היבטים של המטפורה היה קשה להמחיש חזותית? כיצד זה קשור לפער בין הבנה מושגית לביטוי חזותי?</div><textarea data-field="reflection3"></textarea></div>
+<div class="rq"><div class="qt">4. לאור שלוש העדשות (שימור מבנה, מיזוג מושגי, בחירות מרחביות) — מה הייתם משנים בפרומפט או בתמונה?</div><textarea data-field="reflection4"></textarea></div>
+<div class="rq"><div class="qt">5. כיצד שינה התהליך כולו — מהניתוח המילולי, דרך יצירת התמונה, ועד הניתוח החזותי — את הבנתכם מהי מטפורה ומה זה אומר להבין שירה מקראית?</div><textarea data-field="reflection5"></textarea></div></div>
+<div class="nb"><button class="btn bs" onclick="go(5)">→ שלב קודם</button><button class="btn bp" onclick="checkBeforeNext(6,7)">שלב הבא ←</button></div></div>
+<!-- S7 --><div class="ss" id="s7"><div class="sc"><h2 class="st"><span class="ic"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg></span> שלב 7 — סיכום וייצוא</h2><p class="sd">להלן סיכום כל התהליך שלכם. עברו עליו וודאו שהנתונים תקינים, ואז ייצאו ל-PDF.</p>
+<div style="text-align:center;margin-bottom:1.2rem"><button class="btn" onclick="fullCheck()" style="background:linear-gradient(135deg,var(--p),#4a1a28);color:#fff;padding:.8rem 2rem;font-size:1rem;border-radius:12px;border:none;cursor:pointer;font-family:'Heebo',sans-serif;box-shadow:0 4px 15px rgba(123,45,59,.3)">📋 בדיקת שלמות לפני הגשה</button></div>
+<div id="sumC"></div>
+<div style="text-align:center;margin:2rem 0 1rem"><button class="btn ba" onclick="window.print()" style="font-size:1.15rem;padding:.9rem 2.5rem;border-radius:10px">ייצוא PDF</button><div style="font-size:.78rem;color:var(--tl);margin-top:.5rem">ייפתח חלון הדפסה — בחרו "שמור כ-PDF"</div></div>
+<div class="eb" style="justify-content:center"><button class="btn bs" onclick="exH()" style="font-size:.85rem">ייצוא HTML</button><button class="btn bs" onclick="exB()" style="font-size:.85rem">גיבוי JSON</button><button class="btn bs" onclick="document.getElementById('ib').click()" style="font-size:.85rem">שחזור מקובץ</button><input type="file" id="ib" accept=".json" style="display:none" onchange="imB(this)"></div>
+<div style="text-align:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--b)"><button class="btn" onclick="clearAll()" style="background:none;color:var(--e);border:1px solid var(--e);font-size:.85rem;padding:.5rem 1.5rem;border-radius:8px">🗑️ ניקוי טופס — התחלה מחדש</button></div></div></div>
+</div>
+<!-- READING LIST -->
+<div style="max-width:860px;margin:0 auto;padding:0 1rem">
+<div class="exp-panel" id="rlPanel">
+<div class="exp-head" onclick="this.parentElement.classList.toggle('open')">
+<span><span class="ic" style="width:28px;height:28px;margin-left:.5rem"><svg viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span> רשימת קריאה מומלצת</span><span class="exp-arrow">▼</span>
+</div>
+<div class="exp-body"><div class="exp-inner">
+<p style="color:var(--tl);font-size:.88rem;margin-bottom:1.2rem">מאמרים אקדמיים מומלצים לקורס, מאורגנים לפי נושאים. לחצו על שם המאמר לפתיחת ה-PDF:</p>
+<h4 style="color:#5a86b5;border-bottom:1px solid rgba(180,120,130,.2);padding-bottom:.4rem;margin-top:1.2rem">א. תיאוריה כללית של מטפורות</h4>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Lakoff-Johnson-1980.djvu" target="_blank"><strong>Lakoff, G. &amp; Johnson, M.</strong> (1980). <em>Metaphors We Live By</em>.</a> University of Chicago Press.<div class="rl-desc">ספר היסוד של תיאוריית המטפורה הקוגניטיבית — מטפורות אינן רק תופעה לשונית אלא דרך חשיבה</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Ortony-Metaphor-Ch1.pdf" target="_blank"><strong>Ortony, A.</strong> (Ed.) (1993). <em>Metaphor and Thought</em> (2nd ed.).</a> Cambridge University Press.<div class="rl-desc">פרק 1: מבוא לתיאוריות מטפורה מרכזיות — השוואה, אינטראקציה ודומיין</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Morgan-1990-Business-Metaphor.pdf" target="_blank"><strong>מרגלית, א.</strong> (1990). ביקורת: עסקי מטאפורה.</a> <em>עיון: רבעון פילוסופי ירושלמי</em>, 39, 236–240.<div class="rl-desc">ביקורת ספרים הבוחנת את תפקיד המטפורה בשפה ובמחשבה — מתוך רבעון פילוסופי ירושלמי</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Ryliskyte-2017-Metaphor-Analogy-Theology.pdf" target="_blank"><strong>Ryliškytė, L.</strong> (2017). Metaphor and Analogy in Theology: A Choice between Lions and Witches, and Wardrobes?</a> <em>Theological Studies</em>, 78(3), 696–717.<div class="rl-desc">דיון בשימוש במטפורה ואנלוגיה בשיח תיאולוגי — האם מטפורה מציעה ידע שונה מאנלוגיה?</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/VanHecke-Metaphor-Theory-Biblical.pdf" target="_blank"><strong>Van Hecke, P.</strong> (2013). Metaphor Theory and Biblical Texts.</a> In S. L. McKenzie (Ed.), <em>The Oxford Encyclopedia of Biblical Interpretation</em> (Vol. 2). Oxford University Press.<div class="rl-desc">ערך אנציקלופדי המציג את תיאוריית המטפורה ויישומה בחקר המקרא — מסגרת מתודולוגית מקיפה</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Cohen-Metaphor-Research.pdf" target="_blank"><strong>כהן, מ.</strong> (תשס״ד). דמיון והגיון, אמת ושקר: גישותיהם של רמב״ע ורמב״ם למטפורה המקראית לאור הפואטיקה והפילוסופיה הערבית.</a> <em>תרביץ</em>, עג(3), 417–458.<div class="rl-desc">מחקר השוואתי של גישות רבי משה אבן עזרא והרמב״ם למטפורה המקראית, על רקע המסורת הפואטית והפילוסופית הערבית</div></div></div>
+<h4 style="color:#5a86b5;border-bottom:1px solid rgba(180,120,130,.2);padding-bottom:.4rem;margin-top:1.5rem">ב. מטפורות במקרא — תיאוריה ומתודולוגיה</h4>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Berlin-1985-Biblical-Parallelism.pdf" target="_blank"><strong>Berlin, A.</strong> (1985). <em>The Dynamics of Biblical Parallelism</em>.</a> Indiana University Press.<div class="rl-desc">הקבלות מקראיות כמנגנון פואטי — בסיס להבנת שירה ומטפורה בתנ״ך</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Chau-2015-Invariance-Principle.pdf" target="_blank"><strong>Chau, K.</strong> (2015). Interpreting Biblical Metaphors: Introducing the Invariance Principle.</a> <em>Vetus Testamentum</em>, 65, 377–389.<div class="rl-desc">יישום עקרון השמירה (Invariance Principle) של לייקוף על מטפורות מקראיות — מסגרת לפרשנות שיטתית</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Chau-2020-Biblical-Metaphor.pdf" target="_blank"><strong>Chau, K.</strong> (2014). Metaphor's Forgotten Brother: A Survey of Metonymy in Biblical Hebrew Poetry.</a> <em>Journal for Semitics</em>, 23(2i), 633–652.<div class="rl-desc">סקירת המטונימיה בשירה המקראית — התופעה הלשונית ה״נשכחת״ לצד המטפורה, ותרומתה להבנת הטקסט</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Lancaster-2021-Metaphor-Hebrew-Bible.pdf" target="_blank"><strong>Lancaster, M. D.</strong> (2021). Metaphor Research and the Hebrew Bible.</a> <em>Currents in Biblical Research</em>, 19(3), 235–285.<div class="rl-desc">סקירה מקיפה של מחקר המטפורה בהקשר המקרא העברי — מלייקוף ועד גישות עכשוויות</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Paul-Shalom-Biblical-Metaphor.pdf" target="_blank"><strong>Paul, S. M.</strong> A Lover's Garden of Verse: Literal and Metaphorical Imagery in Ancient Near Eastern Love Poetry.</a> In M. Cogan, B. L. Eichler &amp; J. H. Tigay (Eds.), <em>Tehillah Le-Moshe: Biblical and Judaic Studies in Honor of Moshe Greenberg</em> (pp. 99–110). Eisenbrauns.<div class="rl-desc">דימויים מילוליים ומטפוריים בשירת האהבה המזרח-תיכונית הקדומה — השוואה בין מסורות ספרותיות</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Boda-2015-Poethics.pdf" target="_blank"><strong>Boda, M. J.</strong> (2015). Poethics? The Use of Biblical Hebrew Poetry in Ethical Reflection on the Old Testament.</a> <em>Currents in Biblical Research</em>, 14(1), 45–61.<div class="rl-desc">שירה מקראית כבסיס לרפלקציה אתית — כיצד מטפורות ודימויים פואטיים תורמים לחשיבה מוסרית</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Brownsmith-Metaphors-Narrative.pdf" target="_blank"><strong>Brownsmith, E.</strong> Metaphors Realized in Narrative: A New Direction for Biblical Metaphor.</a><div class="rl-desc">מטפורות המתממשות בתוך נרטיב מקראי — כיוון מחקרי חדש</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Roth-2020-Narrative-Metaphor.pdf" target="_blank"><strong>Roth, D.</strong> (2021). Narrative Metaphor as a Tool for Exploring Character Formation.</a> <em>International Journal of Christianity &amp; Education</em>, 25(1), 96–111.<div class="rl-desc">מטפורה נרטיבית ככלי לחקר עיצוב דמויות — בחינת תפקיד הסיפור המטפורי בפרשנות טקסטים</div></div></div>
+
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Biblical-Metaphor-Reconsidered.pdf" target="_blank"><strong>Jindo, J. Y.</strong> (2005). Biblical Metaphor Reconsidered: Metaphor as a Mode of Orientation.</a> In <em>Iggud: Selected Essays in Jewish Studies</em>, Vol. 1 (pp. 71–84). World Union of Jewish Studies.<div class="rl-desc">גישה חדשנית למטפורה מקראית כמנגנון התמצאות בעולם — המטפורה כמודוס לאוריינטציה קיומית</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Beikvei-Metaphora-1.pdf" target="_blank"><strong>וייס, מ.</strong> (תשכ״ה). בעקבי מיטאפורה אחת במקרא (חלקים א–ג).</a> <em>תרביץ</em>, לד, 107–128; 211–223; 303–318. <a href="articles/Beikvei-Metaphora-2.pdf" target="_blank" style="font-size:.8rem">[חלק ב]</a> <a href="articles/Beikvei-Metaphora-3.pdf" target="_blank" style="font-size:.8rem">[חלק ג]</a><div class="rl-desc">מחקר פורץ דרך של מאיר וייס העוקב אחרי מטפורה אחת לאורך טקסטים מקראיים שונים — הערות מתודולוגיות והארות פרשניות</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Concretization-Metaphors.pdf" target="_blank"><strong>זקוביץ, י.</strong> קונקרטיזציה של מטפורות ולשון מטפורית בפרשנות המקרא — פנימית וחיצונית.</a> <em>שנתון לחקר המקרא והמזרח הקדום</em>.<div class="rl-desc">כיצד פרשני המקרא — הפנימיים (בתוך התנ״ך עצמו) והחיצוניים (חז״ל ופרשנים מאוחרים) — הופכים מטפורות למשמעויות קונקרטיות</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Metaphor-Categories-Poetry.pdf" target="_blank"><strong>קטגוריות מטפורות נוספות</strong> להעמקה בשירה המקראית.</a> חומר לימודי לקורס.<div class="rl-desc">סיווג סוגי מטפורות לצורך ניתוח שירה מקראית — סילבוס ומקורות מרכזיים להעמקה</div></div></div>
+<h4 style="color:#5a86b5;border-bottom:1px solid rgba(180,120,130,.2);padding-bottom:.4rem;margin-top:1.5rem">ג. מטפורות בספרי תנ״ך ספציפיים</h4>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Gillmayr-Bucher-2004-Body-Psalms.pdf" target="_blank"><strong>Gillmayr-Bucher, S.</strong> (2004). Body Images in the Psalms.</a> <em>Journal for the Study of the Old Testament</em>, 28(3), 301–326.<div class="rl-desc">דימויי גוף בתהלים — מטפורות גופניות כביטוי לחוויה דתית</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/VanWolde-2020-Psalm22.pdf" target="_blank"><strong>Van Wolde, E.</strong> (2020). A Network of Conventional and Deliberate Metaphors in Psalm 22.</a> <em>Journal for the Study of the Old Testament</em>, 44(4), 642–666.<div class="rl-desc">ניתוח רשת המטפורות השגרתיות והמכוונות במזמור כ״ב — כיצד הן יוצרות משמעות משולבת</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Hendel-2019-Life-Metaphor-Song.pdf" target="_blank"><strong>Hendel, R.</strong> (2019). The Life of Metaphor in Song of Songs: Poetics, Canon, and the Cultural Bible.</a> <em>Biblica</em>, 100(1), 60–83.<div class="rl-desc">חיי המטפורה בשיר השירים — פואטיקה, קנון והמקרא כטקסט תרבותי</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Krasovec-Double-Eternity-Jerusalem.pdf" target="_blank"><strong>Krašovec, J.</strong> (2013). Double Eternity and Poetic Imagery of Jerusalem as the Centre of the World.</a> <em>Ephemerides Theologicae Lovanienses</em>, 89(4), 383–396.<div class="rl-desc">נצחיות כפולה ודימוי פואטי של ירושלים כמרכז העולם — ניתוח מטפורי של טקסטים נבואיים</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Metaphorot-Iyov.pdf" target="_blank"><strong>מטפורות מושגיות כאמצעי שיח בספר איוב.</strong></a> חומר לימודי לקורס.<div class="rl-desc">ניתוח קוגניטיבי של מטפורות מושגיות בספר איוב על פי מסגרת לייקוף וטרנר — כיצד מטפורות מעצבות את השיח בין איוב לרעיו</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Shualim-Shir-HaShirim.pdf" target="_blank"><strong>ניתוח מטפורי של השועלים</strong> בשיר השירים.</a> חומר לימודי לקורס.<div class="rl-desc">ניתוח מטפורי של הפסוק ״אחזו לנו שועלים, שועלים קטנים מחבלים כרמים״ (שיר השירים ב, טו) — מרמזי טבע לדימויי אהבה</div></div></div>
+<h4 style="color:#5a86b5;border-bottom:1px solid rgba(180,120,130,.2);padding-bottom:.4rem;margin-top:1.5rem">ד. ספרות חכמה ומטפורות</h4>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Adams-2020-Wisdom-Literature.pdf" target="_blank"><strong>Adams, S. L. &amp; Goff, M.</strong> (Eds.) (2020). <em>The Wiley Blackwell Companion to Wisdom Literature</em>.</a> John Wiley &amp; Sons.<div class="rl-desc">מדריך מקיף לספרות החכמה המקראית — כולל פרקים על מטפורה, פואטיקה, רטוריקה ודימויי נשים</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Forti-Bees-Honey.pdf" target="_blank"><strong>Forti, T.</strong> (2006). Bee's Honey — From Realia to Metaphor in Biblical Wisdom Literature.</a> <em>Vetus Testamentum</em>, 56(3), 327–341.<div class="rl-desc">דבש דבורים — מן הריאליה אל המטפורה בספרות החכמה</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Forti-Female-Images.pdf" target="_blank"><strong>Forti, T.</strong> (2020). Female Images in Wisdom Literature.</a> In S. L. Adams &amp; M. Goff (Eds.), <em>The Wiley Blackwell Companion to Wisdom Literature</em>. John Wiley &amp; Sons.<div class="rl-desc">פרק העוסק בדימויי נשים בספרות החכמה — מטפורות מגדריות בספר משלי ובספרות החכמה הרחבה</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Forti-Polarity-Wisdom.pdf" target="_blank"><strong>Forti, T.</strong> (2011). The Polarity of Wisdom and Fear of God in the Eden Narrative and in the Book of Proverbs.</a> <em>Biblische Notizen, Neue Folge</em>, 149.<div class="rl-desc">הקוטביות בין חכמה ויראת ה׳ בסיפור גן עדן ובספר משלי — מטפורות של ידע, פיתוי ומוסר</div></div></div>
+<div class="rl-item"><span class="ic" style="width:26px;height:26px"><svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><div class="rl-info"><a href="articles/Forti-Animal-Imagery-Proverbs.pdf" target="_blank"><strong>פורטי, ט.</strong> דימויי חיות ברטוריקה הדידקטית של ספר משלי.</a> עבודת גמר לתואר מוסמך (M.A.), האוניברסיטה העברית בירושלים.<div class="rl-desc">דימויי חיות כאמצעי רטורי-לימודי בספר משלי — ניתוח שיטתי של מטפורות מעולם החי</div></div></div>
+</div></div></div></div>
+<div class="af">תוצר זה נוצר באמצעות כלי הניתוח המטפורי של הקורס "התמונה הטמונה" | ד״ר נאוה כהן, אוניברסיטת בר-אילן</div>
+</div><!-- end appWrap -->
+<!-- NOTEBOOK -->
+<button class="nb-fab" id="nbFab" onclick="toggleNb()" title="מחברת אישית" aria-label="פתיחת מחברת" aria-expanded="false" style="display:none"><svg viewBox="0 0 24 24" style="width:24px;height:24px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><span class="nb-badge" id="nbBadge" style="display:none">0</span></button>
+<div class="nb-overlay" id="nbOv" onclick="toggleNb()"></div>
+<div class="nb-panel" id="nbPnl">
+<div class="nb-hdr"><h3><span class="ic" style="width:28px;height:28px;background:rgba(255,255,255,.15);margin-left:.4rem"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:#fff"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span> המחברת שלי</h3><button class="nb-close" onclick="toggleNb()">✕</button></div>
+<div class="nb-tabs" id="nbTabs"></div>
+<div class="nb-content" id="nbCnt"></div>
+<div class="nb-add">
+<input type="text" id="nbInp" placeholder="כתבו שאלה, מחשבה או תובנה..." onkeydown="if(event.key==='Enter')addNote()">
+<button onclick="addNote()">הוסף</button>
+</div>
+</div>
+<div class="toast" id="tst" role="alert" aria-live="polite"></div>
+<script>
+let cs=1,ts=7,id={image1:null,image2:null,ex:[],articles:[]};
+const sn=['בחירת פסוק','חשיפת המטפורה','בניית פרומפט','תמונה ראשונית','פרשנות','רפלקציה','סיכום'];
+/* SPLASH + LANDING */
+setTimeout(()=>{document.getElementById('splash').classList.add('hide');setTimeout(()=>{document.getElementById('landing').classList.add('show')},800)},2500);
+function startApp(){const consent=localStorage.getItem('hatmuna_consent');if(consent){showIntro()}else{document.getElementById('consentOv').classList.add('show')}}
+function acceptConsent(){localStorage.setItem('hatmuna_consent','1');document.getElementById('consentOv').classList.remove('show');showIntro()}
+function enterApp(){document.getElementById('landing').style.display='none';document.getElementById('appWrap').classList.add('show');document.getElementById('nbFab').style.display='flex';initNav();up();showTopicArticles();try{const r=localStorage.getItem('hatmuna_data');if(r)rd(JSON.parse(r))}catch(e){}}
+function initNav(){const c=document.getElementById('snav');c.innerHTML='';c.setAttribute('role','tablist');c.setAttribute('aria-label','ניווט שלבים');sn.forEach((n,i)=>{const b=document.createElement('button');b.className='sbtn'+(i===0?' act':'');b.setAttribute('data-step',i+1);b.setAttribute('role','tab');b.setAttribute('aria-selected',i===0?'true':'false');b.innerHTML=`<span class="sn">${i+1}</span>${n}`;b.onclick=()=>go(i+1);c.appendChild(b)})}
+function go(n){if(n<1||n>ts)return;document.querySelectorAll('.ss').forEach(s=>s.classList.remove('act'));document.getElementById('s'+n).classList.add('act');cs=n;usb();up();if(n===7)bs();if(n===3)upp();window.scrollTo({top:0,behavior:'smooth'});as()}
+function usb(){document.querySelectorAll('.snav .sbtn').forEach((b,i)=>{b.classList.remove('act','done');b.setAttribute('aria-selected','false');if(i+1===cs){b.classList.add('act');b.setAttribute('aria-selected','true')}else if(sf(i+1))b.classList.add('done')})}
+function gfc(){let f=0,t=0;document.querySelectorAll('[data-field]').forEach(e=>{t++;if((e.value||'').trim())f++});['artStyle','aiTool'].forEach(n=>{t++;if(document.querySelector(`input[name="${n}"]:checked`))f++});document.querySelectorAll('[data-mapping]').forEach(e=>{t++;if(e.value.trim())f++});t+=2;if(id.image1)f++;if(id.image2)f++;return{f,t}}
+function up(){const{f,t}=gfc(),p=Math.round(f/t*100);const pfl=document.getElementById('pfl');const ppc=document.getElementById('ppc');if(pfl)pfl.style.width=p+'%';if(ppc)ppc.textContent=p+'%'}
+function sf(n){const s=document.getElementById('s'+n);if(!s)return false;let ok=true;s.querySelectorAll('[data-field]').forEach(e=>{if(!e.value||!e.value.trim())ok=false});return ok}
+function ar(){const tb=document.querySelector('#mtbl tbody'),tr=document.createElement('tr');tr.innerHTML='<td><input data-mapping="source" placeholder="מרכיב"></td><td class="ac">→</td><td><input data-mapping="target" placeholder="משמעות"></td><td><button class="rrb" onclick="rr(this)">✕</button></td>';tb.appendChild(tr)}
+function rr(b){const tb=document.querySelector('#mtbl tbody');if(tb.rows.length>1)b.closest('tr').remove()}
+function upp(){const su=gf('promptSubject'),el=gf('promptElements'),bg=gf('promptBackground'),co=gf('promptColors'),ex=gf('promptExtra'),sr=document.querySelector('input[name="artStyle"]:checked'),sty=sr?sr.value:'';
+let p=['Create an image. High quality, detailed, artistic.'];if(sty)p.push('Style: '+sty+'.');if(su)p.push('Subject: '+su+'.');if(el)p.push('Elements: '+el+'.');if(bg)p.push('Background: '+bg+'.');if(co)p.push('Colors and mood: '+co+'.');if(ex)p.push(ex);document.getElementById('ppv').textContent=p.join('\n')}
+function cp(){navigator.clipboard.writeText(document.getElementById('ppv').textContent).then(()=>showT('הפרומפט הועתק!'))}
+let _dbT;function _dbUp(){clearTimeout(_dbT);_dbT=setTimeout(()=>{if(cs===3)upp();up()},300)}
+document.addEventListener('input',_dbUp);document.addEventListener('change',()=>{if(cs===3)upp();up()});
+function hu(inp,zid,key){if(!inp.files[0])return;const r=new FileReader();r.onload=e=>{id[key]=e.target.result;const z=document.getElementById(zid);z.classList.add('hi');z.innerHTML=`<img src="${e.target.result}"><input type="file" id="${inp.id}" accept="image/*" onchange="hu(this,'${zid}','${key}')" style="display:none">`;up();showT('תמונה הועלתה')};r.readAsDataURL(inp.files[0])}
+function hmu(inp,zid){if(!inp.files.length)return;id.ex=[];let l=0;const z=document.getElementById(zid);Array.from(inp.files).forEach(f=>{const r=new FileReader();r.onload=e=>{id.ex.push(e.target.result);l++;if(l===inp.files.length){z.classList.add('hi');z.innerHTML=id.ex.map(s=>`<img src="${s}" style="max-width:150px;margin:4px;border-radius:6px">`).join('')+`<input type="file" id="${inp.id}" accept="image/*" multiple onchange="hmu(this,'${zid}')" style="display:none">`;showT(l+' תמונות הועלו')}};r.readAsDataURL(f)})}
+/* ARTICLE UPLOAD */
+function handleArt(inp){if(!inp.files[0])return;const f=inp.files[0];const r=new FileReader();r.onload=e=>{id.articles.push({name:f.name,size:f.size,data:e.target.result});renderArts();showT('מאמר הועלה: '+f.name)};r.readAsDataURL(f)}
+function renderArts(){const c=document.getElementById('artFiles');c.innerHTML=id.articles.map((a,i)=>`<div class="art-file"><span class="ic" style="width:24px;height:24px"><svg viewBox="0 0 24 24" style="width:12px;height:12px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><span class="af-name">${eh(a.name)}</span><span style="color:var(--tl);font-size:.78rem">${(a.size/1024).toFixed(0)} KB</span><span class="af-remove" onclick="removeArt(${i})">✕</span></div>`).join('')}
+function removeArt(i){id.articles.splice(i,1);renderArts()}
+function gf(n){const e=document.querySelector(`[data-field="${n}"]`);return e?(e.value||'').trim():''}
+function gm(){const r=[];document.querySelectorAll('#mtbl tbody tr').forEach(tr=>{const s=tr.querySelector('[data-mapping="source"]').value.trim(),t=tr.querySelector('[data-mapping="target"]').value.trim();if(s||t)r.push({source:s,target:t})});return r}
+function gr(n){const e=document.querySelector(`input[name="${n}"]:checked`);return e?e.value:''}
+function cd(){const d={};document.querySelectorAll('[data-field]').forEach(e=>d[e.dataset.field]=e.value||'');d.mappings=gm();d.artStyle=gr('artStyle');d.aiTool=gr('aiTool');d.imageData=id;d.currentStep=cs;d.timestamp=new Date().toISOString();return d}
+function rd(d){document.querySelectorAll('[data-field]').forEach(e=>{if(d[e.dataset.field]!==undefined)e.value=d[e.dataset.field]});
+if(d.mappings&&d.mappings.length){const tb=document.querySelector('#mtbl tbody');tb.innerHTML='';d.mappings.forEach(m=>{const tr=document.createElement('tr');tr.innerHTML=`<td><input data-mapping="source" value="${eh(m.source)}"></td><td class="ac">→</td><td><input data-mapping="target" value="${eh(m.target)}"></td><td><button class="rrb" onclick="rr(this)">✕</button></td>`;tb.appendChild(tr)})}
+if(d.artStyle){const r=document.querySelector(`input[name="artStyle"][value="${d.artStyle}"]`);if(r)r.checked=true}
+if(d.aiTool){const r=document.querySelector(`input[name="aiTool"][value="${d.aiTool}"]`);if(r)r.checked=true}
+if(d.imageData){id=d.imageData;if(!id.articles)id.articles=[];if(id.image1){const z=document.getElementById('uz1');z.classList.add('hi');z.innerHTML=`<img src="${id.image1}"><input type="file" id="fi1" accept="image/*" onchange="hu(this,'uz1','image1')" style="display:none">`}
+if(id.image2){const z=document.getElementById('uz2');z.classList.add('hi');z.innerHTML=`<img src="${id.image2}"><input type="file" id="fi2" accept="image/*" onchange="hu(this,'uz2','image2')" style="display:none">`}
+renderArts()}up()}
+function eh(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function saveL(){try{localStorage.setItem('hatmuna_data',JSON.stringify(cd()));showT('נשמר!')}catch(e){showT('שגיאה')}}
+function loadL(){try{const r=localStorage.getItem('hatmuna_data');if(!r){showT('אין נתונים');return}rd(JSON.parse(r));showT('נטען!')}catch(e){showT('שגיאה')}}
+function as(){try{localStorage.setItem('hatmuna_data',JSON.stringify(cd()))}catch(e){showT('הנתונים גדולים מדי לשמירה מקומית — שמרו גיבוי JSON')}}
+function clearAll(){if(!confirm('האם למחוק את כל הנתונים ולהתחיל מחדש?'))return;localStorage.removeItem('hatmuna_data');localStorage.removeItem('hatmuna_nb');document.querySelectorAll('[data-field]').forEach(f=>{if(f.tagName==='TEXTAREA'||f.tagName==='INPUT')f.value='';});document.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);id={image1:null,image2:null,ex:[],articles:[]};['uz1','uz2','uzx'].forEach(z=>{const el=document.getElementById(z);if(el){el.classList.remove('hi');el.innerHTML='<div class="ui">🖼️</div><div class="ut">גררו תמונה לכאן או לחצו לבחירה</div>'}});nbNotes=[];nbLabels.forEach((_,i)=>nbNotes[i]=[]);renderNbTabs();renderNbNotes();go(1);showT('הטופס נוקה!')}
+function exB(){const d=cd(),b=new Blob([JSON.stringify(d,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`hatmuna_${gf('studentName')||'backup'}_${new Date().toISOString().slice(0,10)}.json`;a.click();showT('גיבוי נוצר')}
+function imB(inp){if(!inp.files[0])return;const r=new FileReader();r.onload=e=>{try{rd(JSON.parse(e.target.result));showT('שוחזר!')}catch(err){showT('שגיאה')}};r.readAsText(inp.files[0])}
+function bs(){const d=cd(),now=new Date(),ds=now.toLocaleDateString('he-IL')+', '+now.toLocaleTimeString('he-IL'),{f,t}=gfc(),pct=Math.round(f/t*100);
+const sln=document.querySelector('input[name="artStyle"]:checked+label'),slh=sln?sln.textContent:'—';
+let mh='';const ms=gm();if(ms.length)mh='<table style="width:100%;border-collapse:collapse;margin:.5rem 0"><tr style="background:var(--p);color:#fff"><th style="padding:.4rem">מקור</th><th style="padding:.4rem">→</th><th style="padding:.4rem">יעד</th></tr>'+ms.map(m=>`<tr><td style="border:1px solid #ddd;padding:.4rem">${eh(m.source)}</td><td style="text-align:center;color:var(--a)">→</td><td style="border:1px solid #ddd;padding:.4rem">${eh(m.target)}</td></tr>`).join('')+'</table>';
+let artH='';if(d.articleRef||d.articleQuote||d.articleAnalysis){artH=`<div class="fl"><strong>הפניה ביבליוגרפית:</strong> ${eh(d.articleRef||'—')}</div><div class="fl"><strong>ציטוט:</strong> ${eh(d.articleQuote||'—')}</div><div class="fl"><strong>ניתוח:</strong> ${eh(d.articleAnalysis||'—')}</div>`}
+if(id.articles&&id.articles.length){artH+=id.articles.map(a=>`<div class="fl" style="font-size:.82rem">${eh(a.name)}</div>`).join('')}
+document.getElementById('sumC').innerHTML=`
+<div style="text-align:center;margin-bottom:1.5rem"><h3 style="color:var(--p);font-size:1.4rem">התמונה הטמונה — תוצר ניתוח מטפורי</h3><div style="color:var(--tl);font-size:.9rem">${eh(d.studentName||'—')} | ${eh(d.productNum||'')} | ${ds}</div><div style="margin-top:.5rem;font-size:.88rem;color:var(--a)">שלמות: ${pct}%</div></div>
+<div class="sb"><h4>שלב א׳: בחירת הפסוק</h4><div class="fl"><strong>קטגוריה:</strong> ${eh(d.category||'—')}</div><div class="fl"><strong>הפסוק:</strong> ${eh(d.verse||'—')}</div><div class="fl"><strong>מקור:</strong> ${eh(d.source||'—')}</div><div class="fl"><strong>מדוע:</strong> ${eh(d.whyVerse||'—')}</div></div>
+<div class="sb"><h4>שלב ב׳: חשיפת המטפורה</h4><div class="fl"><strong>מקור:</strong> ${eh(d.sourceDomain||'—')} → <strong>יעד:</strong> ${eh(d.targetDomain||'—')}</div><div class="fl"><strong>מטפורה מושגית:</strong> ${eh(d.conceptualMetaphor||'—')}</div>${mh}<div class="fl"><strong>הסבר:</strong> ${eh(d.mappingExplanation||'—')}</div>${artH?'<div style="margin-top:.8rem;padding-top:.8rem;border-top:1px dashed var(--b)"><strong style="color:var(--p)">מאמר אקדמי:</strong></div>'+artH:''}</div>
+<div class="sb"><h4>שלב ג׳: הפרומפט</h4><div class="fl"><strong>סגנון:</strong> ${eh(slh)}</div><div class="pp" style="font-size:.82rem">${eh(document.getElementById('ppv').textContent)}</div></div>
+<div class="sb"><h4>שלב ד׳: תמונה ראשונית</h4><div class="fl"><strong>כלי:</strong> ${eh(d.aiTool||'—')}</div>${id.image1?`<img class="si" src="${id.image1}">`:'<div style="color:var(--tl)">[לא הועלתה]</div>'}${id.ex&&id.ex.length?'<div style="margin:.5rem 0"><strong style="font-size:.88rem">תמונות נוספות:</strong><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:.3rem">'+id.ex.map(s=>`<img src="${s}" style="max-width:200px;border-radius:6px">`).join('')+'</div></div>':''}<div class="fl"><strong>ייצוג:</strong> ${eh(d.imageRepresents||'—')}</div><div class="fl"><strong>הפתעה:</strong> ${eh(d.imageSurprise||'—')}</div></div>
+<div class="sb"><h4>ניתוח חזותי — שלוש עדשות (תמונה ראשונית)</h4><div class="fl"><strong>שימור מבנה:</strong> ${eh(d.lensInvariance||'—')}</div><div class="fl"><strong>משמעות חדשה:</strong> ${eh(d.lensBlending||'—')}</div><div class="fl"><strong>בחירות מרחביות:</strong> ${eh(d.lensEmbodied||'—')}</div><div class="fl"><strong>תפקיד ה-AI:</strong> ${eh(d.aiRole||'—')}</div><div class="fl"><strong>פער הבנה-ביצוע:</strong> ${eh(d.executionGap||'—')}</div></div>
+<div class="sb"><h4>שלב ה׳: פרשנות</h4><div class="fl"><strong>פרשן:</strong> ${eh(d.commentatorName||'—')}</div><div class="fl"><strong>תוכן:</strong> ${eh(d.commentaryContent||'—')}</div><div class="fl"><strong>השפעה:</strong> ${eh(d.commentaryImpact||'—')}</div>${id.image2?`<img class="si" src="${id.image2}">`:'<div style="color:var(--tl)">[לא הועלתה]</div>'}<div class="fl"><strong>הבדל:</strong> ${eh(d.imageComparison||'—')}</div></div>
+<div class="sb"><h4>ניתוח חזותי — שלוש עדשות (תמונה מעודכנת)</h4><div class="fl"><strong>שימור מבנה:</strong> ${eh(d.lens2Invariance||'—')}</div><div class="fl"><strong>משמעות חדשה:</strong> ${eh(d.lens2Blending||'—')}</div><div class="fl"><strong>שינויים מרחביים:</strong> ${eh(d.lens2Embodied||'—')}</div></div>
+<div class="sb"><h4>שלב ו׳: רפלקציה</h4><div class="fl">1. ${eh(d.reflection1||'—')}</div><div class="fl">2. ${eh(d.reflection2||'—')}</div><div class="fl">3. ${eh(d.reflection3||'—')}</div><div class="fl">4. ${eh(d.reflection4||'—')}</div><div class="fl">5. ${eh(d.reflection5||'—')}</div></div>
+${getNbHtml()?'<div class="sb"><h4>המחברת — שאלות ומחשבות</h4>'+getNbHtml()+'</div>':''}
+<div style="text-align:center;font-size:.82rem;color:var(--tl);margin-top:1rem;padding-top:1rem;border-top:1px solid var(--b)">ד״ר נאוה כהן, אוניברסיטת בר-אילן | ${ds} | שלמות: ${pct}%</div>`}
+function exH(){bs();const s=document.getElementById('sumC').innerHTML,n=gf('studentName')||'export';
+const h=`<!DOCTYPE html><html lang="he" dir="rtl"><head><meta charset="UTF-8"><title>התמונה הטמונה — ${eh(n)}</title><style>@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Heebo:wght@300;400;500;700&family=Playfair+Display:wght@700;800&display=swap');body{font-family:'Heebo',sans-serif;max-width:800px;margin:2rem auto;padding:1rem;color:#2d2a26;line-height:1.7;background:#f7f4ee}h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700;color:#2c3e6b}.sb{background:#fff;border:1px solid #ddd5c9;border-radius:8px;padding:1.2rem;margin-bottom:1rem}.sb h4{border-bottom:1px solid #ddd5c9;padding-bottom:.3rem;margin-bottom:.5rem}.fl{margin-bottom:.4rem;font-size:.9rem}.fl strong{color:#2c3e6b}.si{max-width:400px;border-radius:8px;margin:.5rem 0}.pp{background:#1a1a2e;color:#e8e8e8;padding:1rem;border-radius:8px;font-family:monospace;font-size:.85rem;direction:ltr;text-align:left;white-space:pre-wrap}table{width:100%;border-collapse:collapse;margin:.5rem 0}th{background:#2c3e6b;color:#fff;padding:.4rem}td{border:1px solid #ddd;padding:.4rem}</style></head><body>${s}<div class="vld-modal" id="vldM" onclick="if(event.target===this)closeVld()"><div class="vld-box" id="vldBox"></div></div>
+</body></html>`;
+const b=new Blob([h],{type:'text/html;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`hatmuna_${n}_${new Date().toISOString().slice(0,10)}.html`;a.click();showT('HTML נוצר')}
+function showT(m){const t=document.getElementById('tst');t.textContent=m;t.classList.add('sh');setTimeout(()=>t.classList.remove('sh'),2500)}
+/* NOTEBOOK */
+let nbNotes={},nbStep=0;
+const nbLabels=['כללי','שלב 1: בחירת פסוק','שלב 2: חשיפת המטפורה','שלב 3: בניית פרומפט','שלב 4: תמונה ראשונית','שלב 5: פרשנות','שלב 6: רפלקציה','שלב 7: סיכום'];
+function initNb(){try{const s=localStorage.getItem('hatmuna_nb');if(s)nbNotes=JSON.parse(s)}catch(e){}nbLabels.forEach((l,i)=>{if(!nbNotes[i])nbNotes[i]=[]});renderNbTabs();renderNbNotes()}
+function renderNbTabs(){const c=document.getElementById('nbTabs');c.innerHTML=nbLabels.map((l,i)=>{const cnt=nbNotes[i]?nbNotes[i].length:0;return`<div class="nb-tab${i===nbStep?' act':''}" onclick="nbGoTab(${i})">${i===0?'הכל':i+'.'} ${cnt>0?'<b>('+cnt+')</b>':''}</div>`}).join('')}
+function nbGoTab(i){nbStep=i;renderNbTabs();renderNbNotes()}
+function renderNbNotes(){const c=document.getElementById('nbCnt');const notes=nbNotes[nbStep]||[];if(!notes.length){c.innerHTML='<div style="text-align:center;color:var(--tl);padding:2rem;font-size:.9rem">אין עדיין רשומות בשלב זה.<br>כתבו שאלה או מחשבה למטה.</div>';return}
+c.innerHTML=notes.map((n,i)=>`<div class="nb-entry"><div class="nb-meta"><span>${n.time}</span><span style="cursor:pointer;color:var(--e);font-size:.8rem" onclick="delNote(${nbStep},${i})">✕</span></div><textarea onchange="updNote(${nbStep},${i},this.value)">${eh(n.text)}</textarea></div>`).join('')}
+function addNote(){const inp=document.getElementById('nbInp'),txt=inp.value.trim();if(!txt)return;const step=cs||0;if(!nbNotes[step])nbNotes[step]=[];nbNotes[step].push({text:txt,time:new Date().toLocaleString('he-IL'),step:step});inp.value='';nbStep=step;saveNb();renderNbTabs();renderNbNotes();updBadge();showT('נוסף למחברת!')}
+function delNote(s,i){nbNotes[s].splice(i,1);saveNb();renderNbTabs();renderNbNotes();updBadge()}
+function updNote(s,i,v){nbNotes[s][i].text=v;saveNb()}
+function saveNb(){try{localStorage.setItem('hatmuna_nb',JSON.stringify(nbNotes))}catch(e){showT('הנתונים גדולים מדי לשמירה מקומית — שמרו גיבוי JSON')}}
+function toggleNb(){const p=document.getElementById('nbPnl'),o=document.getElementById('nbOv'),fab=document.getElementById('nbFab');p.classList.toggle('open');o.classList.toggle('open');fab.setAttribute('aria-expanded',p.classList.contains('open'));if(p.classList.contains('open')){nbStep=cs||0;renderNbTabs();renderNbNotes()}}
+function updBadge(){let total=0;Object.values(nbNotes).forEach(a=>{total+=a.length});const b=document.getElementById('nbBadge');if(total>0){b.style.display='flex';b.textContent=total;document.getElementById('nbFab').classList.add('has-notes')}else{b.style.display='none';document.getElementById('nbFab').classList.remove('has-notes')}}
+function getNbHtml(){let h='';nbLabels.forEach((l,i)=>{const notes=nbNotes[i]||[];if(notes.length){h+=`<div style="margin-bottom:.8rem"><strong style="color:var(--p)">${eh(l)}</strong>`;notes.forEach(n=>{h+=`<div style="background:var(--bg);padding:.4rem .6rem;margin:.3rem 0;border-radius:6px;font-size:.85rem;border-right:3px solid var(--a)"><span style="color:var(--tl);font-size:.75rem">${eh(n.time)}</span><br>${eh(n.text)}</div>`});h+='</div>'}});return h}
+
+function showIntro(){document.getElementById('landing').style.display='none';document.getElementById('introUnit').classList.add('show');window.scrollTo({top:0})}
+function enterAppFromIntro(){document.getElementById('introUnit').classList.remove('show');document.getElementById('introUnit').style.display='none';document.getElementById('appWrap').style.display='';document.getElementById('appWrap').classList.add('show');document.getElementById('nbFab').style.display='flex';initNav();up();showTopicArticles();try{const r=localStorage.getItem('hatmuna_data');if(r)rd(JSON.parse(r))}catch(e){}}
+function backToIntro(){document.getElementById('appWrap').classList.remove('show');document.getElementById('appWrap').style.display='none';document.getElementById('nbFab').style.display='none';document.getElementById('introUnit').style.display='';document.getElementById('introUnit').classList.add('show');window.scrollTo({top:0})}
+function backToLanding(){document.getElementById('introUnit').classList.remove('show');document.getElementById('introUnit').style.display='none';document.getElementById('landing').style.display='';document.getElementById('landing').classList.add('show')}
+setTimeout(()=>{initNb();updBadge()},100);
+
+const topicArticles={
+"נושא 1 — גוף האדם כמטפורה":[
+{c:"Gillmayr-Bucher, S. (2004). Body Images in the Psalms.",d:"דימויי גוף בתהילים — הגוף האנושי כמקור מטפורי מרכזי בספר תהילים",l:"en",url:"https://scholar.google.com/scholar?q=Gillmayr-Bucher%20Body%20Images%20Psalms%202004"},
+{c:"Van Wolde, E. (2020). A Network of Conventional and Deliberate Metaphors in Psalm 22.",d:"רשת מטפורות מכוונות וקונבנציונליות במזמור כ״ב — ניתוח מעמיק",l:"en",url:"https://scholar.google.com/scholar?q=Van%20Wolde%20Network%20Conventional%20Deliberate%20Metaphors%20Psalm%2022"},
+{c:"Chau, K. (2020). Metonymy: The Forgotten Sibling of Metaphor in Biblical Studies.",d:"מטונימיה — 'האח הנשכח של המטפורה'. איברי גוף כשם הלוואי במקרא",l:"en",url:"https://scholar.google.com/scholar?q=Chau%20Metonymy%20Forgotten%20Sibling%20Metaphor%20Biblical"},
+{c:"קונקרטיזציה של מטפורות ולשון מטפורית בפרשנות המקרא.",d:"כיצד פרשנים הפכו מטפורות גוף לפרשנות מילולית — פנימית וחיצונית",l:"he",url:"https://scholar.google.com/scholar?q=%D7%A7%D7%95%D7%A0%D7%A7%D7%A8%D7%98%D7%99%D7%96%D7%A6%D7%99%D7%94%20%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%95%D7%AA%20%D7%9C%D7%A9%D7%95%D7%9F%20%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%99%D7%AA%20%D7%A4%D7%A8%D7%A9%D7%A0%D7%95%D7%AA%20%D7%94%D7%9E%D7%A7%D7%A8%D7%90"}
+],
+"נושא 2 — מטפורות מעולם הטבע":[
+{c:"מורג, ש. המטפורה הגדולה — הושע ב:4-17: דברי הפיוס.",d:"מטפורות טבע מרכזיות ביחסי אלוקים-ישראל בנבואת הושע",l:"he",url:"https://scholar.google.com/scholar?q=%D7%A9%D7%9C%D7%9E%D7%94%20%D7%9E%D7%95%D7%A8%D7%92%20%D7%94%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%94%20%D7%94%D7%92%D7%93%D7%95%D7%9C%D7%94%20%D7%94%D7%95%D7%A9%D7%A2"},
+{c:"Hendel, R. (2019). Life Metaphor Song: Metaphor in the Song of Songs.",d:"חיי המטפורה בשיר השירים — דימויי טבע, גן ופריחה",l:"en",url:"https://scholar.google.com/scholar?q=Hendel%20Life%20Metaphor%20Song%20of%20Songs%202019"},
+{c:"Paul, S. M. A Garden of Love: Biblical Metaphor Studies.",d:"גן אהבה — דימויים מעולם הטבע בשירת האהבה במזרח הקדום ובמקרא",l:"en",url:"https://scholar.google.com/scholar?q=Shalom%20Paul%20Garden%20Love%20Biblical%20Metaphor%20Ancient%20Near%20East"},
+{c:"Forti, T. Bee\x27s Honey: From Realia to Metaphor in Biblical Wisdom Literature.",d:"דבש הדבורים — מריאליה למטפורה בספרות החכמה המקראית",l:"en",url:"https://scholar.google.com/scholar?q=Forti%20Bee%20Honey%20Realia%20Metaphor%20Wisdom%20Literature"},
+{c:"Die Gebruik van die Metafore in Psalm 80 en Johannes 15:1-8.",d:"מטפורת הגפן — מתהילים פ׳ ליוחנן ט״ו: השוואה בין מטפורות טבע",l:"en",url:"https://scholar.google.com/scholar?q=Gebruik%20Metafore%20Psalm%2080%20Johannes%2015"}
+],
+"נושא 3 — מטפורות מעולם החי":[
+{c:"פורטי, ט. דימויי חיות בספרות החכמה המקראית. (עבודת מחקר)",d:"עבודה מקיפה על דימויי חיות בספרות החכמה — סקירה שיטתית",l:"he",url:"https://scholar.google.com/scholar?q=%D7%98%D7%95%D7%91%D7%94%20%D7%A4%D7%95%D7%A8%D7%98%D7%99%20%D7%93%D7%99%D7%9E%D7%95%D7%99%20%D7%97%D7%99%D7%95%D7%AA%20%D7%A1%D7%A4%D7%A8%D7%95%D7%AA%20%D7%97%D7%9B%D7%9E%D7%94%20%D7%9E%D7%A7%D7%A8%D7%90%D7%99%D7%AA"},
+{c:"ניתוח מטפורי של השועלים — שיר השירים.",d:"'שועלים קטנים מחבלים כרמים' — עושר סמלי ורבדי משמעות",l:"he",url:"https://scholar.google.com/scholar?q=%D7%A0%D7%99%D7%AA%D7%95%D7%97%20%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%99%20%D7%A9%D7%95%D7%A2%D7%9C%D7%99%D7%9D%20%D7%A7%D7%98%D7%A0%D7%99%D7%9D%20%D7%A9%D7%99%D7%A8%20%D7%94%D7%A9%D7%99%D7%A8%D7%99%D7%9D"},
+{c:"Forti, T. Bee\x27s Honey: From Realia to Metaphor in Biblical Wisdom Literature.",d:"הדבורה — מבעל חיים אמיתי למטפורה בספרות החכמה",l:"en",url:"https://scholar.google.com/scholar?q=Forti%20Bee%20Honey%20Realia%20Metaphor%20Wisdom%20Literature"},
+{c:"Forti, T. Female Images in Wisdom Literature. In: Wiley Blackwell Companion.",d:"דימויים נשיים הקשורים לעולם החי והטבע בספרות החכמה המקראית",l:"en",url:"https://scholar.google.com/scholar?q=Forti%20Female%20Images%20Wisdom%20Literature%20Wiley%20Blackwell"}
+],
+"נושא 4 — אור וחושך, ראייה ועיוורון":[
+{c:"פרי, נ. מטפורות מושגיות כאמצעי שיח בספר איוב.",d:"מטפורות אור/חושך וראייה/עיוורון בדו-שיח בין איוב לרעיו",l:"he",url:"https://scholar.google.com/scholar?q=%D7%A0%D7%97%D7%9E%D7%99%D7%AA%20%D7%A4%D7%A8%D7%99%20%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%95%D7%AA%20%D7%9E%D7%95%D7%A9%D7%92%D7%99%D7%95%D7%AA%20%D7%A9%D7%99%D7%97%20%D7%A1%D7%A4%D7%A8%20%D7%90%D7%99%D7%95%D7%91"},
+{c:"ספן, ר. משמעות כפשוטה ומשמעות מטאפורית — משנה הוראה בשירת המקרא.",d:"הבחנה בין מילולי למטפורי — ראייה כהבנה בשירה המקראית",l:"he",url:"https://scholar.google.com/scholar?q=%D7%A8%D7%A4%D7%90%D7%9C%20%D7%A1%D7%A4%D7%9F%20%D7%9E%D7%A9%D7%9E%D7%A2%D7%95%D7%AA%20%D7%9B%D7%A4%D7%A9%D7%95%D7%98%D7%94%20%D7%9E%D7%98%D7%90%D7%A4%D7%95%D7%A8%D7%99%D7%AA%20%D7%A9%D7%99%D7%A8%D7%AA%20%D7%94%D7%9E%D7%A7%D7%A8%D7%90"},
+{c:"Krasovec, J. Double Eternity and Poetic Imagery of Jerusalem.",d:"דימויים פואטיים של ירושלים — אור, חושך ונצחיות כפולה",l:"en",url:"https://scholar.google.com/scholar?q=Krasovec%20Double%20Eternity%20Poetic%20Imagery%20Jerusalem"}
+],
+"נושא 5 — מטפורות מרחביות":[
+{c:"מטפורה במקרא — שיקול מחודש: מטפורה כמודוס לאוריינטציה.",d:"מאמר מרכזי: המטפורה כדרך להתמצא במרחב — גישה חדשנית למטפורה המקראית",l:"he",url:"https://scholar.google.com/scholar?q=%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%94%20%D7%9E%D7%A7%D7%A8%D7%90%20%D7%A9%D7%99%D7%A7%D7%95%D7%9C%20%D7%9E%D7%97%D7%95%D7%93%D7%A9%20%D7%9E%D7%95%D7%93%D7%95%D7%A1%20%D7%90%D7%95%D7%A8%D7%99%D7%99%D7%A0%D7%98%D7%A6%D7%99%D7%94"},
+{c:"Krasovec, J. Double Eternity and Poetic Imagery of Jerusalem.",d:"ירושלים כמרכז העולם — דימויי מרחב פואטיים ונצחיות",l:"en",url:"https://scholar.google.com/scholar?q=Krasovec%20Double%20Eternity%20Poetic%20Imagery%20Jerusalem"},
+{c:"מורג, ש. המטפורה הגדולה — הושע ב:4-17: דברי הפיוס.",d:"מטפורות מרחביות ביחסי אלוקים-ישראל בנבואת הושע",l:"he",url:"https://scholar.google.com/scholar?q=%D7%A9%D7%9C%D7%9E%D7%94%20%D7%9E%D7%95%D7%A8%D7%92%20%D7%94%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%94%20%D7%94%D7%92%D7%93%D7%95%D7%9C%D7%94%20%D7%94%D7%95%D7%A9%D7%A2"}
+],
+"נושא 6 — אלוקים כמלך, לוחם, רועה ואב":[
+{c:"Van Wolde, E. (2020). A Network of Conventional and Deliberate Metaphors in Psalm 22.",d:"מזמור כ״ב — דימויי אלוקים כרועה ומושיע, מטפורות מכוונות",l:"en",url:"https://scholar.google.com/scholar?q=Van%20Wolde%20Network%20Conventional%20Deliberate%20Metaphors%20Psalm%2022"},
+{c:"Ryliskyte, E. (2017). Metaphor and Analogy in Theology.",d:"מטפורה ואנלוגיה בתיאולוגיה — הבנת שפה על אלוקים",l:"en",url:"https://scholar.google.com/scholar?q=Ryliskyte%20Metaphor%20Analogy%20Theology%202017"},
+{c:"מורג, ש. המטפורה הגדולה — הושע ב:4-17: דברי הפיוס.",d:"אלוקים כבעל, כאב — יחסי קרבה ומתח בנבואת הושע",l:"he",url:"https://scholar.google.com/scholar?q=%D7%A9%D7%9C%D7%9E%D7%94%20%D7%9E%D7%95%D7%A8%D7%92%20%D7%94%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%94%20%D7%94%D7%92%D7%93%D7%95%D7%9C%D7%94%20%D7%94%D7%95%D7%A9%D7%A2"}
+]
+};
+function showTopicArticles(){
+var sel=document.getElementById('productNum');
+if(!sel)return;
+var topic=sel.value;
+var panel=document.getElementById('topicArticlesList');
+if(!panel)return;
+var arts=topicArticles[topic];
+if(!arts||!arts.length){panel.innerHTML='<p style="color:var(--tl);font-style:italic">אין מאמרים משויכים לנושא זה.</p>';return;}
+var html='<p style="margin-bottom:.6rem;color:var(--p);font-weight:600">📖 מאמרים רלוונטיים לנושא שנבחר:</p>';
+arts.forEach(function(a){
+var bc=a.l==='he'?'var(--p)':'var(--a)';
+var ll=a.l==='he'?'עברית':'אנגלית';
+var li=a.l==='he'?'🇮🇱':'🇬🇧';
+html+='<div style="padding:.6rem .8rem;margin-bottom:.5rem;background:rgba(44,62,107,.03);border-radius:8px;border-right:3px solid '+bc+'">';
+html+='<div style="font-size:.85rem;font-weight:600;line-height:1.5;margin-bottom:.3rem">'+a.c+'</div>';
+html+='<div style="color:var(--tl);font-size:.82rem;line-height:1.5;margin-bottom:.4rem">'+a.d+'</div>';
+html+='<div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">';
+html+='<span style="font-size:.75rem;opacity:.7">'+li+' '+ll+'</span>';
+if(a.url){html+='<a href="'+a.url+'" target="_blank" rel="noopener" style="font-size:.78rem;color:var(--a);text-decoration:none;display:inline-flex;align-items:center;gap:.2rem">🔍 חפש ב-Google Scholar</a>';}
+html+='<a href="https://drive.google.com/drive/folders/1Ax9uQ59WZKVTMdeS7ARynqB0ItkZ0puU" target="_blank" rel="noopener" style="font-size:.78rem;color:var(--p);text-decoration:none;display:inline-flex;align-items:center;gap:.2rem">📁 תיקיית מאמרים</a>';
+html+='</div></div>';
+});
+panel.innerHTML=html;
+}
+
+/* VALIDATION SYSTEM */
+const stepFields={
+1:{required:['category','verse','source','whyVerse'],labels:{'category':'קטגוריה/נושא','verse':'פסוק','source':'מקור','whyVerse':'סיבת הבחירה'}},
+2:{required:['sourceDomain','targetDomain','conceptualMetaphor','mappingExplanation'],labels:{'sourceDomain':'תחום מקור','targetDomain':'תחום יעד','conceptualMetaphor':'מטפורה מושגית','mappingExplanation':'הסבר המיפוי'},mappings:true,minMappings:2},
+3:{required:['promptSubject','promptElements','promptBackground','promptColors'],labels:{'promptSubject':'נושא','promptElements':'אלמנטים','promptBackground':'רקע','promptColors':'צבעים ואווירה'},radio:'artStyle',radioLabel:'סגנון אמנותי'},
+4:{required:['imageRepresents','imageSurprise','lensInvariance','lensBlending','lensEmbodied','aiRole','executionGap'],labels:{'imageRepresents':'מה התמונה מייצגת','imageSurprise':'מה הפתיע','lensInvariance':'שימור מבנה','lensBlending':'משמעות חדשה','lensEmbodied':'בחירות מרחביות','aiRole':'תפקיד ה-AI','executionGap':'פער הבנה-ביצוע'},radio:'aiTool',radioLabel:'כלי AI',image:'image1',imageLabel:'תמונה ראשונית'},
+5:{required:['commentatorName','commentaryContent','commentaryImpact','promptChanges','newPrompt','imageComparison','lens2Invariance','lens2Blending','lens2Embodied'],labels:{'commentatorName':'שם הפרשן','commentaryContent':'תוכן הפרשנות','commentaryImpact':'השפעה על ההבנה','promptChanges':'שינויים בפרומפט','newPrompt':'פרומפט חדש','imageComparison':'השוואת תמונות','lens2Invariance':'שימור מבנה (תמונה 2)','lens2Blending':'משמעות חדשה (תמונה 2)','lens2Embodied':'שינויים מרחביים (תמונה 2)'},image:'image2',imageLabel:'תמונה מעודכנת'},
+6:{required:['reflection1','reflection2','reflection3','reflection4','reflection5'],labels:{'reflection1':'שאלה 1','reflection2':'שאלה 2','reflection3':'שאלה 3','reflection4':'שאלה 4','reflection5':'שאלה 5'},minLen:20}
+};
+function validateStep(n){
+const cfg=stepFields[n];if(!cfg)return{ok:true,issues:[],filled:0,total:0};
+let issues=[],filled=0,total=0;
+cfg.required.forEach(f=>{total++;const v=gf(f);if(!v)issues.push('חסר: '+cfg.labels[f]);else if(cfg.minLen&&v.length<cfg.minLen)issues.push(cfg.labels[f]+' — קצר מדי (מינימום '+cfg.minLen+' תווים)');else filled++});
+if(cfg.radio){total++;if(!gr(cfg.radio))issues.push('לא נבחר: '+cfg.radioLabel);else filled++}
+if(cfg.image){total++;if(!id[cfg.image])issues.push('לא הועלתה: '+cfg.imageLabel);else filled++}
+if(cfg.mappings){const m=gm().filter(x=>x.source&&x.target);total++;if(m.length<(cfg.minMappings||2))issues.push('נדרשים לפחות '+(cfg.minMappings||2)+' מיפויים מלאים');else filled++}
+return{ok:issues.length===0,issues,filled,total}}
+function validateAll(){
+let allIssues=[],totalF=0,totalT=0;
+for(let i=1;i<=6;i++){const r=validateStep(i);allIssues.push({step:i,name:sn[i-1],...r});totalF+=r.filled;totalT+=r.total}
+return{steps:allIssues,filled:totalF,total:totalT,pct:totalT?Math.round(totalF/totalT*100):0}}
+function showVld(content){document.getElementById('vldBox').innerHTML=content;document.getElementById('vldM').classList.add('show')}
+function closeVld(){document.getElementById('vldM').classList.remove('show')}
+function checkBeforeNext(from,to){
+if(to<from)return go(to);
+const r=validateStep(from);
+if(r.ok){go(to);return}
+let h='<div class="vld-title">⚠️ שלב '+from+': '+sn[from-1]+'</div>';
+h+='<div style="margin-bottom:.8rem;font-size:.9rem;color:var(--tl)">נמצאו שדות שטרם מולאו:</div>';
+r.issues.forEach(i=>{h+='<div class="vld-warn">• '+i+'</div>'});
+h+='<div class="vld-actions"><button class="vld-btn vld-btn-p" onclick="closeVld();go('+to+')">המשך בכל זאת</button><button class="vld-btn vld-btn-s" onclick="closeVld()">חזרה להשלמה</button></div>';
+showVld(h)}
+function fullCheck(){
+const r=validateAll();let h='<div class="vld-title">📋 בדיקת שלמות העבודה</div>';
+const clr=r.pct>=90?'#2d8a4e':r.pct>=60?'#d4a574':'#c0392b';
+h+='<div class="vld-score" style="color:'+clr+'">'+r.pct+'%</div>';
+h+='<div class="vld-bar"><div class="vld-bar-fill" style="width:'+r.pct+'%;background:'+clr+'"></div></div>';
+h+='<div style="text-align:center;margin-bottom:1rem;font-size:.9rem;color:var(--tl)">'+r.filled+' מתוך '+r.total+' שדות מולאו</div>';
+r.steps.forEach(s=>{
+if(s.ok){h+='<div class="vld-ok">✅ שלב '+s.step+': '+s.name+' — הושלם</div>'}
+else{h+='<div style="margin-top:.6rem;font-weight:600;color:var(--p)">שלב '+s.step+': '+s.name+'</div>';s.issues.forEach(i=>{h+='<div class="vld-warn">• '+i+'</div>'})}});
+if(r.pct>=90)h+='<div style="text-align:center;margin-top:1rem;padding:.8rem;background:#f0fdf4;border-radius:10px;color:#2d8a4e;font-weight:600">🎉 כל הכבוד! העבודה כמעט מושלמת</div>';
+else if(r.pct<50)h+='<div style="text-align:center;margin-top:1rem;padding:.8rem;background:#fef2f2;border-radius:10px;color:#c0392b;font-weight:600">שימו לב — יש עוד שדות רבים להשלמה לפני ההגשה</div>';
+h+='<div class="vld-actions"><button class="vld-btn vld-btn-p" onclick="closeVld()">סגירה</button></div>';
+showVld(h)}
+
+</script><div class="vld-modal" id="vldM" onclick="if(event.target===this)closeVld()"><div class="vld-box" id="vldBox"></div></div></body></html>
