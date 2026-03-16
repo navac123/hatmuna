@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>מדריך לסטודנט — התמונה הטמונה</title>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#2c3e6b;--pl:#3d5a99;--a:#c9a84c;--al:#f0dfa0;--bg:#f7f4ee;--c:#fff;--t:#2d2a26;--tl:#6b6560;--b:#ddd5c9;--r:12px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--t);line-height:1.8;min-height:100vh}
+h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
+
+/* Back button */
+.back-btn{position:fixed;top:1.2rem;right:1.2rem;z-index:100;display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1.2rem;background:var(--p);color:#fff;text-decoration:none;border-radius:25px;font-family:'Heebo',sans-serif;font-size:.85rem;font-weight:500;transition:all .3s;box-shadow:0 2px 12px rgba(44,62,107,.2)}
+.back-btn:hover{background:var(--pl);transform:translateY(-2px);box-shadow:0 4px 16px rgba(44,62,107,.3)}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#1a2a4f 0%,var(--p) 40%,#3d5a99 100%);color:#fff;padding:4rem 2rem 3rem;text-align:center}
+.hero h1{font-size:2.4rem;font-weight:800;margin-bottom:.5rem;background:linear-gradient(135deg,#fff,var(--al));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .sub{font-size:1.1rem;color:var(--al);font-weight:300}
+.hero-line{width:80px;height:3px;background:linear-gradient(90deg,transparent,var(--a),transparent);margin:1.2rem auto 0;border-radius:3px}
+
+/* Container */
+.container{max-width:780px;margin:0 auto;padding:2rem 1.5rem 4rem}
+
+/* Section card */
+.section{background:var(--c);border-radius:var(--r);padding:2rem;margin-bottom:1.5rem;box-shadow:0 2px 12px rgba(44,62,107,.08);border:1px solid var(--b);border-right:3px solid var(--a);transition:transform .3s,box-shadow .3s}
+.section:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(44,62,107,.12)}
+.section h2{font-size:1.4rem;color:#5a86b5;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:2px solid transparent;border-image:linear-gradient(90deg,var(--a) 0%,rgba(201,168,76,.15) 60%,transparent 100%) 1;display:flex;align-items:center;gap:.5rem}
+.section h3{color:var(--p);font-size:1.05rem;margin:1rem 0 .4rem}
+.section p{margin-bottom:.8rem;font-size:.95rem;line-height:2}
+
+/* Steps */
+.steps{counter-reset:step}
+.step{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.2rem;padding:1rem;background:linear-gradient(135deg,rgba(44,62,107,.02),rgba(201,168,76,.04));border-radius:10px;border:1px solid rgba(221,213,201,.6)}
+.step-num{counter-increment:step;flex-shrink:0;width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--p),var(--pl));color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Assistant',sans-serif;font-weight:700;font-size:1rem}
+.step-content{flex:1}
+.step-content strong{color:var(--p);font-size:1rem}
+.step-content p{margin:.3rem 0 0;font-size:.9rem;color:var(--tl);line-height:1.7}
+
+/* Rationale list */
+.rationale-list{list-style:none;padding:0;margin:.5rem 0}
+.rationale-list li{padding:.6rem 0 .6rem 0;border-bottom:1px solid rgba(221,213,201,.5);font-size:.95rem;display:flex;align-items:flex-start;gap:.6rem}
+.rationale-list li:last-child{border-bottom:none}
+.rationale-list li::before{content:'';display:none}
+.rationale-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:rgba(201,168,76,.15);display:flex;align-items:center;justify-content:center;font-size:.85rem;margin-top:.1rem}
+
+/* Tips */
+.tips{list-style:none;padding:0}
+.tips li{background:var(--bg);padding:.8rem 1rem;border-radius:8px;margin-bottom:.6rem;font-size:.92rem;border-right:3px solid var(--a);display:flex;align-items:flex-start;gap:.6rem}
+.tip-icon{font-size:1.1rem;flex-shrink:0;margin-top:.1rem}
+
+/* FAQ */
+.faq-item{margin-bottom:1rem}
+.faq-q{font-weight:700;color:var(--p);font-size:1rem;margin-bottom:.3rem;display:flex;align-items:flex-start;gap:.4rem}
+.faq-q::before{content:'Q';display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--p);color:#fff;font-size:.7rem;font-weight:700;flex-shrink:0;margin-top:.15rem;font-family:'Assistant',sans-serif}
+.faq-a{padding-right:2rem;font-size:.92rem;color:var(--tl);line-height:1.8}
+
+/* Highlight box */
+.highlight{background:linear-gradient(135deg,#f0edea,#e8e4dd);border-right:4px solid var(--a);padding:1rem 1.5rem;border-radius:8px;margin:1rem 0;font-size:.95rem;line-height:1.9;color:var(--p);font-style:italic}
+
+/* Footer */
+.footer{text-align:center;padding:1.5rem;font-size:.82rem;color:var(--tl);border-top:1px solid var(--b);background:var(--c);margin-top:1rem;border-radius:0 0 var(--r) var(--r)}
+
+/* Responsive */
+@media(max-width:640px){
+  .hero h1{font-size:1.8rem}
+  .hero{padding:3rem 1rem 2rem}
+  .container{padding:1.2rem .8rem 3rem}
+  .section{padding:1.4rem 1.2rem}
+  .step{flex-direction:column;gap:.6rem}
+  .back-btn{top:.8rem;right:.8rem;font-size:.78rem;padding:.4rem .9rem}
+}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-btn">&#8592; חזרה לאפליקציה</a>
+
+<div class="hero">
+  <h1>מדריך לסטודנט</h1>
+  <div class="sub">התמונה הטמונה — כלי ניתוח מטפורי באמצעות בינה מלאכותית</div>
+  <div class="hero-line"></div>
+</div>
+
+<div class="container">
+
+  <!-- מה זו האפליקציה -->
+  <div class="section">
+    <h2>מה זו האפליקציה?</h2>
+    <p><strong>״התמונה הטמונה״</strong> היא כלי אינטראקטיבי לניתוח מטפורות במקרא. האפליקציה מנחה אותך בתהליך שיטתי: מזיהוי מטפורה בפסוק מקראי, דרך ניתוח מרכיביה, ועד ליצירת תמונה באמצעות בינה מלאכותית (AI) — ובחינה מעמיקה של מה שהתמונה חושפת על המטפורה.</p>
+    <p>בסיום התהליך תוכל/י לייצא את העבודה כולה כקובץ מעוצב להגשה.</p>
+  </div>
+
+  <!-- הרציונל -->
+  <div class="section">
+    <h2>למה לשלב AI ביצירת תמונה?</h2>
+    <p>שילוב בינה מלאכותית בתהליך הפרשני אינו קיצור דרך — הוא כלי חשיבה. הנה ארבע סיבות מרכזיות:</p>
+    <ul class="rationale-list">
+      <li>
+        <span class="rationale-icon">1</span>
+        <span><strong>חשיפת הנחות סמויות</strong> — כשהמטפורה הופכת לתמונה, בחירות שנשארות חבויות בקריאה רגילה הופכות לגלויות. מה צבע הכעס? מה גודל החסד? התמונה מאלצת תשובות.</span>
+      </li>
+      <li>
+        <span class="rationale-icon">2</span>
+        <span><strong>ניתוח מדוקדק דרך בניית פרומפט</strong> — הניסוח של ההנחיה ל-AI דורש לפרק את המטפורה לרכיבים קונקרטיים: מה תחום המקור? מה המיפויים? מה הטון? התהליך עצמו הוא הלמידה.</span>
+      </li>
+      <li>
+        <span class="rationale-icon">3</span>
+        <span><strong>העמקת הפרשנות דרך השוואה</strong> — ההשוואה בין התמונה שנוצרה לבין הטקסט המקראי חושפת פערים ותובנות: מה ה-AI שימר? מה הוא הוסיף? מה נעלם?</span>
+      </li>
+      <li>
+        <span class="rationale-icon">4</span>
+        <span><strong>בסיס תיאורטי מוצק</strong> — הגישה מבוססת על תורת המטפורה המושגית (Lakoff &amp; Johnson, 1980), הרואה במטפורה לא רק תופעה לשונית אלא מבנה חשיבה יסודי.</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- שלבי העבודה -->
+  <div class="section">
+    <h2>שבעת שלבי העבודה</h2>
+    <p>האפליקציה מובנית כמסלול בן שבעה שלבים. כל שלב נבנה על קודמו:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>בחירת פסוק</strong>
+          <p>בחרו פסוק מקראי שמכיל מטפורה. הזינו את הפסוק, ציינו את מיקומו בתנ״ך, ובחרו תרגום (אם רלוונטי).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>חשיפת המטפורה</strong>
+          <p>זהו את תחום המקור (Source) ותחום היעד (Target), מלאו טבלת מיפויים, והגדירו את סוג המטפורה.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>בניית פרומפט</strong>
+          <p>נסחו הנחיה ליצירת תמונה ב-AI. תבחרו סגנון אמנותי, תארו את הסצנה, ושלבו את המיפויים שזיהיתם.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>יצירת תמונה וניתוח ראשוני</strong>
+          <p>העלו את התמונה שנוצרה, ותארו בחינה ראשונית: מה אתם רואים? מה הרגש שהתמונה מעוררת?</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <strong>ניתוח פרשני — שלוש עדשות</strong>
+          <p>בחנו את התמונה דרך שלוש עדשות: <em>שמירה</em> (מה נשמר מהמטפורה?), <em>מיזוג</em> (מה ה-AI הוסיף?), <em>גלמה</em> (מה נעלם או הוסתר?).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <strong>רפלקציה</strong>
+          <p>ענו על שאלות מעמיקות: מה למדתם על המטפורה? מה הפתיע אתכם? איך התמונה שינתה את ההבנה שלכם?</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-content">
+          <strong>סיכום וייצוא</strong>
+          <p>סקרו את כל העבודה, ערכו תיקונים אחרונים, וייצאו את התוצר כ-PDF, HTML, או JSON.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- טיפים -->
+  <div class="section">
+    <h2>טיפים לשימוש מוצלח</h2>
+    <ul class="tips">
+      <li>
+        <span class="tip-icon">&#9679;</span>
+        <span><strong>בחרו מטפורה עשירה</strong> — מטפורות עם ריבוי מיפויים (כמו ״ה׳ רועי״ או ״כוס ישועות אשא״) יתנו חומר עשיר יותר לעבודה.</span>
+      </li>
+      <li>
+        <span class="tip-icon">&#9679;</span>
+        <span><strong>היו ספציפיים בפרומפט</strong> — ככל שההנחיה ל-AI מפורטת יותר (צבעים, תאורה, זווית, אווירה), כך התמונה תשקף טוב יותר את הפרשנות שלכם.</span>
+      </li>
+      <li>
+        <span class="tip-icon">&#9679;</span>
+        <span><strong>אל תדלגו על שלבים</strong> — כל שלב בנוי על הקודם. דילוג על ניתוח המיפויים, למשל, יוביל לפרומפט שטחי.</span>
+      </li>
+      <li>
+        <span class="tip-icon">&#9679;</span>
+        <span><strong>השוו בין כלי AI שונים</strong> — נסו ליצור את אותה תמונה ב-DALL-E, Midjourney, או כלי אחר. ההבדלים מלמדים.</span>
+      </li>
+      <li>
+        <span class="tip-icon">&#9679;</span>
+        <span><strong>העבודה נשמרת אוטומטית</strong> — הדפדפן שומר את ההתקדמות שלכם. תוכלו לחזור ולהמשיך מאיפה שעצרתם.</span>
+      </li>
+      <li>
+        <span class="tip-icon">&#9679;</span>
+        <span><strong>השתמשו בפנקס הרשימות</strong> — הכפתור הצף בפינת המסך פותח פנקס לרישום תובנות תוך כדי עבודה.</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- שאלות נפוצות -->
+  <div class="section">
+    <h2>שאלות נפוצות</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">האם אני צריך/ה חשבון כדי להשתמש באפליקציה?</div>
+      <div class="faq-a">לא. האפליקציה עובדת ישירות בדפדפן, ללא הרשמה. הנתונים נשמרים מקומית במחשב שלכם.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">איך יוצרים את התמונה ב-AI?</div>
+      <div class="faq-a">האפליקציה עוזרת לכם לבנות את הפרומפט (ההנחיה). את יצירת התמונה עצמה תעשו בכלי חיצוני כמו ChatGPT (DALL-E), Midjourney, או כלי דומה, ואז תעלו את התמונה לאפליקציה.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">מה קורה אם אני סוגר/ת את הדפדפן באמצע?</div>
+      <div class="faq-a">העבודה נשמרת אוטומטית. כשתחזרו לאפליקציה, תוכלו להמשיך מהשלב שבו עצרתם.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">באיזה פורמט אפשר לייצא את העבודה?</div>
+      <div class="faq-a">שלושה פורמטים: PDF מעוצב (מומלץ להגשה), HTML (לצפייה בדפדפן), או JSON (לגיבוי הנתונים).</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">אפשר לעבוד על יותר ממטפורה אחת?</div>
+      <div class="faq-a">כרגע האפליקציה מיועדת לניתוח מטפורה אחת בכל פעם. לניתוח נוסף, ייצאו את העבודה הנוכחית ורעננו את הדף.</div>
+    </div>
+  </div>
+
+  <!-- קרדיט -->
+  <div class="highlight">
+    פותח במסגרת מחקר על שילוב בינה מלאכותית בהוראת מקרא, אוניברסיטת בר-אילן.
+  </div>
+
+  <div class="footer">
+    התמונה הטמונה &copy; 2026 | <a href="index.html" style="color:var(--pl);text-decoration:none;">חזרה לאפליקציה</a>
+  </div>
+
+</div>
+
+</body>
+</html>

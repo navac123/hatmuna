@@ -1048,7 +1048,7 @@ function trackStep(step){const now=Date.now();if(analytics.steps[cs]&&!analytics
 function trackEvent(name,data){analytics.events.push({type:name,time:Date.now()-analytics.startTime,...data})}
 function getAnalyticsSummary(){const s=analytics;s.totalTime=Date.now()-s.startTime;s.stepsCompleted=Object.keys(s.steps).length;s.stepDurations={};Object.entries(s.steps).forEach(([k,v])=>{if(v.end)s.stepDurations[k]=Math.round((v.end-v.start)/1000)+'s'});return s}
 function exportAnalytics(){const d=getAnalyticsSummary();d.studentName=gf('studentName')||'anonymous';d.topic=gf('selectedTopic')||'';d.date=new Date().toISOString();const b=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`analytics_${d.studentName}_${new Date().toISOString().slice(0,10)}.json`;a.click();showT('נתוני מחקר יוצאו!')}
-if(new URLSearchParams(window.location.search).has('research')){document.addEventListener('DOMContentLoaded',()=>{const b=document.getElementById('analyticsBtn');if(b)b.style.display=''})}
+window.addEventListener('load',()=>{if(new URLSearchParams(window.location.search).has('research')){const b=document.getElementById('analyticsBtn');if(b)b.style.display='inline-flex'}})
 /* === END ANALYTICS === */
 const sn=['בחירת פסוק','חשיפת המטפורה','בניית פרומפט','תמונה ראשונית','פרשנות','רפלקציה','סיכום'];
 /* SPLASH + LANDING */
