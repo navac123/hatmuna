@@ -348,6 +348,7 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 <div class="ln-feat"><div class="lf-ic"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg></div><div class="lf-txt">ייצוא תוצר מקצועי</div></div>
 </div>
 <button class="ln-start" onclick="startApp()">התחילו את התהליך ←</button>
+<div style="margin-top:1rem"><a href="guide.html" target="_blank" style="color:var(--al);font-size:.9rem;text-decoration:none;border:1px solid rgba(255,255,255,.2);padding:.4rem 1.2rem;border-radius:20px;display:inline-flex;align-items:center;gap:.4rem;transition:all .3s">📖 מדריך לסטודנט</a></div>
 <div class="ln-credit">ד״ר נאוה כהן | אוניברסיטת בר-אילן | הקורס: התמונה הטמונה</div>
 </div>
 </div>
@@ -726,7 +727,7 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 
 <!-- MAIN APP -->
 <div id="appWrap" role="main">
-<header class="hdr" role="banner"><h1>התמונה הטמונה</h1><div class="sub">כלי ניתוח מטפורי באמצעות בינה מלאכותית</div><div class="hdr-line"></div></header>
+<header class="hdr" role="banner"><a href="guide.html" style="position:absolute;top:1rem;left:1.5rem;color:rgba(255,255,255,.6);font-size:.8rem;text-decoration:none;z-index:2;display:flex;align-items:center;gap:.3rem" target="_blank">📖 מדריך לסטודנט</a><h1>התמונה הטמונה</h1><div class="sub">כלי ניתוח מטפורי באמצעות בינה מלאכותית</div><div class="hdr-line"></div></header>
 <div class="sbar"><div><label>שם הסטודנט/ית:</label><input type="text" id="studentName" data-field="studentName" placeholder="שם מלא"></div>
 <div><label>נושא:</label><select id="productNum" data-field="productNum" onchange="showTopicArticles()"><option value="נושא 1 — גוף האדם כמטפורה">נושא 1 — גוף האדם כמטפורה</option><option value="נושא 2 — מטפורות מעולם הטבע">נושא 2 — מטפורות מעולם הטבע</option><option value="נושא 3 — מטפורות מעולם החי">נושא 3 — מטפורות מעולם החי</option><option value="נושא 4 — אור וחושך, ראייה ועיוורון">נושא 4 — אור וחושך, ראייה ועיוורון</option><option value="נושא 5 — מטפורות מרחביות">נושא 5 — מטפורות מרחביות</option><option value="נושא 6 — אלוקים כמלך, לוחם, רועה ואב">נושא 6 — אלוקים כמלך, לוחם, רועה ואב</option></select></div>
 <div><button class="btn bs" onclick="saveL()" style="font-size:.82rem;padding:.4rem .8rem">💾 שמירה</button> <button class="btn bs" onclick="loadL()" style="font-size:.82rem;padding:.4rem .8rem">📂 טעינה</button></div></div>
