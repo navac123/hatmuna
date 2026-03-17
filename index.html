@@ -80,7 +80,7 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 .to{display:flex;flex-wrap:wrap;gap:.5rem;margin:.5rem 0}.to input[type=radio]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 .to label{padding:.4rem 1rem;border:1px solid var(--b);border-radius:20px;font-size:.85rem;cursor:pointer;transition:all .2s}
 .to input:checked+label{background:var(--a);color:var(--p);border-color:var(--a);font-weight:600}
-.rq{margin-bottom:1.2rem}.rq .qt{font-weight:500;font-size:.95rem;margin-bottom:.4rem;color:var(--p)}
+.rq{margin-bottom:1.2rem}.rq .qt{font-weight:500;font-size:.95rem;margin-bottom:.4rem;color:var(--p)}.rq textarea{width:100%;padding:.7rem 1rem;border:1px solid var(--b);border-radius:8px;font-family:'Heebo',sans-serif;font-size:.95rem;background:var(--bg);transition:border-color .2s,box-shadow .2s;line-height:1.6;min-height:140px;resize:vertical}.rq textarea:focus{outline:0;border-color:var(--a);box-shadow:0 0 0 3px rgba(201,168,76,.15),0 0 8px rgba(201,168,76,.08)}
 .nb{display:flex;justify-content:space-between;margin-top:2rem;gap:1rem}
 .btn{padding:.7rem 2rem;border:none;border-radius:8px;font-family:'Heebo',sans-serif;font-size:.95rem;font-weight:500;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.4rem}
 .bp{background:var(--p);color:#fff}.bp:hover{background:var(--pl)}.bs{background:0 0;color:var(--p);border:1px solid var(--p)}.bs:hover{background:var(--p);color:#fff}
@@ -900,7 +900,7 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 <span class="sopt"><input type="radio" name="artStyle" id="st10" value="Byzantine art"><label for="st10">ביזנטי</label></span></div></div>
 <div class="fg"><label>הוספות חופשיות</label><textarea data-field="promptExtra" placeholder="פרטים נוספים..."></textarea></div>
 <div class="fg"><label>תצוגה מקדימה של הפרומפט</label><div class="pp" id="ppv">Create an image. High quality, detailed, artistic.</div><button class="cpb" onclick="cp()">העתקה</button></div>
-<div style="background:linear-gradient(135deg,rgba(44,62,107,.04),rgba(201,168,76,.06));padding:1rem;border-radius:8px;margin-top:1rem;border:1px solid var(--b)"><strong>כיצד ליצור את התמונה?</strong><br>העתיקו את הפרומפט והדביקו באחד מהכלים:<br><span style="color:var(--pl)">Gemini</span> | <span style="color:var(--pl)">ChatGPT + DALL-E</span> | <span style="color:var(--pl)">Midjourney</span></div>
+<div style="background:linear-gradient(135deg,rgba(44,62,107,.04),rgba(201,168,76,.06));padding:1rem;border-radius:8px;margin-top:1rem;border:1px solid var(--b)"><strong>כיצד ליצור את התמונה?</strong><br>העתיקו את הפרומפט והדביקו באחד מהכלים:<br><span style="color:var(--pl)">Nano Banana (Gemini)</span> | <span style="color:var(--pl)">ChatGPT + DALL-E</span> | <span style="color:var(--pl)">Midjourney</span></div>
 <!-- PROMPT TIPS PANEL -->
 <div class="exp-panel" id="tipPanel">
 <div class="exp-head" onclick="this.parentElement.classList.toggle('open')">
@@ -929,7 +929,7 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 </ul>
 <h4>השוואת כלי AI</h4>
 <ul>
-<li><strong>Gemini (Google):</strong> חינמי, תוצאות טובות, תומך בעברית חלקית</li>
+<li><strong>🍌 Nano Banana (Gemini):</strong> חינמי, מהיר, איכות גבוהה — המומלץ שלנו! בחרו "Create images" בתפריט הכלים של Gemini</li>
 <li><strong>DALL-E (ChatGPT):</strong> איכות גבוהה, יצירתי, דורש מנוי ChatGPT Plus</li>
 <li><strong>Midjourney:</strong> תוצאות אמנותיות מרשימות, דורש מנוי</li>
 </ul>
@@ -993,7 +993,7 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 <div class="fg"><label>העלאת תמונה</label><div class="uz" id="uz1" role="button" tabindex="0" aria-label="העלאת תמונה" onclick="document.getElementById('fi1').click()" onkeydown="if(event.key==='Enter')this.click()"><div class="ui"><span class="ic" style="width:40px;height:40px"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span></div><div class="ut">לחצו כאן או גררו תמונה</div><input type="file" id="fi1" accept="image/*" onchange="hu(this,'uz1','image1')"></div></div>
 <div class="fg"><label>הפרומפט ששימש ליצירה</label><textarea data-field="usedPrompt1" placeholder="הדביקו את הפרומפט"></textarea></div>
 <div class="fg"><label>באיזה כלי נוצרה?</label><div class="to">
-<span><input type="radio" name="aiTool" id="t1" value="Gemini"><label for="t1">Gemini</label></span>
+<span><input type="radio" name="aiTool" id="t1" value="Nano Banana (Gemini)"><label for="t1">🍌 Nano Banana (Gemini)</label></span>
 <span><input type="radio" name="aiTool" id="t2" value="DALL-E / ChatGPT"><label for="t2">DALL-E / ChatGPT</label></span>
 <span><input type="radio" name="aiTool" id="t3" value="Midjourney"><label for="t3">Midjourney</label></span>
 <span><input type="radio" name="aiTool" id="t4" value="אחר"><label for="t4">אחר</label></span></div></div>
