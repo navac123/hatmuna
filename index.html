@@ -1115,7 +1115,7 @@ const analytics={sessionId:Date.now()+'_'+Math.random().toString(36).slice(2,8),
 function trackStep(step){const now=Date.now();if(analytics.steps[cs]&&!analytics.steps[cs].end)analytics.steps[cs].end=now;analytics.steps[step]={start:now,end:null};analytics.events.push({type:'step',step,time:now-analytics.startTime})}
 function trackEvent(name,data){analytics.events.push({type:name,time:Date.now()-analytics.startTime,...data})}
 function getAnalyticsSummary(){const s=analytics;s.totalTime=Date.now()-s.startTime;s.stepsCompleted=Object.keys(s.steps).length;s.stepDurations={};Object.entries(s.steps).forEach(([k,v])=>{if(v.end)s.stepDurations[k]=Math.round((v.end-v.start)/1000)+'s'});return s}
-function exportAnalytics(){const d=getAnalyticsSummary();d.studentName=gf('studentName')||'anonymous';d.topic=gf('selectedTopic')||'';d.date=new Date().toISOString();const b=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`analytics_${d.studentName}_${new Date().toISOString().slice(0,10)}.json`;a.click();showT('נתוני מחקר יוצאו!')}
+function exportAnalytics(){const d=getAnalyticsSummary();d.studentName=gf('studentName')||'anonymous';d.topic=gf('selectedTopic')||'';d.date=new Date().toISOString();d.introQuizScore=window.introQuizScore||null;d.articleQuizScore=window.articleQuizScore||null;const b=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`analytics_${d.studentName}_${new Date().toISOString().slice(0,10)}.json`;a.click();showT('נתוני מחקר יוצאו!')}
 window.addEventListener('load',()=>{if(new URLSearchParams(window.location.search).has('research')){const b=document.getElementById('analyticsBtn');if(b)b.style.display='inline-flex'}})
 /* === END ANALYTICS === */
 const sn=['בחירת פסוק','חשיפת המטפורה','בניית פרומפט','תמונה ראשונית','פרשנות','רפלקציה','סיכום'];
@@ -1142,7 +1142,7 @@ function hmu(inp,zid){if(!inp.files.length)return;id.ex=[];let l=0;const z=docum
 function gf(n){const e=document.querySelector(`[data-field="${n}"]`);return e?(e.value||'').trim():''}
 function gm(){const r=[];document.querySelectorAll('#mtbl tbody tr').forEach(tr=>{const s=tr.querySelector('[data-mapping="source"]').value.trim(),t=tr.querySelector('[data-mapping="target"]').value.trim();if(s||t)r.push({source:s,target:t})});return r}
 function gr(n){const e=document.querySelector(`input[name="${n}"]:checked`);return e?e.value:''}
-function cd(){const d={};document.querySelectorAll('[data-field]').forEach(e=>d[e.dataset.field]=e.value||'');d.mappings=gm();d.artStyle=gr('artStyle');d.aiTool=gr('aiTool');d.imageData=id;d.currentStep=cs;d.timestamp=new Date().toISOString();return d}
+function cd(){const d={};document.querySelectorAll('[data-field]').forEach(e=>d[e.dataset.field]=e.value||'');d.mappings=gm();d.artStyle=gr('artStyle');d.aiTool=gr('aiTool');d.imageData=id;d.currentStep=cs;d.timestamp=new Date().toISOString();d.introQuizScore=window.introQuizScore||null;d.articleQuizScore=window.articleQuizScore||null;return d}
 function rd(d){document.querySelectorAll('[data-field]').forEach(e=>{if(d[e.dataset.field]!==undefined)e.value=d[e.dataset.field]});
 if(d.mappings&&d.mappings.length){const tb=document.querySelector('#mtbl tbody');tb.innerHTML='';d.mappings.forEach(m=>{const tr=document.createElement('tr');tr.innerHTML=`<td><input data-mapping="source" value="${eh(m.source)}"></td><td class="ac">→</td><td><input data-mapping="target" value="${eh(m.target)}"></td><td><button class="rrb" onclick="rr(this)">✕</button></td>`;tb.appendChild(tr)})}
 if(d.artStyle){const r=document.querySelector(`input[name="artStyle"][value="${d.artStyle}"]`);if(r)r.checked=true}
@@ -1161,8 +1161,12 @@ function bs(){const d=cd(),now=new Date(),ds=now.toLocaleDateString('he-IL')+', 
 const sln=document.querySelector('input[name="artStyle"]:checked+label'),slh=sln?sln.textContent:'—';
 let mh='';const ms=gm();if(ms.length)mh='<table style="width:100%;border-collapse:collapse;margin:.5rem 0"><tr style="background:var(--p);color:#fff"><th style="padding:.4rem">מקור</th><th style="padding:.4rem">→</th><th style="padding:.4rem">יעד</th></tr>'+ms.map(m=>`<tr><td style="border:1px solid #ddd;padding:.4rem">${eh(m.source)}</td><td style="text-align:center;color:var(--a)">→</td><td style="border:1px solid #ddd;padding:.4rem">${eh(m.target)}</td></tr>`).join('')+'</table>';
 let artH='';if(id.articles&&id.articles.length){artH=id.articles.map(a=>`<div class="fl" style="font-size:.82rem">${eh(a.name)}</div>`).join('')}
+let quizH='';
+if(d.introQuizScore) quizH+='<div class="fl"><strong>מבחן יחידת מבוא:</strong> '+d.introQuizScore+'</div>';
+if(d.articleQuizScore) quizH+='<div class="fl"><strong>מבחן מאמר:</strong> '+d.articleQuizScore+'</div>';
 document.getElementById('sumC').innerHTML=`
 <div style="text-align:center;margin-bottom:1.5rem"><h3 style="color:var(--p);font-size:1.4rem">התמונה הטמונה — תוצר ניתוח מטפורי</h3><div style="color:var(--tl);font-size:.9rem">${eh(d.studentName||'—')} | ${eh(d.productNum||'')} | ${ds}</div><div style="margin-top:.5rem;font-size:.88rem;color:var(--a)">שלמות: ${pct}%</div></div>
+${quizH?'<div class="sb"><h4>ציוני מבחנים</h4>'+quizH+'</div>':''}
 <div class="sb"><h4>שלב א׳: בחירת הפסוק</h4><div class="fl"><strong>קטגוריה:</strong> ${eh(d.category||'—')}</div><div class="fl"><strong>הפסוק:</strong> ${eh(d.verse||'—')}</div><div class="fl"><strong>מקור:</strong> ${eh(d.source||'—')}</div></div>
 <div class="sb"><h4>שלב ב׳: חשיפת המטפורה</h4><div class="fl"><strong>מקור:</strong> ${eh(d.sourceDomain||'—')} → <strong>יעד:</strong> ${eh(d.targetDomain||'—')}</div><div class="fl"><strong>מטפורה מושגית:</strong> ${eh(d.conceptualMetaphor||'—')}</div>${mh}<div class="fl"><strong>הסבר:</strong> ${eh(d.mappingExplanation||'—')}</div>${artH?'<div style="margin-top:.8rem;padding-top:.8rem;border-top:1px dashed var(--b)"><strong style="color:var(--p)">מאמר אקדמי:</strong></div>'+artH:''}</div>
 <div class="sb"><h4>שלב ג׳: הפרומפט</h4><div class="fl"><strong>סגנון:</strong> ${eh(slh)}</div><div class="pp" style="font-size:.82rem">${eh(document.getElementById('ppv').textContent)}</div></div>
@@ -1385,6 +1389,7 @@ else{selected.parentElement.classList.add('wrong');labels.forEach(function(lb){v
 }else{labels.forEach(function(lb){var inp=lb.querySelector('input');if(inp&&inp.value===correct)lb.classList.add('correct')})}
 qDiv.querySelector('.explanation').style.display='block';
 }
+window.introQuizScore=score+'/'+total;
 var rd=document.getElementById('introQuizResult');
 if(score>=7){rd.innerHTML='<div class="quiz-result pass">🎉 ציון: '+score+'/'+total+' — עברתם בהצלחה! אפשר להתחיל בניתוח.</div>'}
 else{rd.innerHTML='<div class="quiz-result fail">ציון: '+score+'/'+total+' — נדרשות לפחות 7 תשובות נכונות. חזרו על החומר ונסו שנית.</div>'}
@@ -1573,6 +1578,7 @@ else{selected.parentElement.classList.add('wrong');labels.forEach(function(lb){v
 }else{labels.forEach(function(lb){var inp=lb.querySelector('input');if(inp&&parseInt(inp.value)===q.ans)lb.classList.add('correct')})}
 qDiv.querySelector('.explanation').style.display='block';
 });
+window.articleQuizScore=score+'/'+total;
 var rd=document.getElementById('articleQuizResult');
 var pass=score>=4;
 if(pass){rd.innerHTML='<div class="quiz-result pass">🎉 ציון: '+score+'/'+total+' — עברתם בהצלחה!</div>'}
