@@ -847,60 +847,15 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 <div id="appWrap" role="main">
 <header class="hdr" role="banner"><a href="guide.html" style="position:absolute;top:1rem;left:1.5rem;color:rgba(255,255,255,.6);font-size:.8rem;text-decoration:none;z-index:2;display:flex;align-items:center;gap:.3rem" target="_blank">📖 מדריך לסטודנט</a><h1>התמונה הטמונה</h1><div class="sub">כלי ניתוח מטפורי באמצעות בינה מלאכותית</div><div class="hdr-line"></div></header>
 <div class="sbar"><div><label>שם הסטודנט/ית:</label><input type="text" id="studentName" data-field="studentName" placeholder="שם מלא"></div>
-<div><label>נושא:</label><select id="productNum" data-field="productNum" onchange="showTopicArticles();showVersesSuggestions()"><option value="נושא 1 — גוף האדם כמטפורה">נושא 1 — גוף האדם כמטפורה</option><option value="נושא 2 — מטפורות מעולם הטבע">נושא 2 — מטפורות מעולם הטבע</option><option value="נושא 3 — מטפורות מעולם החי">נושא 3 — מטפורות מעולם החי</option><option value="נושא 4 — אור וחושך, ראייה ועיוורון">נושא 4 — אור וחושך, ראייה ועיוורון</option><option value="נושא 5 — מטפורות מרחביות">נושא 5 — מטפורות מרחביות</option><option value="נושא 6 — אלוקים כמלך, לוחם, רועה ואב">נושא 6 — אלוקים כמלך, לוחם, רועה ואב</option></select></div>
+<div><label>נושא:</label><select id="productNum" data-field="productNum" onchange="showTopicArticles();populateCategories();showVersesSuggestions()"><option value="נושא 1 — גוף האדם כמטפורה">נושא 1 — גוף האדם כמטפורה</option><option value="נושא 2 — מטפורות מעולם הטבע">נושא 2 — מטפורות מעולם הטבע</option><option value="נושא 3 — מטפורות מעולם החי">נושא 3 — מטפורות מעולם החי</option><option value="נושא 4 — אור וחושך, ראייה ועיוורון">נושא 4 — אור וחושך, ראייה ועיוורון</option><option value="נושא 5 — מטפורות מרחביות">נושא 5 — מטפורות מרחביות</option><option value="נושא 6 — אלוקים כמלך, לוחם, רועה ואב">נושא 6 — אלוקים כמלך, לוחם, רועה ואב</option></select></div>
 <div><button class="btn bs" onclick="saveL()" style="font-size:.82rem;padding:.4rem .8rem">💾 שמירה</button> <button class="btn bs" onclick="loadL()" style="font-size:.82rem;padding:.4rem .8rem">📂 טעינה</button></div></div>
 <div class="pcon" role="navigation"><div class="snav" id="snav"></div><div class="opr"><span>שלמות:</span><div class="pbg"><div class="pfl" id="pfl"></div></div><span id="ppc">0%</span><button onclick="backToIntro()" style="background:none;border:none;color:var(--tl);font-size:.78rem;cursor:pointer;font-family:'Heebo',sans-serif;text-decoration:underline;margin-right:.8rem;white-space:nowrap" title="חזרה ליחידת המבוא">→ חזרה למבוא</button></div></div>
 <div class="mc">
 <!-- S1 --><div class="ss act" id="s1"><div class="sc"><h2 class="st"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span> שלב 1 — בחירת הפסוק והמטפורה</h2><p class="sd">בחרו פסוק מקראי המכיל מטפורה, וציינו את הקטגוריה ואת הסיבה לבחירתכם.</p>
-<div class="fg"><label>קטגוריית מטפורה</label>
-<select data-field="category"><option value="">— בחרו קטגוריה —</option>
-<optgroup label="── גוף האדם (נושא 1) ──">
-<option value="גוף האדם — איברים (עין, יד, לב)">גוף האדם — איברים (עין, יד, לב)</option>
-<option value="גוף האדם — רגשות דרך הגוף">גוף האדם — רגשות דרך הגוף</option>
-<option value="גוף האדם — אנתרופומורפיזם">גוף האדם — אנתרופומורפיזם</option>
-</optgroup>
-<optgroup label="── עולם הטבע (נושא 2) ──">
-<option value="טבע — מים (נהר, ים, גשם, מעיין)">טבע — מים (נהר, ים, גשם, מעיין)</option>
-<option value="טבע — צמחייה (עץ, פרח, שורש, זמורה)">טבע — צמחייה (עץ, פרח, שורש, זמורה)</option>
-<option value="טבע — הרים ומדבר">טבע — הרים ומדבר</option>
-<option value="טבע — רוח, אש, אדמה">טבע — רוח, אש, אדמה</option>
-</optgroup>
-<optgroup label="── עולם החי (נושא 3) ──">
-<option value="בעלי חיים — טורפים (אריה, דוב, נשר)">בעלי חיים — טורפים (אריה, דוב, נשר)</option>
-<option value="בעלי חיים — נטרפים (כבש, יונה, צבי)">בעלי חיים — נטרפים (כבש, יונה, צבי)</option>
-<option value="בעלי חיים — שרצים ורמשים (תולעת, נחש)">בעלי חיים — שרצים ורמשים (תולעת, נחש)</option>
-</optgroup>
-<optgroup label="── אור וחושך, ראייה ועיוורון (נושא 4) ──">
-<option value="אור — כידיעה, צדקה, נוכחות אלוהית">אור — כידיעה, צדקה, נוכחות אלוהית</option>
-<option value="חושך — סכנה, מוות, גלות">חושך — סכנה, מוות, גלות</option>
-<option value="ראייה ועיוורון — הבנה וסירוב">ראייה ועיוורון — הבנה וסירוב</option>
-</optgroup>
-<optgroup label="── מרחב (נושא 5) ──">
-<option value="מרחב — שערים וחומות (קודש/חול)">מרחב — שערים וחומות (קודש/חול)</option>
-<option value="מרחב — דרך ונתיב">מרחב — דרך ונתיב</option>
-<option value="מרחב — סף, דלת, פנים וחוץ">מרחב — סף, דלת, פנים וחוץ</option>
-<option value="מרחב — עיר ומדבר, שייכות וגלות">מרחב — עיר ומדבר, שייכות וגלות</option>
-</optgroup>
-<optgroup label="── דימויי האל (נושא 6) ──">
-<option value="האל כמלך — ריבונות ושלטון">האל כמלך — ריבונות ושלטון</option>
-<option value="האל כלוחם — מלחמה וצבא">האל כלוחם — מלחמה וצבא</option>
-<option value="האל כרועה — דאגה והנהגה">האל כרועה — דאגה והנהגה</option>
-<option value="האל כאב/אם — קרבה ורחמים">האל כאב/אם — קרבה ורחמים</option>
-</optgroup>
-<optgroup label="── קטגוריות נוספות ──">
-<option value="משפט ודין">משפט ודין</option>
-<option value="אוכל ושתייה">אוכל ושתייה</option>
-<option value="מוזיקה ושירה">מוזיקה ושירה</option>
-<option value="בניין וארכיטקטורה">בניין וארכיטקטורה</option>
-<option value="לבוש">לבוש</option>
-<option value="חקלאות וכרם">חקלאות וכרם</option>
-<option value="מחלה וריפוי">מחלה וריפוי</option>
-<option value="קוסמולוגיה">קוסמולוגיה</option>
-<option value="אחר">אחר (פרטו בהערות)</option>
-</optgroup>
-</select></div>
-<div class="fg" id="versesSuggest" style="display:none"><label>💡 פסוקים מומלצים לנושא זה <span style="font-weight:400;color:var(--tl)">(אופציונלי — בחרו או כתבו פסוק משלכם)</span></label>
-<select id="versePicker" onchange="onVersePick(this)"><option value="">— בחרו פסוק מומלץ או כתבו משלכם למטה —</option></select></div>
+<div class="fg"><label>קטגוריית מטפורה</label><div class="hn">הקטגוריה נקבעת לפי הנושא שבחרתם למעלה</div>
+<select data-field="category" onchange="showVersesSuggestions()"><option value="">— בחרו תת-קטגוריה —</option></select></div>
+<div class="fg" id="versesSuggest" style="display:none"><label>💡 פסוקים מומלצים <span style="font-weight:400;color:var(--tl)">(בחרו או כתבו משלכם למטה)</span></label>
+<select id="versePicker" onchange="onVersePick(this)"><option value="">— בחרו פסוק מומלץ —</option></select></div>
 <div class="fg"><label>הפסוק (ציטוט מלא)</label><textarea data-field="verse" placeholder='לדוגמה: "ה׳ רֹעִי לֹא אֶחְסָר"'></textarea></div>
 <div class="fg"><label>מקור (ספר, פרק, פסוק)</label><input type="text" data-field="source" placeholder="לדוגמה: תהלים כ״ג, א׳"></div>
 <details class="intro-details" id="topicArticles" style="margin:0 0 1rem 0">
@@ -1475,6 +1430,21 @@ const suggestedVerses={
 {verse:"כי מלך כל הארץ אלהים",source:"תהילים מז, ח"},
 {verse:"כי נער ישראל ואוהבהו וממצרים קראתי לבני",source:"הושע יא, א"}]
 };
+const topicSubcategories={
+"נושא 1 — גוף האדם כמטפורה":["גוף האדם — איברים (עין, יד, לב)","גוף האדם — רגשות דרך הגוף","גוף האדם — אנתרופומורפיזם"],
+"נושא 2 — מטפורות מעולם הטבע":["טבע — מים","טבע — צמחייה","טבע — הרים ומדבר","טבע — רוח, אש, אדמה"],
+"נושא 3 — מטפורות מעולם החי":["בעלי חיים — טורפים","בעלי חיים — נטרפים","בעלי חיים — שרצים ורמשים"],
+"נושא 4 — אור וחושך, ראייה ועיוורון":["אור — נוכחות וצדקה","חושך — סכנה ומוות","ראייה ועיוורון — הבנה וסירוב"],
+"נושא 5 — מטפורות מרחביות":["מרחב — דרך ונתיב","מרחב — מעלה ומטה","מרחב — פנים וחוץ"],
+"נושא 6 — אלוקים כמלך, לוחם, רועה ואב":["האל כמלך","האל כלוחם","האל כרועה","האל כאב/אם"]
+};
+function populateCategories(){
+var topic=document.getElementById('productNum').value;
+var catSel=document.querySelector('[data-field="category"]');
+var subs=topicSubcategories[topic]||[];
+catSel.innerHTML='<option value="">— בחרו תת-קטגוריה —</option>';
+subs.forEach(function(s){catSel.innerHTML+='<option value="'+s+'">'+s+'</option>'});
+}
 function showVersesSuggestions(){
 var topic=document.getElementById('productNum').value;
 var wrap=document.getElementById('versesSuggest');
@@ -1482,7 +1452,7 @@ var picker=document.getElementById('versePicker');
 var verses=suggestedVerses[topic];
 if(!verses||!verses.length){wrap.style.display='none';return}
 wrap.style.display='';
-picker.innerHTML='<option value="">— בחרו פסוק מומלץ או כתבו משלכם למטה —</option>';
+picker.innerHTML='<option value="">— בחרו פסוק מומלץ —</option>';
 verses.forEach(function(v,i){
 picker.innerHTML+='<option value="'+i+'">'+v.source+' — «'+v.verse+'»</option>';
 });
