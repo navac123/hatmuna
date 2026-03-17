@@ -266,6 +266,23 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 .pres-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem 1rem;background:linear-gradient(135deg,#2c3e6b,#3d5a99);color:#fff;border:none;border-radius:20px;font-family:'Heebo',sans-serif;font-size:.82rem;cursor:pointer;margin-right:.5rem;transition:all .3s}
 .pres-btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(44,62,107,.3)}
 @media(max-width:640px){.pres-slide{padding:1.5rem;min-height:auto;max-height:85vh}.pres-slide h2{font-size:1.3rem}}
+.quiz-section{background:var(--c);border-radius:var(--r);padding:2rem;margin:2rem 0;border:1px solid var(--b);box-shadow:0 2px 12px rgba(44,62,107,.08)}
+.quiz-q{margin-bottom:1.5rem;padding:1rem;background:var(--bg);border-radius:8px;border-right:3px solid var(--p)}
+.quiz-q h4{color:var(--p);font-size:.95rem;margin-bottom:.8rem}
+.quiz-q label{display:block;padding:.4rem .8rem;margin:.3rem 0;border-radius:6px;cursor:pointer;font-size:.9rem;transition:background .2s}
+.quiz-q label:hover{background:rgba(44,62,107,.06)}
+.quiz-q input[type=radio]{margin-left:.5rem;accent-color:var(--p)}
+.quiz-q .correct{background:#e8f5e9;border-right:3px solid #4caf50}
+.quiz-q .wrong{background:#ffeef0;border-right:3px solid #e53935}
+.quiz-q .explanation{display:none;margin-top:.5rem;padding:.5rem .8rem;font-size:.82rem;color:var(--tl);background:rgba(44,62,107,.04);border-radius:6px;line-height:1.7}
+.quiz-result{text-align:center;padding:1.5rem;border-radius:12px;margin-top:1rem;font-size:1.1rem;font-weight:600}
+.quiz-result.pass{background:#e8f5e9;color:#2e7d32;border:2px solid #4caf50}
+.quiz-result.fail{background:#ffeef0;color:#c62828;border:2px solid #e53935}
+.quiz-modal-ov{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:10000;align-items:center;justify-content:center}
+.quiz-modal-ov.show{display:flex}
+.quiz-modal-box{background:var(--c);border-radius:16px;max-width:700px;width:95%;max-height:85vh;overflow-y:auto;padding:2rem;position:relative;box-shadow:0 8px 40px rgba(0,0,0,.25)}
+.quiz-modal-box .qm-close{position:absolute;top:1rem;left:1rem;background:none;border:1px solid var(--b);border-radius:50%;width:36px;height:36px;font-size:1.1rem;cursor:pointer;color:var(--tl)}
+.quiz-modal-box .qm-close:hover{background:var(--bg)}
 </style></head><body>
 <!-- CONSENT DIALOG -->
 <div class="consent-ov" id="consentOv">
@@ -715,6 +732,107 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 <p><sup>11</sup> Jindo, J. Y. (2010). <em>Biblical Metaphor Reconsidered</em>. Eisenbrauns. <a class="fn-link" href="https://brill.com/display/book/edcoll/9789004368187/B9789004368187-s013.xml" target="_blank">↗</a></p>
 </div>
 
+<!-- ═══ מבחן יחידת מבוא ═══ -->
+<div class="intro-sec quiz-section" id="introQuizSection">
+<h2>📝 מבחן — בדקו את הבנתכם</h2>
+<p style="color:var(--tl);margin-bottom:1.5rem;font-size:.9rem">ענו על 10 השאלות הבאות. נדרשות לפחות 7 תשובות נכונות (70%) כדי לעבור.</p>
+
+<div class="quiz-q" id="iq1">
+<h4>1. מהי ההגדרה של מטפורה לפי אריסטו?</h4>
+<label><input type="radio" name="iq1" value="a"> דרך חשיבה בסיסית של בני אדם</label>
+<label><input type="radio" name="iq1" value="b"> העברת שם השייך לדבר אחד על דבר אחר</label>
+<label><input type="radio" name="iq1" value="c"> מיפוי שיטתי בין שני תחומים</label>
+<label><input type="radio" name="iq1" value="d"> יצירת משמעות חדשה דרך מיזוג</label>
+<div class="explanation">אריסטו הגדיר מטפורה כ"העברת שם" — גישה שראתה במטפורה קישוט לשוני בלבד, לא דרך חשיבה.</div>
+</div>
+
+<div class="quiz-q" id="iq2">
+<h4>2. מהי ההבחנה העיקרית שהציע ריצ׳רדס?</h4>
+<label><input type="radio" name="iq2" value="a"> בין מטפורה חיה למטפורה מתה</label>
+<label><input type="radio" name="iq2" value="b"> בין תחום מקור לתחום יעד</label>
+<label><input type="radio" name="iq2" value="c"> בין טנור (נושא) לכלי (דימוי)</label>
+<label><input type="radio" name="iq2" value="d"> בין מטפורה מכוונת ללא-מכוונת</label>
+<div class="explanation">ריצ׳רדס (1936) הציג את מושגי הטנור (הנושא שעליו מדברים) והכלי (הדימוי שבו משתמשים).</div>
+</div>
+
+<div class="quiz-q" id="iq3">
+<h4>3. מהו החידוש המרכזי של לייקוף וג׳ונסון (1980)?</h4>
+<label><input type="radio" name="iq3" value="a"> שמטפורה היא קישוט לשוני</label>
+<label><input type="radio" name="iq3" value="b"> שמטפורה היא דרך חשיבה בסיסית, לא רק שפה</label>
+<label><input type="radio" name="iq3" value="c"> שמטפורות קיימות רק בשירה</label>
+<label><input type="radio" name="iq3" value="d"> שכל מטפורה ניתנת לתרגום מילולי</label>
+<div class="explanation">המהפכה הקוגניטיבית: בני אדם חושבים דרך מטפורות, לא רק מדברים דרכן.</div>
+</div>
+
+<div class="quiz-q" id="iq4">
+<h4>4. מהו עקרון החד-כיווניות במטפורה מושגית?</h4>
+<label><input type="radio" name="iq4" value="a"> מטפורה פועלת רק בשירה, לא בפרוזה</label>
+<label><input type="radio" name="iq4" value="b"> המיפוי הוא תמיד מתחום קונקרטי לתחום מופשט</label>
+<label><input type="radio" name="iq4" value="c"> כל מטפורה מדגישה תכונה אחת בלבד</label>
+<label><input type="radio" name="iq4" value="d"> מטפורה פועלת רק בכיוון מימין לשמאל</label>
+<div class="explanation">"החיים הם מסע" עובד (קונקרטי→מופשט), אך "המסע הוא חיים" לא (מופשט→קונקרטי).</div>
+</div>
+
+<div class="quiz-q" id="iq5">
+<h4>5. בדוגמה "זמן הוא כסף", מהו עקרון החלקיות?</h4>
+<label><input type="radio" name="iq5" value="a"> המטפורה מתאימה רק לחלק מהזמן</label>
+<label><input type="radio" name="iq5" value="b"> המיפוי מעתיק רק חלק מתכונות המקור ליעד</label>
+<label><input type="radio" name="iq5" value="c"> רק חלק מהאנשים מבינים מטפורות</label>
+<label><input type="radio" name="iq5" value="d"> המטפורה עובדת רק בחלק מהשפות</label>
+<div class="explanation">"בזבוז" ו"חיסכון" מועתקים, אך לא "כסף עשוי מתכת" — המיפוי בוחר תכונות.</div>
+</div>
+
+<div class="quiz-q" id="iq6">
+<h4>6. מהו "מרחב המיזוג" בתורת המיזוג המושגי?</h4>
+<label><input type="radio" name="iq6" value="a"> המרחב הפיזי שבו נכתב הטקסט</label>
+<label><input type="radio" name="iq6" value="b"> מרחב שלישי שנוצר מהמפגש בין שני קלטים ומכיל משמעות חדשה</label>
+<label><input type="radio" name="iq6" value="c"> התרגום המילולי של המטפורה</label>
+<label><input type="radio" name="iq6" value="d"> הפער בין המשמעות הפשוטה למשמעות המטפורית</label>
+<div class="explanation">פוקוניה וטרנר: שני מרחבי קלט נפגשים ויוצרים מרחב שלישי עם "מבנה צומח" — משמעות שלא קיימת בנפרד.</div>
+</div>
+
+<div class="quiz-q" id="iq7">
+<h4>7. בדוגמה "ה׳ רועי" (תהילים כג), מהו המיזוג המושגי?</h4>
+<label><input type="radio" name="iq7" value="a"> האל מוחלף ברועה</label>
+<label><input type="radio" name="iq7" value="b"> נוצרת דמות חדשה — אל-רועה — שמשלבת טיפול אישי עם עוצמה אלוהית</label>
+<label><input type="radio" name="iq7" value="c"> הרועה הוא סמל לכוח</label>
+<label><input type="radio" name="iq7" value="d"> המטפורה מתה ואין לה משמעות</label>
+<div class="explanation">המיזוג יוצר דמות שאינה קיימת באף קלט בנפרד: רועה (קרבה) + אל (אינסוף) = שלווה קוסמית.</div>
+</div>
+
+<div class="quiz-q" id="iq8">
+<h4>8. מהי מטפורה "מכוונת" לפי סטין (2008)?</h4>
+<label><input type="radio" name="iq8" value="a"> מטפורה שהדובר משתמש בה במודע כדי לגרום לשומע לחשוב דרך התמונה</label>
+<label><input type="radio" name="iq8" value="b"> מטפורה שמכוונת מימין לשמאל</label>
+<label><input type="radio" name="iq8" value="c"> מטפורה שנמצאת רק בכתיבה אקדמית</label>
+<label><input type="radio" name="iq8" value="d"> מטפורה שכל הקוראים מבינים אותה באותו אופן</label>
+<div class="explanation">מטפורה מכוונת = הדובר מזמין את השומע לחשוב דרך הדימוי. "כל בשר חציר" — הנביא רוצה שנראה את הצמח.</div>
+</div>
+
+<div class="quiz-q" id="iq9">
+<h4>9. מהו עקרון השמירה (Invariance)?</h4>
+<label><input type="radio" name="iq9" value="a"> שמטפורות לא משתנות לאורך ההיסטוריה</label>
+<label><input type="radio" name="iq9" value="b"> שהמיפוי חייב לשמר את המבנה הלוגי של תחום המקור</label>
+<label><input type="radio" name="iq9" value="c"> שכל מטפורה חוזרת על אותה משמעות</label>
+<label><input type="radio" name="iq9" value="d"> שתחום המקור ותחום היעד זהים</label>
+<div class="explanation">ב"אבן מאסו הבונים" — הרצף דחייה→ערך נסתר→היפוך חייב להישמר בכל פרשנות.</div>
+</div>
+
+<div class="quiz-q" id="iq10">
+<h4>10. מה ההבדל בין מטפורה לדימוי?</h4>
+<label><input type="radio" name="iq10" value="a"> אין הבדל — אלה אותו דבר</label>
+<label><input type="radio" name="iq10" value="b"> מטפורה = זיהוי ישיר, דימוי = השוואה מפורשת עם "כ-"</label>
+<label><input type="radio" name="iq10" value="c"> דימוי הוא מטפורה חלשה</label>
+<label><input type="radio" name="iq10" value="d"> מטפורה קיימת רק במקרא, דימוי קיים בכל שפה</label>
+<div class="explanation">"ה׳ סלעי" = מטפורה (זיהוי), "כאיל תערוג" = דימוי (השוואה). שתיהן פועלות באותו מנגנון קוגניטיבי.</div>
+</div>
+
+<div style="text-align:center;margin-top:1.5rem">
+<button class="btn bp" onclick="checkIntroQuiz()" style="padding:.7rem 2rem;font-size:1rem">בדיקת תשובות</button>
+</div>
+<div id="introQuizResult"></div>
+</div>
+
 <div class="intro-proceed">
 <button onclick="enterAppFromIntro()">התחילו בניתוח ←</button>
 </div>
@@ -735,35 +853,71 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 <div class="mc">
 <!-- S1 --><div class="ss act" id="s1"><div class="sc"><h2 class="st"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span> שלב 1 — בחירת הפסוק והמטפורה</h2><p class="sd">בחרו פסוק מקראי המכיל מטפורה, וציינו את הקטגוריה ואת הסיבה לבחירתכם.</p>
 <div class="fg"><label>קטגוריית מטפורה</label>
-<select data-field="category"><option value="">— בחרו קטגוריה —</option>
-<option class="ogp" disabled>── גוף האדם (נושא 1) ──</option>
+<select data-field="category" onchange="onCategoryChange(this)"><option value="">— בחרו קטגוריה —</option>
+<optgroup label="── גוף האדם (נושא 1) ──">
 <option value="גוף האדם — איברים (עין, יד, לב)">גוף האדם — איברים (עין, יד, לב)</option>
 <option value="גוף האדם — רגשות דרך הגוף">גוף האדם — רגשות דרך הגוף</option>
 <option value="גוף האדם — אנתרופומורפיזם">גוף האדם — אנתרופומורפיזם</option>
-<option class="ogp" disabled>── עולם הטבע (נושא 2) ──</option>
+<option data-verse="עיני ה׳ אל צדיקים ואזניו אל שוועתם" data-source="תהילים לד, טז" value="גוף האדם — איברים (עין, יד, לב)">   ↳ תהילים לד, טז — עיני ה׳ אל צדיקים ואזניו אל שוועתם</option>
+<option data-verse="נר לרגלי דברך ואור לנתיבתי" data-source="תהילים קיט, קה" value="גוף האדם — איברים (עין, יד, לב)">   ↳ תהילים קיט, קה — נר לרגלי דברך ואור לנתיבתי</option>
+<option data-verse="הן לא קצרה יד ה׳ מהושיע" data-source="ישעיהו נט, א" value="גוף האדם — אנתרופומורפיזם">   ↳ ישעיהו נט, א — הן לא קצרה יד ה׳ מהושיע</option>
+<option data-verse="כמים נשפכתי והתפרדו כל עצמותי" data-source="תהילים כב, טו" value="גוף האדם — רגשות דרך הגוף">   ↳ תהילים כב, טו — כמים נשפכתי והתפרדו כל עצמותי</option>
+<option data-verse="כלו בדמעות עיני חמרמרו מעי" data-source="איכה ב, יא" value="גוף האדם — רגשות דרך הגוף">   ↳ איכה ב, יא — כלו בדמעות עיני חמרמרו מעי</option>
+</optgroup>
+<optgroup label="── עולם הטבע (נושא 2) ──">
 <option value="טבע — מים (נהר, ים, גשם, מעיין)">טבע — מים (נהר, ים, גשם, מעיין)</option>
 <option value="טבע — צמחייה (עץ, פרח, שורש, זמורה)">טבע — צמחייה (עץ, פרח, שורש, זמורה)</option>
 <option value="טבע — הרים ומדבר">טבע — הרים ומדבר</option>
 <option value="טבע — רוח, אש, אדמה">טבע — רוח, אש, אדמה</option>
-<option class="ogp" disabled>── עולם החי (נושא 3) ──</option>
+<option data-verse="אהיה כטל לישראל יפרח כשושנה" data-source="הושע יד, ו" value="טבע — צמחייה (עץ, פרח, שורש, זמורה)">   ↳ הושע יד, ו — אהיה כטל לישראל יפרח כשושנה</option>
+<option data-verse="יבש חציר נבל ציץ ודבר אלהינו יקום לעולם" data-source="ישעיהו מ, ח" value="טבע — צמחייה (עץ, פרח, שורש, זמורה)">   ↳ ישעיהו מ, ח — יבש חציר נבל ציץ ודבר אלהינו יקום לעולם</option>
+<option data-verse="והיה כעץ שתול על פלגי מים" data-source="תהילים א, ג" value="טבע — צמחייה (עץ, פרח, שורש, זמורה)">   ↳ תהילים א, ג — והיה כעץ שתול על פלגי מים</option>
+<option data-verse="אני חבצלת השרון שושנת העמקים" data-source="שיר השירים ב, א-ב" value="טבע — צמחייה (עץ, פרח, שורש, זמורה)">   ↳ שיר השירים ב, א-ב — אני חבצלת השרון שושנת העמקים</option>
+<option data-verse="והיה כעץ שתול על מים ועל יובל ישלח שרשיו" data-source="ירמיהו יז, ח" value="טבע — צמחייה (עץ, פרח, שורש, זמורה)">   ↳ ירמיהו יז, ח — והיה כעץ שתול על מים ועל יובל ישלח שרשיו</option>
+</optgroup>
+<optgroup label="── עולם החי (נושא 3) ──">
 <option value="בעלי חיים — טורפים (אריה, דוב, נשר)">בעלי חיים — טורפים (אריה, דוב, נשר)</option>
 <option value="בעלי חיים — נטרפים (כבש, יונה, צבי)">בעלי חיים — נטרפים (כבש, יונה, צבי)</option>
 <option value="בעלי חיים — שרצים ורמשים (תולעת, נחש)">בעלי חיים — שרצים ורמשים (תולעת, נחש)</option>
-<option class="ogp" disabled>── אור וחושך, ראייה ועיוורון (נושא 4) ──</option>
+<option data-verse="ואהי להם כמו שחל כנמר על דרך אשור. אפגשם כדוב שכול" data-source="הושע יג, ז-ח" value="בעלי חיים — טורפים (אריה, דוב, נשר)">   ↳ הושע יג, ז-ח — ואהי להם כמו שחל כנמר על דרך אשור</option>
+<option data-verse="כאיל תערוג על אפיקי מים כן נפשי תערוג אליך אלהים" data-source="תהילים מב, ב" value="בעלי חיים — נטרפים (כבש, יונה, צבי)">   ↳ תהילים מב, ב — כאיל תערוג על אפיקי מים</option>
+<option data-verse="לך אל נמלה עצל ראה דרכיה וחכם" data-source="משלי ו, ו" value="בעלי חיים — שרצים ורמשים (תולעת, נחש)">   ↳ משלי ו, ו — לך אל נמלה עצל ראה דרכיה וחכם</option>
+<option data-verse="כצפרים עפות כן יגן ה׳ צבאות על ירושלם" data-source="ישעיהו לא, ה" value="בעלי חיים — נטרפים (כבש, יונה, צבי)">   ↳ ישעיהו לא, ה — כצפרים עפות כן יגן ה׳ צבאות על ירושלם</option>
+<option data-verse="אחזו לנו שועלים שועלים קטנים מחבלים כרמים" data-source="שיר השירים ב, טו" value="בעלי חיים — טורפים (אריה, דוב, נשר)">   ↳ שיר השירים ב, טו — אחזו לנו שועלים שועלים קטנים מחבלים כרמים</option>
+</optgroup>
+<optgroup label="── אור וחושך, ראייה ועיוורון (נושא 4) ──">
 <option value="אור — כידיעה, צדקה, נוכחות אלוהית">אור — כידיעה, צדקה, נוכחות אלוהית</option>
 <option value="חושך — סכנה, מוות, גלות">חושך — סכנה, מוות, גלות</option>
 <option value="ראייה ועיוורון — הבנה וסירוב">ראייה ועיוורון — הבנה וסירוב</option>
-<option class="ogp" disabled>── מרחב: שערים, חומות, פנים וחוץ (נושא 5) ──</option>
+<option data-verse="העם ההלכים בחשך ראו אור גדול" data-source="ישעיהו ט, א" value="אור — כידיעה, צדקה, נוכחות אלוהית">   ↳ ישעיהו ט, א — העם ההלכים בחשך ראו אור גדול</option>
+<option data-verse="ה׳ אורי וישעי ממי אירא" data-source="תהילים כז, א" value="אור — כידיעה, צדקה, נוכחות אלוהית">   ↳ תהילים כז, א — ה׳ אורי וישעי ממי אירא</option>
+<option data-verse="אלך ולא אשוב אל ארץ חשך וצלמות" data-source="איוב י, כא-כב" value="חושך — סכנה, מוות, גלות">   ↳ איוב י, כא-כב — אלך ולא אשוב אל ארץ חשך וצלמות</option>
+<option data-verse="לפקח עינים עיוורות להוציא ממסגר אסיר" data-source="ישעיהו מב, ז" value="ראייה ועיוורון — הבנה וסירוב">   ↳ ישעיהו מב, ז — לפקח עינים עיוורות להוציא ממסגר אסיר</option>
+<option data-verse="כי עמך מקור חיים באורך נראה אור" data-source="תהילים לו, י" value="אור — כידיעה, צדקה, נוכחות אלוהית">   ↳ תהילים לו, י — כי עמך מקור חיים באורך נראה אור</option>
+</optgroup>
+<optgroup label="── מרחב: שערים, חומות, פנים וחוץ (נושא 5) ──">
 <option value="מרחב — שערים וחומות (קודש/חול)">מרחב — שערים וחומות (קודש/חול)</option>
 <option value="מרחב — דרך ונתיב">מרחב — דרך ונתיב</option>
 <option value="מרחב — סף, דלת, פנים וחוץ">מרחב — סף, דלת, פנים וחוץ</option>
 <option value="מרחב — עיר ומדבר, שייכות וגלות">מרחב — עיר ומדבר, שייכות וגלות</option>
-<option class="ogp" disabled>── דימויי האל (נושא 6) ──</option>
+<option data-verse="אבן מאסו הבונים היתה לראש פינה" data-source="תהילים קיח, כב" value="מרחב — שערים וחומות (קודש/חול)">   ↳ תהילים קיח, כב — אבן מאסו הבונים היתה לראש פינה</option>
+<option data-verse="גם כי אלך בגיא צלמות לא אירא רע" data-source="תהילים כג, ד" value="מרחב — דרך ונתיב">   ↳ תהילים כג, ד — גם כי אלך בגיא צלמות לא אירא רע</option>
+<option data-verse="כל גיא ינשא וכל הר וגבעה ישפלו" data-source="ישעיהו מ, ד" value="מרחב — דרך ונתיב">   ↳ ישעיהו מ, ד — כל גיא ינשא וכל הר וגבעה ישפלו</option>
+<option data-verse="ממעמקים קראתיך ה׳" data-source="תהילים קל, א" value="מרחב — סף, דלת, פנים וחוץ">   ↳ תהילים קל, א — ממעמקים קראתיך ה׳</option>
+<option data-verse="לקצבי הרים ירדתי הארץ בריחיה בעדי לעולם" data-source="יונה ב, ז" value="מרחב — סף, דלת, פנים וחוץ">   ↳ יונה ב, ז — לקצבי הרים ירדתי הארץ בריחיה בעדי לעולם</option>
+</optgroup>
+<optgroup label="── דימויי האל (נושא 6) ──">
 <option value="האל כמלך — ריבונות ושלטון">האל כמלך — ריבונות ושלטון</option>
 <option value="האל כלוחם — מלחמה וצבא">האל כלוחם — מלחמה וצבא</option>
 <option value="האל כרועה — דאגה והנהגה">האל כרועה — דאגה והנהגה</option>
 <option value="האל כאב/אם — קרבה ורחמים">האל כאב/אם — קרבה ורחמים</option>
-<option class="ogp" disabled>── קטגוריות נוספות ──</option>
+<option data-verse="ה׳ רועי לא אחסר בנאות דשא ירביצני" data-source="תהילים כג, א-ב" value="האל כרועה — דאגה והנהגה">   ↳ תהילים כג, א-ב — ה׳ רועי לא אחסר בנאות דשא ירביצני</option>
+<option data-verse="כי אתה אבינו כי אברהם לא ידענו" data-source="ישעיהו סג, טז" value="האל כאב/אם — קרבה ורחמים">   ↳ ישעיהו סג, טז — כי אתה אבינו כי אברהם לא ידענו</option>
+<option data-verse="ה׳ איש מלחמה ה׳ שמו" data-source="שמות טו, ג" value="האל כלוחם — מלחמה וצבא">   ↳ שמות טו, ג — ה׳ איש מלחמה ה׳ שמו</option>
+<option data-verse="כי מלך כל הארץ אלהים" data-source="תהילים מז, ח" value="האל כמלך — ריבונות ושלטון">   ↳ תהילים מז, ח — כי מלך כל הארץ אלהים</option>
+<option data-verse="כי נער ישראל ואוהבהו וממצרים קראתי לבני" data-source="הושע יא, א" value="האל כאב/אם — קרבה ורחמים">   ↳ הושע יא, א — כי נער ישראל ואוהבהו וממצרים קראתי לבני</option>
+</optgroup>
+<optgroup label="── קטגוריות נוספות ──">
 <option value="משפט ודין">משפט ודין</option>
 <option value="אוכל ושתייה">אוכל ושתייה</option>
 <option value="מוזיקה ושירה">מוזיקה ושירה</option>
@@ -773,6 +927,7 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 <option value="מחלה וריפוי">מחלה וריפוי</option>
 <option value="קוסמולוגיה">קוסמולוגיה</option>
 <option value="אחר">אחר (פרטו בהערות)</option>
+</optgroup>
 </select></div>
 <div class="fg"><label>הפסוק (ציטוט מלא)</label><textarea data-field="verse" placeholder='לדוגמה: "ה׳ רֹעִי לֹא אֶחְסָר"'></textarea></div>
 <div class="fg"><label>מקור (ספר, פרק, פסוק)</label><input type="text" data-field="source" placeholder="לדוגמה: תהלים כ״ג, א׳"></div>
@@ -1196,6 +1351,13 @@ if(a.url){html+='<a href="'+a.url+'" target="_blank" rel="noopener" style="font-
 html+='<a href="https://drive.google.com/drive/folders/1Ax9uQ59WZKVTMdeS7ARynqB0ItkZ0puU" target="_blank" rel="noopener" style="font-size:.78rem;color:var(--p);text-decoration:none;display:inline-flex;align-items:center;gap:.2rem">📁 תיקיית מאמרים</a>';
 html+='</div></div>';
 });
+if(typeof articleQuizzes!=='undefined'&&articleQuizzes[topic]){
+html+='<div style="margin-top:1rem;padding:1rem;background:rgba(74,140,111,.08);border-radius:10px;border:1px solid rgba(74,140,111,.2);text-align:center">';
+html+='<p style="font-size:.88rem;font-weight:600;color:var(--p);margin-bottom:.5rem">📝 מאמר חובה: '+articleQuizzes[topic].article+'</p>';
+html+='<p style="font-size:.82rem;color:var(--tl);margin-bottom:.8rem">קראו את המאמר ולאחר מכן עברו את המבחן:</p>';
+html+='<button class="btn bp" onclick="openArticleQuiz(\''+topic.replace(/'/g,"\\'")+'\');" style="padding:.5rem 1.5rem;font-size:.88rem">מבחן על המאמר</button>';
+html+='</div>';
+}
 panel.innerHTML=html;
 }
 
@@ -1304,4 +1466,161 @@ function presNav(dir){presIdx=Math.max(0,Math.min(presData.length-1,presIdx+dir)
 function presKeys(e){if(e.key==='ArrowLeft')presNav(1);if(e.key==='ArrowRight')presNav(-1);if(e.key==='Escape')closePresentation()}
 function renderSlide(){var s=presData[presIdx];document.getElementById('presSlide').innerHTML='<span class="slide-num">'+( presIdx+1)+' / '+presData.length+'</span><h2>'+s.title+'</h2>'+s.content;document.getElementById('presCounter').textContent=(presIdx+1)+' / '+presData.length;var dots=document.getElementById('presDots');var h='';for(var i=0;i<presData.length;i++){h+='<span class="pres-dot'+(i===presIdx?' active':'')+'" onclick="presIdx='+i+';renderSlide()"></span>'}dots.innerHTML=h}
 </script>
-<div class="vld-modal" id="vldM" onclick="if(event.target===this)closeVld()"><div class="vld-box" id="vldBox"></div></div></body></html>
+<div class="vld-modal" id="vldM" onclick="if(event.target===this)closeVld()"><div class="vld-box" id="vldBox"></div></div>
+
+<!-- ARTICLE QUIZ MODAL -->
+<div class="quiz-modal-ov" id="articleQuizModal" onclick="if(event.target===this)closeArticleQuiz()">
+<div class="quiz-modal-box">
+<button class="qm-close" onclick="closeArticleQuiz()">&#10005;</button>
+<div id="articleQuizContent"></div>
+</div>
+</div>
+
+<script>
+/* ═══ INTRO QUIZ ═══ */
+const introAnswers={iq1:'b',iq2:'c',iq3:'b',iq4:'b',iq5:'b',iq6:'b',iq7:'b',iq8:'a',iq9:'b',iq10:'b'};
+function checkIntroQuiz(){
+var score=0,total=10;
+for(var i=1;i<=total;i++){
+var name='iq'+i;var correct=introAnswers[name];
+var qDiv=document.getElementById(name);
+var labels=qDiv.querySelectorAll('label');
+var selected=qDiv.querySelector('input[type=radio]:checked');
+labels.forEach(function(lb){lb.classList.remove('correct','wrong')});
+if(selected){
+var val=selected.value;
+if(val===correct){score++;selected.parentElement.classList.add('correct')}
+else{selected.parentElement.classList.add('wrong');labels.forEach(function(lb){var inp=lb.querySelector('input');if(inp&&inp.value===correct)lb.classList.add('correct')})}
+}else{labels.forEach(function(lb){var inp=lb.querySelector('input');if(inp&&inp.value===correct)lb.classList.add('correct')})}
+qDiv.querySelector('.explanation').style.display='block';
+}
+var rd=document.getElementById('introQuizResult');
+if(score>=7){rd.innerHTML='<div class="quiz-result pass">🎉 ציון: '+score+'/'+total+' — עברתם בהצלחה! אפשר להתחיל בניתוח.</div>'}
+else{rd.innerHTML='<div class="quiz-result fail">ציון: '+score+'/'+total+' — נדרשות לפחות 7 תשובות נכונות. חזרו על החומר ונסו שנית.</div>'}
+rd.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+/* ═══ VERSE AUTO-FILL ═══ */
+function onCategoryChange(sel){
+var opt=sel.options[sel.selectedIndex];
+if(opt&&opt.dataset.verse){
+var verseField=document.querySelector('[data-field="verse"]');
+var sourceField=document.querySelector('[data-field="source"]');
+if(verseField)verseField.value=opt.dataset.verse;
+if(sourceField)sourceField.value=opt.dataset.source;
+if(verseField){verseField.dispatchEvent(new Event('input',{bubbles:true}))}
+if(sourceField){sourceField.dispatchEvent(new Event('input',{bubbles:true}))}
+}
+}
+
+/* ═══ ARTICLE QUIZZES ═══ */
+const articleQuizzes={
+"נושא 1 — גוף האדם כמטפורה":{
+article:"Gillmayr-Bucher, S. (2004). Body Images in the Psalms",
+questions:[
+{q:"מהי הטענה המרכזית של Gillmayr-Bucher לגבי דימויי גוף בתהילים?",opts:["הגוף הוא רק רקע לתיאורים רוחניים","דימויי גוף הם מנגנון מטפורי מרכזי שמעצב את חוויית המתפלל","דימויי גוף מופיעים רק בתהילים ולא בשאר המקרא","הגוף משמש רק למטפורות שליליות"],ans:1,exp:"Gillmayr-Bucher מראה שהגוף האנושי הוא מקור מטפורי מרכזי בתהילים — לא רקע אלא מנגנון פעיל."},
+{q:"כיצד 'עיני ה׳' מתפקד מטפורית לפי הגישה הקוגניטיבית?",opts:["כתיאור מילולי של עיניים אלוהיות","כמיפוי מתחום הגוף האנושי לתחום ההשגחה האלוהית","כקישוט פואטי בלבד","כביטוי שגרתי ללא משמעות מטפורית"],ans:1,exp:"'עיני ה׳' ממפה חוויה גופנית (ראייה) לתחום מופשט (השגחה) — מטפורה מושגית קלאסית."},
+{q:"מה מייחד את השימוש במטפורות גוף בתהילים לעומת ז'אנרים מקראיים אחרים?",opts:["הן מופיעות רק בתהילים","הן משלבות חוויה אישית עם ביטוי תיאולוגי","הן תמיד שליליות","הן רק דימויים, לא מטפורות"],ans:1,exp:"בתהילים, מטפורות הגוף משלבות את החוויה הפיזית-רגשית של המתפלל עם ביטוי תיאולוגי."},
+{q:"מהי 'מטפורת הלב' במקרא?",opts:["תיאור רפואי של הלב","הלב כמרכז רגשי בלבד","הלב כמרכז חשיבה, רגש ורצון — מיפוי מהגוף לנפש","סמל לאהבה רומנטית בלבד"],ans:2,exp:"במקרא הלב הוא מרכז החשיבה, הרגש והרצון — מיפוי מורכב מהגופני לקוגניטיבי-רגשי."},
+{q:"איזה עיקרון מתורת המטפורה המושגית הכי רלוונטי לניתוח דימויי גוף?",opts:["עקרון החד-כיווניות","עקרון ההדגשה וההסתרה","עקרון הגלמה (Embodiment)","עקרון המיזוג"],ans:2,exp:"עקרון הגלמה — מטפורות נובעות מחוויה גופנית. דימויי גוף הם הדוגמה המובהקת ביותר."}
+]},
+"נושא 2 — מטפורות מעולם הטבע":{
+article:"מורג, ש. המטפורה הגדולה — הושע ב:4-17",
+questions:[
+{q:"מהי 'המטפורה הגדולה' שמורג מזהה בהושע ב?",opts:["אלוקים כמלך","ישראל כאישה בוגדת ויחסי אלוקים-ישראל כנישואין","הטבע כמשקף רגשות","הגלות כמסע"],ans:1,exp:"מורג מראה שכל הפרק בנוי על מטפורה אחת גדולה: יחסי אלוקים-ישראל כיחסי בעל-אישה."},
+{q:"כיצד הטבע משמש בהושע ב?",opts:["כרקע סטטי בלבד","כמקור מטפורי — פריחה כברכה, יובש כעונש, גן כאינטימיות","כתיאור מדעי של האקלים","כקישוט פואטי ללא תפקיד"],ans:1,exp:"דימויי הטבע ממפים: פריחה=ברכה, שממה=עונש, גן=אינטימיות — מערכת מיפויים שלמה."},
+{q:"מה קורה ב'דברי הפיוס' (הושע ב, טז-יז)?",opts:["האל מעניש את ישראל","המטפורה מתהפכת — מעונש לחידוש ברית דרך דימויי טבע","ישראל חוזרת לארצה","הנביא מתנבא על החורבן"],ans:1,exp:"דברי הפיוס משתמשים בדימויי טבע (מדבר, כרם, פריחה) כדי לתאר חידוש היחסים."},
+{q:"לפי מורג, מהו היתרון של ניתוח מטפורי על פני ניתוח מילולי בהושע?",opts:["הניתוח המטפורי קצר יותר","הוא חושף את המורכבות הרגשית-תיאולוגית שהניתוח המילולי מפספס","אין יתרון — שניהם שווים","הניתוח המטפורי מדויק יותר היסטורית"],ans:1,exp:"המטפורה חושפת רבדים של כאב, אהבה, ובגידה שהקריאה המילולית אינה מגיעה אליהם."},
+{q:"איזה סוג מטפורה מושגית שולט בהושע ב?",opts:["מטפורה כיוונית (מעלה/מטה)","מטפורה אונטולוגית (רגשות כחומרים)","מטפורה מבנית (יחסים הם נישואין)","מטפורה מרחבית (פנים/חוץ)"],ans:2,exp:"'יחסים הם נישואין' — מטפורה מבנית שבה כל מרכיבי הנישואין ממופים על יחסי אל-עם."}
+]},
+"נושא 3 — מטפורות מעולם החי":{
+article:"פורטי, ט. דימויי חיות בספרות החכמה המקראית",
+questions:[
+{q:"מהי הטענה המרכזית של פורטי לגבי דימויי חיות בספרות החכמה?",opts:["חיות מופיעות רק כתיאור ריאליסטי","דימויי חיות משמשים ככלי מטפורי שיטתי להעברת ערכי חכמה ומוסר","חיות מסמלות תמיד רוע","דימויי חיות הם שריד מפגאניזם"],ans:1,exp:"פורטי מראה שדימויי חיות הם מנגנון פדגוגי — הם ממפים תכונות חיות על התנהגות אנושית רצויה/בלתי-רצויה."},
+{q:"כיצד הנמלה (משלי ו, ו) מתפקדת מטפורית?",opts:["כתיאור זואולוגי מדעי","כמיפוי מתחום עולם החי לתחום ערכי העבודה והחריצות","כסמל לחולשה","כדוגמה למטפורה מתה"],ans:1,exp:"'לך אל נמלה עצל' — מיפוי: תכונות הנמלה (חריצות, תכנון) ממופות על האדם כמודל להתנהגות."},
+{q:"מה ההבדל בין מטפורת חיה 'חיה' ל'מתה' בהקשר של דימויי חיות?",opts:["חיה=חיה אמיתית, מתה=חיה שמתה","חיה=עדיין יוצרת הפתעה ומתח, מתה=הפכה שקופה ושגרתית","חיה=בעל חיים גדול, מתה=בעל חיים קטן","אין הבדל כזה"],ans:1,exp:"'כאיל תערוג' — מטפורה חיה (מפתיעה). 'עז פנים' — מטפורה מתה (כבר לא חושבים על העז)."},
+{q:"מדוע דימויי חיות נפוצים במיוחד בספרות החכמה?",opts:["כי הכותבים חיו בסביבה כפרית","כי ספרות החכמה משתמשת בתצפית על הטבע כמקור לתובנות מוסריות","כי זה היה אופנתי בתקופה","כי התורה אוסרת דימויים אחרים"],ans:1,exp:"ספרות החכמה מבוססת על תצפית — חכמי המקרא למדו מהטבע כלקח חברתי-מוסרי."},
+{q:"כיצד ניתן ליישם את עקרון ההדגשה וההסתרה על 'אפגשם כדוב שכול' (הושע יג)?",opts:["המטפורה מדגישה חיבה ומסתירה כעס","המטפורה מדגישה אלימות הורית כואבת ומסתירה את ההגנה והחמלה","המטפורה מדגישה יופי ומסתירה כיעור","אין כאן מטפורה"],ans:1,exp:"דוב שכול מדגיש: אלימות מתוך כאב, הרס מתוך אובדן. מסתיר: רחמים, הצלה, חמלה — צד אחר של האלוהות."}
+]},
+"נושא 4 — אור וחושך, ראייה ועיוורון":{
+article:"פרי, נ. מטפורות מושגיות כאמצעי שיח בספר איוב",
+questions:[
+{q:"מהי הטענה המרכזית של פרי לגבי מטפורות אור/חושך באיוב?",opts:["הן רק תיאור של מזג אוויר","הן מטפורות מושגיות שמשמשות כאמצעי שיח — כל דובר משתמש בהן אחרת","הן מופיעות רק בנאומי אלוהים","אין מטפורות אור/חושך באיוב"],ans:1,exp:"פרי מראה שאיוב ורעיו משתמשים באותן מטפורות (אור=טוב, חושך=רע) אבל בכיוונים מנוגדים."},
+{q:"כיצד המטפורה 'ראייה=הבנה' מתפקדת בספר איוב?",opts:["איוב רואה את אלוהים פיזית","ראייה ממופה על הבנה — 'פקיחת עיניים'=תובנה, 'עיוורון'=חוסר הבנה","ראייה היא רק מילולית באיוב","הרעים עיוורים פיזית"],ans:1,exp:"המיפוי ראייה→הבנה הוא מטפורה מושגית מרכזית: 'לפקוח עיניים'=להבין, 'חושך'=אי-הבנה."},
+{q:"מהי המטפורה המושגית 'חיים=אור' ומה ההשלכה שלה באיוב?",opts:["אור=שמחה בלבד","חיים ממופים כאור — לידה=זריחה, מוות=חושך, סבל=צללים","אור=חום פיזי","אין קשר בין חיים לאור באיוב"],ans:1,exp:"איוב מקלל את יום לידתו: 'יהי חושך' — ביטול האור=ביטול החיים."},
+{q:"כיצד משתמש איוב במטפורת החושך אחרת מרעיו?",opts:["באותו אופן בדיוק","איוב רואה בחושך מפלט מסבל, רעיו רואים בו עונש","איוב לא משתמש במטפורות","הרעים לא מדברים על חושך"],ans:1,exp:"היפוך מטפורי: לרעים חושך=עונש, לאיוב חושך=מפלט ('לפני שאלך ולא אשוב אל ארץ חושך')."},
+{q:"איזה עקרון מתורת CMT הכי מסביר את הניגוד בין איוב לרעיו?",opts:["חד-כיווניות","חלקיות — כל צד מדגיש היבטים שונים של אותה מטפורה","גלמה","מיזוג"],ans:1,exp:"עקרון החלקיות: אותה מטפורה (אור/חושך) — הרעים מדגישים צדק, איוב מדגיש סבל."}
+]},
+"נושא 5 — מטפורות מרחביות":{
+article:"מטפורה כמודוס לאוריינטציה",
+questions:[
+{q:"מהי הטענה המרכזית של המאמר 'מטפורה כמודוס לאוריינטציה'?",opts:["מטפורות מרחביות הן רק תיאורים גיאוגרפיים","המטפורה במקרא משמשת כדרך להתמצא — לא רק בעולם הפיזי אלא במרחב הרוחני והמוסרי","מטפורות מרחביות לא קיימות במקרא","כל המטפורות הן מרחביות"],ans:1,exp:"המאמר מציע שמטפורה=אוריינטציה — היא מסייעת לאדם למקם את עצמו ביחס לאל, לחברה, ולעולם."},
+{q:"כיצד 'מעלה=חיובי' ו'מטה=שלילי' מתבטאים במקרא?",opts:["רק בתיאורי הרים","'ממעמקים קראתיך'=מצוקה, 'ירום לבבך'=גאווה/עוצמה — מיפוי מרחבי שיטתי","רק בספר תהילים","אין דפוס כזה במקרא"],ans:1,exp:"סכמת מעלה/מטה: מעלה=קדושה, כבוד, חיים. מטה=שאול, בושה, מוות. עקבי לאורך המקרא."},
+{q:"מהי 'סכמת הנתיב' וכיצד היא פועלת במקרא?",opts:["נתיב=כביש פיזי בלבד","מוצא→דרך→יעד ממופים על חיים: בחירות=צמתים, חטא=סטייה, תשובה=חזרה לדרך","נתיב=נהר","סכמת הנתיב לא רלוונטית למקרא"],ans:1,exp:"'הודיעני ה׳ דרכך' — הדרך=החיים, הליכה=התנהגות, סטייה=חטא. סכמת נתיב קלאסית."},
+{q:"מהי מטפורת 'פנים/חוץ' (סכמת מכל) במקרא?",opts:["תיאור של בתים","הגוף/הנפש כמכל — רגשות 'בתוכנו', חטא 'נכנס', טהרה 'יוצאת'","רק מתייחס לבית המקדש","אין מטפורות מכל במקרא"],ans:1,exp:"'שפכי כמים לבך' — הלב כמכל, רגשות כנוזלים בתוכו. סכמת פנים/חוץ בסיסית."},
+{q:"מדוע מטפורות מרחביות נחשבות 'בסיסיות' בתורת CMT?",opts:["כי הן קלות להבנה","כי הן נובעות מחוויה גופנית ראשונית — תינוק חווה מעלה/מטה, פנים/חוץ לפני שהוא חווה מושגים מופשטים","כי הן הכי עתיקות","כי לייקוף היה גיאוגרף"],ans:1,exp:"עקרון הגלמה: חוויות מרחביות הן הראשונות שתינוק חווה → הן הבסיס לכל החשיבה המטפורית."}
+]},
+"נושא 6 — אלוקים כמלך, לוחם, רועה ואב":{
+article:"Van Wolde, E. (2020). Metaphors in Psalm 22",
+questions:[
+{q:"מהי הגישה של Van Wolde לניתוח מטפורות במזמור כ״ב?",opts:["ניתוח מילולי בלבד","שילוב CMT עם תורת המטפורה המכוונת — זיהוי מטפורות שגרתיות ומכוונות","ניתוח היסטורי בלבד","ניתוח ספרותי ללא תורת המטפורה"],ans:1,exp:"Van Wolde משלבת שתי גישות: CMT לזיהוי מיפויים + מטפורה מכוונת להבחנה בין שגרתי למודע."},
+{q:"כיצד אלוקים מתואר מטפורית במזמור כ״ב?",opts:["רק כמלך","רק כרועה","בדימויים מגוונים ומנוגדים — נוכח/נעדר, מושיע/מרוחק","רק כלוחם"],ans:2,exp:"המתח המרכזי: אלוקים שהיה רועה ומושיע ('בך בטחו') עכשיו נעדר ('למה עזבתני') — מורכבות מטפורית."},
+{q:"מהי רשת מטפורות (network) לפי Van Wolde?",opts:["קישור בין מטפורות באינטרנט","מערכת של מטפורות הקשורות זו לזו ופועלות יחד ליצירת משמעות מורכבת","רשימה של כל המטפורות במקרא","שיטת סיווג אלפביתית"],ans:1,exp:"Van Wolde מראה שמטפורות לא פועלות בבידוד — הן יוצרות רשת שבה כל מטפורה מחזקת או סותרת את האחרות."},
+{q:"מהו ההבדל בין מטפורה שגרתית למכוונת במזמור כ״ב?",opts:["שגרתית=קצרה, מכוונת=ארוכה","שגרתית=אוטומטית (יד ה׳), מכוונת=הדובר רוצה שנחשוב דרך התמונה (כלב, אריה, תולעת)","אין הבדל","שגרתית=טובה, מכוונת=רעה"],ans:1,exp:"'יד ה׳'=שגרתית (לא חושבים על יד). 'אני תולעת ולא איש'=מכוונת (הדובר רוצה שנדמיין תולעת)."},
+{q:"מה מלמד מזמור כ״ב על דימויי אלוקים במקרא?",opts:["שאלוקים תמיד חיובי","שאותו טקסט יכול להכיל דימויים מנוגדים של אלוקים — והמתח ביניהם הוא חלק מהמשמעות","שדימויי אלוקים לא משתנים","שאין מטפורות על אלוקים"],ans:1,exp:"המזמור מראה שהמתח בין 'אלי למה עזבתני' ל'הושיעני' הוא עצמו המשמעות — לא סתירה אלא עומק."}
+]}
+};
+
+function openArticleQuiz(topic){
+var quiz=articleQuizzes[topic];
+if(!quiz)return;
+var h='<h2 style="color:var(--p);margin-bottom:.5rem;font-size:1.3rem">📝 מבחן על המאמר</h2>';
+h+='<p style="color:var(--tl);font-size:.88rem;margin-bottom:.3rem"><strong>'+quiz.article+'</strong></p>';
+h+='<p style="color:var(--tl);font-size:.82rem;margin-bottom:1.5rem">ענו על 5 השאלות. נדרשות לפחות 4 תשובות נכונות (80%) כדי לעבור.</p>';
+quiz.questions.forEach(function(q,i){
+var qid='aq_'+i;
+h+='<div class="quiz-q" id="'+qid+'">';
+h+='<h4>'+(i+1)+'. '+q.q+'</h4>';
+q.opts.forEach(function(o,j){
+h+='<label><input type="radio" name="'+qid+'" value="'+j+'"> '+o+'</label>';
+});
+h+='<div class="explanation">'+q.exp+'</div>';
+h+='</div>';
+});
+h+='<div style="text-align:center;margin-top:1.5rem"><button class="btn bp" onclick="checkArticleQuiz(\''+topic.replace(/'/g,"\\'")+'\')" style="padding:.7rem 2rem;font-size:1rem">בדיקת תשובות</button></div>';
+h+='<div id="articleQuizResult"></div>';
+document.getElementById('articleQuizContent').innerHTML=h;
+document.getElementById('articleQuizModal').classList.add('show');
+document.body.style.overflow='hidden';
+}
+
+function closeArticleQuiz(){
+document.getElementById('articleQuizModal').classList.remove('show');
+document.body.style.overflow='';
+}
+
+function checkArticleQuiz(topic){
+var quiz=articleQuizzes[topic];
+if(!quiz)return;
+var score=0,total=quiz.questions.length;
+quiz.questions.forEach(function(q,i){
+var qid='aq_'+i;
+var qDiv=document.getElementById(qid);
+var labels=qDiv.querySelectorAll('label');
+var selected=qDiv.querySelector('input[type=radio]:checked');
+labels.forEach(function(lb){lb.classList.remove('correct','wrong')});
+if(selected){
+var val=parseInt(selected.value);
+if(val===q.ans){score++;selected.parentElement.classList.add('correct')}
+else{selected.parentElement.classList.add('wrong');labels.forEach(function(lb){var inp=lb.querySelector('input');if(inp&&parseInt(inp.value)===q.ans)lb.classList.add('correct')})}
+}else{labels.forEach(function(lb){var inp=lb.querySelector('input');if(inp&&parseInt(inp.value)===q.ans)lb.classList.add('correct')})}
+qDiv.querySelector('.explanation').style.display='block';
+});
+var rd=document.getElementById('articleQuizResult');
+var pass=score>=4;
+if(pass){rd.innerHTML='<div class="quiz-result pass">🎉 ציון: '+score+'/'+total+' — עברתם בהצלחה!</div>'}
+else{rd.innerHTML='<div class="quiz-result fail">ציון: '+score+'/'+total+' — נדרשות לפחות 4 תשובות נכונות. חזרו על המאמר ונסו שנית.</div>'}
+rd.scrollIntoView({behavior:'smooth',block:'center'});
+}
+</script>
+</body></html>
