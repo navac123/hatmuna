@@ -847,75 +847,45 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 <div id="appWrap" role="main">
 <header class="hdr" role="banner"><a href="guide.html" style="position:absolute;top:1rem;left:1.5rem;color:rgba(255,255,255,.6);font-size:.8rem;text-decoration:none;z-index:2;display:flex;align-items:center;gap:.3rem" target="_blank">📖 מדריך לסטודנט</a><h1>התמונה הטמונה</h1><div class="sub">כלי ניתוח מטפורי באמצעות בינה מלאכותית</div><div class="hdr-line"></div></header>
 <div class="sbar"><div><label>שם הסטודנט/ית:</label><input type="text" id="studentName" data-field="studentName" placeholder="שם מלא"></div>
-<div><label>נושא:</label><select id="productNum" data-field="productNum" onchange="showTopicArticles()"><option value="נושא 1 — גוף האדם כמטפורה">נושא 1 — גוף האדם כמטפורה</option><option value="נושא 2 — מטפורות מעולם הטבע">נושא 2 — מטפורות מעולם הטבע</option><option value="נושא 3 — מטפורות מעולם החי">נושא 3 — מטפורות מעולם החי</option><option value="נושא 4 — אור וחושך, ראייה ועיוורון">נושא 4 — אור וחושך, ראייה ועיוורון</option><option value="נושא 5 — מטפורות מרחביות">נושא 5 — מטפורות מרחביות</option><option value="נושא 6 — אלוקים כמלך, לוחם, רועה ואב">נושא 6 — אלוקים כמלך, לוחם, רועה ואב</option></select></div>
+<div><label>נושא:</label><select id="productNum" data-field="productNum" onchange="showTopicArticles();showVersesSuggestions()"><option value="נושא 1 — גוף האדם כמטפורה">נושא 1 — גוף האדם כמטפורה</option><option value="נושא 2 — מטפורות מעולם הטבע">נושא 2 — מטפורות מעולם הטבע</option><option value="נושא 3 — מטפורות מעולם החי">נושא 3 — מטפורות מעולם החי</option><option value="נושא 4 — אור וחושך, ראייה ועיוורון">נושא 4 — אור וחושך, ראייה ועיוורון</option><option value="נושא 5 — מטפורות מרחביות">נושא 5 — מטפורות מרחביות</option><option value="נושא 6 — אלוקים כמלך, לוחם, רועה ואב">נושא 6 — אלוקים כמלך, לוחם, רועה ואב</option></select></div>
 <div><button class="btn bs" onclick="saveL()" style="font-size:.82rem;padding:.4rem .8rem">💾 שמירה</button> <button class="btn bs" onclick="loadL()" style="font-size:.82rem;padding:.4rem .8rem">📂 טעינה</button></div></div>
 <div class="pcon" role="navigation"><div class="snav" id="snav"></div><div class="opr"><span>שלמות:</span><div class="pbg"><div class="pfl" id="pfl"></div></div><span id="ppc">0%</span><button onclick="backToIntro()" style="background:none;border:none;color:var(--tl);font-size:.78rem;cursor:pointer;font-family:'Heebo',sans-serif;text-decoration:underline;margin-right:.8rem;white-space:nowrap" title="חזרה ליחידת המבוא">→ חזרה למבוא</button></div></div>
 <div class="mc">
 <!-- S1 --><div class="ss act" id="s1"><div class="sc"><h2 class="st"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span> שלב 1 — בחירת הפסוק והמטפורה</h2><p class="sd">בחרו פסוק מקראי המכיל מטפורה, וציינו את הקטגוריה ואת הסיבה לבחירתכם.</p>
 <div class="fg"><label>קטגוריית מטפורה</label>
-<select data-field="category" onchange="onCategoryChange(this)"><option value="">— בחרו קטגוריה —</option>
+<select data-field="category"><option value="">— בחרו קטגוריה —</option>
 <optgroup label="── גוף האדם (נושא 1) ──">
 <option value="גוף האדם — איברים (עין, יד, לב)">גוף האדם — איברים (עין, יד, לב)</option>
 <option value="גוף האדם — רגשות דרך הגוף">גוף האדם — רגשות דרך הגוף</option>
 <option value="גוף האדם — אנתרופומורפיזם">גוף האדם — אנתרופומורפיזם</option>
-<option data-verse="עיני ה׳ אל צדיקים ואזניו אל שוועתם" data-source="תהילים לד, טז" value="גוף האדם — איברים (עין, יד, לב)">   ↳ תהילים לד, טז — עיני ה׳ אל צדיקים ואזניו אל שוועתם</option>
-<option data-verse="נר לרגלי דברך ואור לנתיבתי" data-source="תהילים קיט, קה" value="גוף האדם — איברים (עין, יד, לב)">   ↳ תהילים קיט, קה — נר לרגלי דברך ואור לנתיבתי</option>
-<option data-verse="הן לא קצרה יד ה׳ מהושיע" data-source="ישעיהו נט, א" value="גוף האדם — אנתרופומורפיזם">   ↳ ישעיהו נט, א — הן לא קצרה יד ה׳ מהושיע</option>
-<option data-verse="כמים נשפכתי והתפרדו כל עצמותי" data-source="תהילים כב, טו" value="גוף האדם — רגשות דרך הגוף">   ↳ תהילים כב, טו — כמים נשפכתי והתפרדו כל עצמותי</option>
-<option data-verse="כלו בדמעות עיני חמרמרו מעי" data-source="איכה ב, יא" value="גוף האדם — רגשות דרך הגוף">   ↳ איכה ב, יא — כלו בדמעות עיני חמרמרו מעי</option>
 </optgroup>
 <optgroup label="── עולם הטבע (נושא 2) ──">
 <option value="טבע — מים (נהר, ים, גשם, מעיין)">טבע — מים (נהר, ים, גשם, מעיין)</option>
 <option value="טבע — צמחייה (עץ, פרח, שורש, זמורה)">טבע — צמחייה (עץ, פרח, שורש, זמורה)</option>
 <option value="טבע — הרים ומדבר">טבע — הרים ומדבר</option>
 <option value="טבע — רוח, אש, אדמה">טבע — רוח, אש, אדמה</option>
-<option data-verse="אהיה כטל לישראל יפרח כשושנה" data-source="הושע יד, ו" value="טבע — צמחייה (עץ, פרח, שורש, זמורה)">   ↳ הושע יד, ו — אהיה כטל לישראל יפרח כשושנה</option>
-<option data-verse="יבש חציר נבל ציץ ודבר אלהינו יקום לעולם" data-source="ישעיהו מ, ח" value="טבע — צמחייה (עץ, פרח, שורש, זמורה)">   ↳ ישעיהו מ, ח — יבש חציר נבל ציץ ודבר אלהינו יקום לעולם</option>
-<option data-verse="והיה כעץ שתול על פלגי מים" data-source="תהילים א, ג" value="טבע — צמחייה (עץ, פרח, שורש, זמורה)">   ↳ תהילים א, ג — והיה כעץ שתול על פלגי מים</option>
-<option data-verse="אני חבצלת השרון שושנת העמקים" data-source="שיר השירים ב, א-ב" value="טבע — צמחייה (עץ, פרח, שורש, זמורה)">   ↳ שיר השירים ב, א-ב — אני חבצלת השרון שושנת העמקים</option>
-<option data-verse="והיה כעץ שתול על מים ועל יובל ישלח שרשיו" data-source="ירמיהו יז, ח" value="טבע — צמחייה (עץ, פרח, שורש, זמורה)">   ↳ ירמיהו יז, ח — והיה כעץ שתול על מים ועל יובל ישלח שרשיו</option>
 </optgroup>
 <optgroup label="── עולם החי (נושא 3) ──">
 <option value="בעלי חיים — טורפים (אריה, דוב, נשר)">בעלי חיים — טורפים (אריה, דוב, נשר)</option>
 <option value="בעלי חיים — נטרפים (כבש, יונה, צבי)">בעלי חיים — נטרפים (כבש, יונה, צבי)</option>
 <option value="בעלי חיים — שרצים ורמשים (תולעת, נחש)">בעלי חיים — שרצים ורמשים (תולעת, נחש)</option>
-<option data-verse="ואהי להם כמו שחל כנמר על דרך אשור. אפגשם כדוב שכול" data-source="הושע יג, ז-ח" value="בעלי חיים — טורפים (אריה, דוב, נשר)">   ↳ הושע יג, ז-ח — ואהי להם כמו שחל כנמר על דרך אשור</option>
-<option data-verse="כאיל תערוג על אפיקי מים כן נפשי תערוג אליך אלהים" data-source="תהילים מב, ב" value="בעלי חיים — נטרפים (כבש, יונה, צבי)">   ↳ תהילים מב, ב — כאיל תערוג על אפיקי מים</option>
-<option data-verse="לך אל נמלה עצל ראה דרכיה וחכם" data-source="משלי ו, ו" value="בעלי חיים — שרצים ורמשים (תולעת, נחש)">   ↳ משלי ו, ו — לך אל נמלה עצל ראה דרכיה וחכם</option>
-<option data-verse="כצפרים עפות כן יגן ה׳ צבאות על ירושלם" data-source="ישעיהו לא, ה" value="בעלי חיים — נטרפים (כבש, יונה, צבי)">   ↳ ישעיהו לא, ה — כצפרים עפות כן יגן ה׳ צבאות על ירושלם</option>
-<option data-verse="אחזו לנו שועלים שועלים קטנים מחבלים כרמים" data-source="שיר השירים ב, טו" value="בעלי חיים — טורפים (אריה, דוב, נשר)">   ↳ שיר השירים ב, טו — אחזו לנו שועלים שועלים קטנים מחבלים כרמים</option>
 </optgroup>
 <optgroup label="── אור וחושך, ראייה ועיוורון (נושא 4) ──">
 <option value="אור — כידיעה, צדקה, נוכחות אלוהית">אור — כידיעה, צדקה, נוכחות אלוהית</option>
 <option value="חושך — סכנה, מוות, גלות">חושך — סכנה, מוות, גלות</option>
 <option value="ראייה ועיוורון — הבנה וסירוב">ראייה ועיוורון — הבנה וסירוב</option>
-<option data-verse="העם ההלכים בחשך ראו אור גדול" data-source="ישעיהו ט, א" value="אור — כידיעה, צדקה, נוכחות אלוהית">   ↳ ישעיהו ט, א — העם ההלכים בחשך ראו אור גדול</option>
-<option data-verse="ה׳ אורי וישעי ממי אירא" data-source="תהילים כז, א" value="אור — כידיעה, צדקה, נוכחות אלוהית">   ↳ תהילים כז, א — ה׳ אורי וישעי ממי אירא</option>
-<option data-verse="אלך ולא אשוב אל ארץ חשך וצלמות" data-source="איוב י, כא-כב" value="חושך — סכנה, מוות, גלות">   ↳ איוב י, כא-כב — אלך ולא אשוב אל ארץ חשך וצלמות</option>
-<option data-verse="לפקח עינים עיוורות להוציא ממסגר אסיר" data-source="ישעיהו מב, ז" value="ראייה ועיוורון — הבנה וסירוב">   ↳ ישעיהו מב, ז — לפקח עינים עיוורות להוציא ממסגר אסיר</option>
-<option data-verse="כי עמך מקור חיים באורך נראה אור" data-source="תהילים לו, י" value="אור — כידיעה, צדקה, נוכחות אלוהית">   ↳ תהילים לו, י — כי עמך מקור חיים באורך נראה אור</option>
 </optgroup>
-<optgroup label="── מרחב: שערים, חומות, פנים וחוץ (נושא 5) ──">
+<optgroup label="── מרחב (נושא 5) ──">
 <option value="מרחב — שערים וחומות (קודש/חול)">מרחב — שערים וחומות (קודש/חול)</option>
 <option value="מרחב — דרך ונתיב">מרחב — דרך ונתיב</option>
 <option value="מרחב — סף, דלת, פנים וחוץ">מרחב — סף, דלת, פנים וחוץ</option>
 <option value="מרחב — עיר ומדבר, שייכות וגלות">מרחב — עיר ומדבר, שייכות וגלות</option>
-<option data-verse="אבן מאסו הבונים היתה לראש פינה" data-source="תהילים קיח, כב" value="מרחב — שערים וחומות (קודש/חול)">   ↳ תהילים קיח, כב — אבן מאסו הבונים היתה לראש פינה</option>
-<option data-verse="גם כי אלך בגיא צלמות לא אירא רע" data-source="תהילים כג, ד" value="מרחב — דרך ונתיב">   ↳ תהילים כג, ד — גם כי אלך בגיא צלמות לא אירא רע</option>
-<option data-verse="כל גיא ינשא וכל הר וגבעה ישפלו" data-source="ישעיהו מ, ד" value="מרחב — דרך ונתיב">   ↳ ישעיהו מ, ד — כל גיא ינשא וכל הר וגבעה ישפלו</option>
-<option data-verse="ממעמקים קראתיך ה׳" data-source="תהילים קל, א" value="מרחב — סף, דלת, פנים וחוץ">   ↳ תהילים קל, א — ממעמקים קראתיך ה׳</option>
-<option data-verse="לקצבי הרים ירדתי הארץ בריחיה בעדי לעולם" data-source="יונה ב, ז" value="מרחב — סף, דלת, פנים וחוץ">   ↳ יונה ב, ז — לקצבי הרים ירדתי הארץ בריחיה בעדי לעולם</option>
 </optgroup>
 <optgroup label="── דימויי האל (נושא 6) ──">
 <option value="האל כמלך — ריבונות ושלטון">האל כמלך — ריבונות ושלטון</option>
 <option value="האל כלוחם — מלחמה וצבא">האל כלוחם — מלחמה וצבא</option>
 <option value="האל כרועה — דאגה והנהגה">האל כרועה — דאגה והנהגה</option>
 <option value="האל כאב/אם — קרבה ורחמים">האל כאב/אם — קרבה ורחמים</option>
-<option data-verse="ה׳ רועי לא אחסר בנאות דשא ירביצני" data-source="תהילים כג, א-ב" value="האל כרועה — דאגה והנהגה">   ↳ תהילים כג, א-ב — ה׳ רועי לא אחסר בנאות דשא ירביצני</option>
-<option data-verse="כי אתה אבינו כי אברהם לא ידענו" data-source="ישעיהו סג, טז" value="האל כאב/אם — קרבה ורחמים">   ↳ ישעיהו סג, טז — כי אתה אבינו כי אברהם לא ידענו</option>
-<option data-verse="ה׳ איש מלחמה ה׳ שמו" data-source="שמות טו, ג" value="האל כלוחם — מלחמה וצבא">   ↳ שמות טו, ג — ה׳ איש מלחמה ה׳ שמו</option>
-<option data-verse="כי מלך כל הארץ אלהים" data-source="תהילים מז, ח" value="האל כמלך — ריבונות ושלטון">   ↳ תהילים מז, ח — כי מלך כל הארץ אלהים</option>
-<option data-verse="כי נער ישראל ואוהבהו וממצרים קראתי לבני" data-source="הושע יא, א" value="האל כאב/אם — קרבה ורחמים">   ↳ הושע יא, א — כי נער ישראל ואוהבהו וממצרים קראתי לבני</option>
 </optgroup>
 <optgroup label="── קטגוריות נוספות ──">
 <option value="משפט ודין">משפט ודין</option>
@@ -929,6 +899,8 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 <option value="אחר">אחר (פרטו בהערות)</option>
 </optgroup>
 </select></div>
+<div class="fg" id="versesSuggest" style="display:none"><label>💡 פסוקים מומלצים לנושא זה <span style="font-weight:400;color:var(--tl)">(אופציונלי — בחרו או כתבו פסוק משלכם)</span></label>
+<select id="versePicker" onchange="onVersePick(this)"><option value="">— בחרו פסוק מומלץ או כתבו משלכם למטה —</option></select></div>
 <div class="fg"><label>הפסוק (ציטוט מלא)</label><textarea data-field="verse" placeholder='לדוגמה: "ה׳ רֹעִי לֹא אֶחְסָר"'></textarea></div>
 <div class="fg"><label>מקור (ספר, פרק, פסוק)</label><input type="text" data-field="source" placeholder="לדוגמה: תהלים כ״ג, א׳"></div>
 <div class="fg"><label>מדוע בחרתם בפסוק זה?</label><textarea data-field="whyVerse" placeholder="הסבירו מה מושך אתכם בפסוק ובמטפורה שבו..."></textarea></div>
@@ -1501,16 +1473,67 @@ rd.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
 /* ═══ VERSE AUTO-FILL ═══ */
-function onCategoryChange(sel){
-var opt=sel.options[sel.selectedIndex];
-if(opt&&opt.dataset.verse){
+const suggestedVerses={
+"נושא 1 — גוף האדם כמטפורה":[
+{verse:"עיני ה׳ אל צדיקים ואזניו אל שוועתם",source:"תהילים לד, טז"},
+{verse:"נר לרגלי דברך ואור לנתיבתי",source:"תהילים קיט, קה"},
+{verse:"הן לא קצרה יד ה׳ מהושיע",source:"ישעיהו נט, א"},
+{verse:"כמים נשפכתי והתפרדו כל עצמותי",source:"תהילים כב, טו"},
+{verse:"כלו בדמעות עיני חמרמרו מעי",source:"איכה ב, יא"}],
+"נושא 2 — מטפורות מעולם הטבע":[
+{verse:"אהיה כטל לישראל יפרח כשושנה",source:"הושע יד, ו"},
+{verse:"יבש חציר נבל ציץ ודבר אלהינו יקום לעולם",source:"ישעיהו מ, ח"},
+{verse:"והיה כעץ שתול על פלגי מים",source:"תהילים א, ג"},
+{verse:"אני חבצלת השרון שושנת העמקים",source:"שיר השירים ב, א-ב"},
+{verse:"והיה כעץ שתול על מים ועל יובל ישלח שרשיו",source:"ירמיהו יז, ח"}],
+"נושא 3 — מטפורות מעולם החי":[
+{verse:"ואהי להם כמו שחל כנמר על דרך אשור. אפגשם כדוב שכול",source:"הושע יג, ז-ח"},
+{verse:"כאיל תערוג על אפיקי מים כן נפשי תערוג אליך אלהים",source:"תהילים מב, ב"},
+{verse:"לך אל נמלה עצל ראה דרכיה וחכם",source:"משלי ו, ו"},
+{verse:"כצפרים עפות כן יגן ה׳ צבאות על ירושלם",source:"ישעיהו לא, ה"},
+{verse:"אחזו לנו שועלים שועלים קטנים מחבלים כרמים",source:"שיר השירים ב, טו"}],
+"נושא 4 — אור וחושך, ראייה ועיוורון":[
+{verse:"העם ההלכים בחשך ראו אור גדול",source:"ישעיהו ט, א"},
+{verse:"ה׳ אורי וישעי ממי אירא",source:"תהילים כז, א"},
+{verse:"אלך ולא אשוב אל ארץ חשך וצלמות",source:"איוב י, כא-כב"},
+{verse:"לפקח עינים עיוורות להוציא ממסגר אסיר",source:"ישעיהו מב, ז"},
+{verse:"כי עמך מקור חיים באורך נראה אור",source:"תהילים לו, י"}],
+"נושא 5 — מטפורות מרחביות":[
+{verse:"אבן מאסו הבונים היתה לראש פינה",source:"תהילים קיח, כב"},
+{verse:"גם כי אלך בגיא צלמות לא אירא רע",source:"תהילים כג, ד"},
+{verse:"כל גיא ינשא וכל הר וגבעה ישפלו",source:"ישעיהו מ, ד"},
+{verse:"ממעמקים קראתיך ה׳",source:"תהילים קל, א"},
+{verse:"לקצבי הרים ירדתי הארץ בריחיה בעדי לעולם",source:"יונה ב, ז"}],
+"נושא 6 — אלוקים כמלך, לוחם, רועה ואב":[
+{verse:"ה׳ רועי לא אחסר בנאות דשא ירביצני",source:"תהילים כג, א-ב"},
+{verse:"כי אתה אבינו כי אברהם לא ידענו",source:"ישעיהו סג, טז"},
+{verse:"ה׳ איש מלחמה ה׳ שמו",source:"שמות טו, ג"},
+{verse:"כי מלך כל הארץ אלהים",source:"תהילים מז, ח"},
+{verse:"כי נער ישראל ואוהבהו וממצרים קראתי לבני",source:"הושע יא, א"}]
+};
+function showVersesSuggestions(){
+var topic=document.getElementById('productNum').value;
+var wrap=document.getElementById('versesSuggest');
+var picker=document.getElementById('versePicker');
+var verses=suggestedVerses[topic];
+if(!verses||!verses.length){wrap.style.display='none';return}
+wrap.style.display='';
+picker.innerHTML='<option value="">— בחרו פסוק מומלץ או כתבו משלכם למטה —</option>';
+verses.forEach(function(v,i){
+picker.innerHTML+='<option value="'+i+'">'+v.source+' — «'+v.verse+'»</option>';
+});
+}
+function onVersePick(sel){
+var topic=document.getElementById('productNum').value;
+var verses=suggestedVerses[topic];
+if(!verses||sel.value==='')return;
+var v=verses[parseInt(sel.value)];
 var verseField=document.querySelector('[data-field="verse"]');
 var sourceField=document.querySelector('[data-field="source"]');
-if(verseField)verseField.value=opt.dataset.verse;
-if(sourceField)sourceField.value=opt.dataset.source;
-if(verseField){verseField.dispatchEvent(new Event('input',{bubbles:true}))}
-if(sourceField){sourceField.dispatchEvent(new Event('input',{bubbles:true}))}
-}
+if(verseField)verseField.value=v.verse;
+if(sourceField)sourceField.value=v.source;
+if(verseField)verseField.dispatchEvent(new Event('input',{bubbles:true}));
+if(sourceField)sourceField.dispatchEvent(new Event('input',{bubbles:true}));
 }
 
 /* ═══ ARTICLE QUIZZES ═══ */
