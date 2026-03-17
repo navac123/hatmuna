@@ -903,7 +903,6 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 <select id="versePicker" onchange="onVersePick(this)"><option value="">— בחרו פסוק מומלץ או כתבו משלכם למטה —</option></select></div>
 <div class="fg"><label>הפסוק (ציטוט מלא)</label><textarea data-field="verse" placeholder='לדוגמה: "ה׳ רֹעִי לֹא אֶחְסָר"'></textarea></div>
 <div class="fg"><label>מקור (ספר, פרק, פסוק)</label><input type="text" data-field="source" placeholder="לדוגמה: תהלים כ״ג, א׳"></div>
-<div class="fg"><label>מדוע בחרתם בפסוק זה?</label><textarea data-field="whyVerse" placeholder="הסבירו מה מושך אתכם בפסוק ובמטפורה שבו..."></textarea></div>
 <details class="intro-details" id="topicArticles" style="margin:0 0 1rem 0">
 <summary>📚 מאמרים מומלצים לנושא זה</summary>
 <div class="details-body" id="topicArticlesList" style="font-size:.88rem;line-height:1.9">
@@ -922,20 +921,6 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 <tr><td><input data-mapping="source" placeholder="מרכיב"></td><td class="ac">→</td><td><input data-mapping="target" placeholder="משמעות"></td><td><button class="rrb" onclick="rr(this)">✕</button></td></tr></tbody></table>
 <button class="arb" onclick="ar()">+ הוסיפו שורה</button></div>
 <div class="fg"><label>הסבר המיפוי</label><textarea data-field="mappingExplanation" placeholder="הסבירו את הקשרים..."></textarea></div>
-<!-- ARTICLE UPLOAD -->
-<div class="art-zone">
-<h4><span class="ic" style="width:28px;height:28px"><svg viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span> מאמר אקדמי תיאורטי</h4>
-<p style="font-size:.85rem;color:var(--tl);margin-bottom:.8rem">העלו מאמר אקדמי הקשור למטפורה שבחרתם. צטטו ממנו והסבירו כיצד הוא תומך בניתוח.</p>
-<div class="uz" id="uzArt" role="button" tabindex="0" aria-label="העלאת תמונה" onclick="document.getElementById('fiArt').click()" onkeydown="if(event.key==='Enter')this.click()" style="min-height:60px;padding:1rem">
-<div class="ut" style="font-size:.85rem">לחצו להעלאת מאמר (PDF / תמונה)</div>
-<input type="file" id="fiArt" accept=".pdf,image/*" onchange="handleArt(this)"></div>
-<div id="artFiles"></div>
-<div class="art-cite">
-<div class="fg" style="margin-top:.8rem"><label>הפניה ביבליוגרפית</label><input type="text" data-field="articleRef" placeholder="שם המחבר/ת, שנה, כותרת המאמר, כתב העת..."></div>
-<div class="fg"><label>ציטוט רלוונטי מהמאמר</label><textarea data-field="articleQuote" placeholder='העתיקו ציטוט מדויק מהמאמר שתומך בניתוח המטפורה שלכם. ציינו מספר עמוד.'></textarea></div>
-<div class="fg"><label>כיצד המאמר תומך בניתוח המטפורה?</label><textarea data-field="articleAnalysis" placeholder="הסבירו את הקשר בין המאמר התיאורטי לבין המטפורה שאתם מנתחים..."></textarea></div>
-</div>
-</div>
 </div>
 <div class="nb"><button class="btn bs" onclick="go(1)">→ שלב קודם</button><button class="btn bp" onclick="checkBeforeNext(2,3)">שלב הבא ←</button></div></div>
 <!-- S3 --><div class="ss" id="s3"><div class="sc"><h2 class="st"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span> שלב 3 — בניית הפרומפט</h2><p class="sd">בנו פרומפט לכלי יצירת התמונה שתייצג את המטפורה.</p>
@@ -1199,10 +1184,6 @@ let _dbT;function _dbUp(){clearTimeout(_dbT);_dbT=setTimeout(()=>{if(cs===3)upp(
 document.addEventListener('input',_dbUp);document.addEventListener('change',()=>{if(cs===3)upp();up()});
 function hu(inp,zid,key){if(!inp.files[0])return;const r=new FileReader();r.onload=e=>{id[key]=e.target.result;const z=document.getElementById(zid);z.classList.add('hi');z.innerHTML=`<img src="${e.target.result}"><input type="file" id="${inp.id}" accept="image/*" onchange="hu(this,'${zid}','${key}')" style="display:none">`;up();showT('תמונה הועלתה')};r.readAsDataURL(inp.files[0])}
 function hmu(inp,zid){if(!inp.files.length)return;id.ex=[];let l=0;const z=document.getElementById(zid);Array.from(inp.files).forEach(f=>{const r=new FileReader();r.onload=e=>{id.ex.push(e.target.result);l++;if(l===inp.files.length){z.classList.add('hi');z.innerHTML=id.ex.map(s=>`<img src="${s}" style="max-width:150px;margin:4px;border-radius:6px">`).join('')+`<input type="file" id="${inp.id}" accept="image/*" multiple onchange="hmu(this,'${zid}')" style="display:none">`;showT(l+' תמונות הועלו')}};r.readAsDataURL(f)})}
-/* ARTICLE UPLOAD */
-function handleArt(inp){if(!inp.files[0])return;const f=inp.files[0];const r=new FileReader();r.onload=e=>{id.articles.push({name:f.name,size:f.size,data:e.target.result});renderArts();showT('מאמר הועלה: '+f.name)};r.readAsDataURL(f)}
-function renderArts(){const c=document.getElementById('artFiles');c.innerHTML=id.articles.map((a,i)=>`<div class="art-file"><span class="ic" style="width:24px;height:24px"><svg viewBox="0 0 24 24" style="width:12px;height:12px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><span class="af-name">${eh(a.name)}</span><span style="color:var(--tl);font-size:.78rem">${(a.size/1024).toFixed(0)} KB</span><span class="af-remove" onclick="removeArt(${i})">✕</span></div>`).join('')}
-function removeArt(i){id.articles.splice(i,1);renderArts()}
 function gf(n){const e=document.querySelector(`[data-field="${n}"]`);return e?(e.value||'').trim():''}
 function gm(){const r=[];document.querySelectorAll('#mtbl tbody tr').forEach(tr=>{const s=tr.querySelector('[data-mapping="source"]').value.trim(),t=tr.querySelector('[data-mapping="target"]').value.trim();if(s||t)r.push({source:s,target:t})});return r}
 function gr(n){const e=document.querySelector(`input[name="${n}"]:checked`);return e?e.value:''}
@@ -1213,7 +1194,7 @@ if(d.artStyle){const r=document.querySelector(`input[name="artStyle"][value="${d
 if(d.aiTool){const r=document.querySelector(`input[name="aiTool"][value="${d.aiTool}"]`);if(r)r.checked=true}
 if(d.imageData){id=d.imageData;if(!id.articles)id.articles=[];if(id.image1){const z=document.getElementById('uz1');z.classList.add('hi');z.innerHTML=`<img src="${id.image1}"><input type="file" id="fi1" accept="image/*" onchange="hu(this,'uz1','image1')" style="display:none">`}
 if(id.image2){const z=document.getElementById('uz2');z.classList.add('hi');z.innerHTML=`<img src="${id.image2}"><input type="file" id="fi2" accept="image/*" onchange="hu(this,'uz2','image2')" style="display:none">`}
-renderArts()}up()}
+}up()}
 function eh(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 function saveL(){try{localStorage.setItem('hatmuna_data',JSON.stringify(cd()));showT('נשמר!')}catch(e){showT('שגיאה')}}
 function loadL(){try{const r=localStorage.getItem('hatmuna_data');if(!r){showT('אין נתונים');return}rd(JSON.parse(r));showT('נטען!')}catch(e){showT('שגיאה')}}
@@ -1224,11 +1205,10 @@ function imB(inp){if(!inp.files[0])return;const r=new FileReader();r.onload=e=>{
 function bs(){const d=cd(),now=new Date(),ds=now.toLocaleDateString('he-IL')+', '+now.toLocaleTimeString('he-IL'),{f,t}=gfc(),pct=Math.round(f/t*100);
 const sln=document.querySelector('input[name="artStyle"]:checked+label'),slh=sln?sln.textContent:'—';
 let mh='';const ms=gm();if(ms.length)mh='<table style="width:100%;border-collapse:collapse;margin:.5rem 0"><tr style="background:var(--p);color:#fff"><th style="padding:.4rem">מקור</th><th style="padding:.4rem">→</th><th style="padding:.4rem">יעד</th></tr>'+ms.map(m=>`<tr><td style="border:1px solid #ddd;padding:.4rem">${eh(m.source)}</td><td style="text-align:center;color:var(--a)">→</td><td style="border:1px solid #ddd;padding:.4rem">${eh(m.target)}</td></tr>`).join('')+'</table>';
-let artH='';if(d.articleRef||d.articleQuote||d.articleAnalysis){artH=`<div class="fl"><strong>הפניה ביבליוגרפית:</strong> ${eh(d.articleRef||'—')}</div><div class="fl"><strong>ציטוט:</strong> ${eh(d.articleQuote||'—')}</div><div class="fl"><strong>ניתוח:</strong> ${eh(d.articleAnalysis||'—')}</div>`}
-if(id.articles&&id.articles.length){artH+=id.articles.map(a=>`<div class="fl" style="font-size:.82rem">${eh(a.name)}</div>`).join('')}
+let artH='';if(id.articles&&id.articles.length){artH=id.articles.map(a=>`<div class="fl" style="font-size:.82rem">${eh(a.name)}</div>`).join('')}
 document.getElementById('sumC').innerHTML=`
 <div style="text-align:center;margin-bottom:1.5rem"><h3 style="color:var(--p);font-size:1.4rem">התמונה הטמונה — תוצר ניתוח מטפורי</h3><div style="color:var(--tl);font-size:.9rem">${eh(d.studentName||'—')} | ${eh(d.productNum||'')} | ${ds}</div><div style="margin-top:.5rem;font-size:.88rem;color:var(--a)">שלמות: ${pct}%</div></div>
-<div class="sb"><h4>שלב א׳: בחירת הפסוק</h4><div class="fl"><strong>קטגוריה:</strong> ${eh(d.category||'—')}</div><div class="fl"><strong>הפסוק:</strong> ${eh(d.verse||'—')}</div><div class="fl"><strong>מקור:</strong> ${eh(d.source||'—')}</div><div class="fl"><strong>מדוע:</strong> ${eh(d.whyVerse||'—')}</div></div>
+<div class="sb"><h4>שלב א׳: בחירת הפסוק</h4><div class="fl"><strong>קטגוריה:</strong> ${eh(d.category||'—')}</div><div class="fl"><strong>הפסוק:</strong> ${eh(d.verse||'—')}</div><div class="fl"><strong>מקור:</strong> ${eh(d.source||'—')}</div></div>
 <div class="sb"><h4>שלב ב׳: חשיפת המטפורה</h4><div class="fl"><strong>מקור:</strong> ${eh(d.sourceDomain||'—')} → <strong>יעד:</strong> ${eh(d.targetDomain||'—')}</div><div class="fl"><strong>מטפורה מושגית:</strong> ${eh(d.conceptualMetaphor||'—')}</div>${mh}<div class="fl"><strong>הסבר:</strong> ${eh(d.mappingExplanation||'—')}</div>${artH?'<div style="margin-top:.8rem;padding-top:.8rem;border-top:1px dashed var(--b)"><strong style="color:var(--p)">מאמר אקדמי:</strong></div>'+artH:''}</div>
 <div class="sb"><h4>שלב ג׳: הפרומפט</h4><div class="fl"><strong>סגנון:</strong> ${eh(slh)}</div><div class="pp" style="font-size:.82rem">${eh(document.getElementById('ppv').textContent)}</div></div>
 <div class="sb"><h4>שלב ד׳: תמונה ראשונית</h4><div class="fl"><strong>כלי:</strong> ${eh(d.aiTool||'—')}</div>${id.image1?`<img class="si" src="${id.image1}">`:'<div style="color:var(--tl)">[לא הועלתה]</div>'}${id.ex&&id.ex.length?'<div style="margin:.5rem 0"><strong style="font-size:.88rem">תמונות נוספות:</strong><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:.3rem">'+id.ex.map(s=>`<img src="${s}" style="max-width:200px;border-radius:6px">`).join('')+'</div></div>':''}<div class="fl"><strong>ייצוג:</strong> ${eh(d.imageRepresents||'—')}</div><div class="fl"><strong>הפתעה:</strong> ${eh(d.imageSurprise||'—')}</div></div>
@@ -1267,38 +1247,22 @@ setTimeout(()=>{initNb();updBadge()},100);
 
 const topicArticles={
 "נושא 1 — גוף האדם כמטפורה":[
-{c:"Gillmayr-Bucher, S. (2004). Body Images in the Psalms.",d:"דימויי גוף בתהילים — הגוף האנושי כמקור מטפורי מרכזי בספר תהילים",l:"en",url:"https://scholar.google.com/scholar?q=Gillmayr-Bucher%20Body%20Images%20Psalms%202004"},
-{c:"Van Wolde, E. (2020). A Network of Conventional and Deliberate Metaphors in Psalm 22.",d:"רשת מטפורות מכוונות וקונבנציונליות במזמור כ״ב — ניתוח מעמיק",l:"en",url:"https://scholar.google.com/scholar?q=Van%20Wolde%20Network%20Conventional%20Deliberate%20Metaphors%20Psalm%2022"},
-{c:"Chau, K. (2020). Metonymy: The Forgotten Sibling of Metaphor in Biblical Studies.",d:"מטונימיה — 'האח הנשכח של המטפורה'. איברי גוף כשם הלוואי במקרא",l:"en",url:"https://scholar.google.com/scholar?q=Chau%20Metonymy%20Forgotten%20Sibling%20Metaphor%20Biblical"},
-{c:"קונקרטיזציה של מטפורות ולשון מטפורית בפרשנות המקרא.",d:"כיצד פרשנים הפכו מטפורות גוף לפרשנות מילולית — פנימית וחיצונית",l:"he",url:"https://scholar.google.com/scholar?q=%D7%A7%D7%95%D7%A0%D7%A7%D7%A8%D7%98%D7%99%D7%96%D7%A6%D7%99%D7%94%20%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%95%D7%AA%20%D7%9C%D7%A9%D7%95%D7%9F%20%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%99%D7%AA%20%D7%A4%D7%A8%D7%A9%D7%A0%D7%95%D7%AA%20%D7%94%D7%9E%D7%A7%D7%A8%D7%90"}
+{c:"Gillmayr-Bucher, S. (2004). Body Images in the Psalms.",d:"דימויי גוף בתהילים — הגוף האנושי כמקור מטפורי מרכזי בספר תהילים",l:"en",url:"https://scholar.google.com/scholar?q=Gillmayr-Bucher%20Body%20Images%20Psalms%202004"}
 ],
 "נושא 2 — מטפורות מעולם הטבע":[
-{c:"מורג, ש. המטפורה הגדולה — הושע ב:4-17: דברי הפיוס.",d:"מטפורות טבע מרכזיות ביחסי אלוקים-ישראל בנבואת הושע",l:"he",url:"https://scholar.google.com/scholar?q=%D7%A9%D7%9C%D7%9E%D7%94%20%D7%9E%D7%95%D7%A8%D7%92%20%D7%94%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%94%20%D7%94%D7%92%D7%93%D7%95%D7%9C%D7%94%20%D7%94%D7%95%D7%A9%D7%A2"},
-{c:"Hendel, R. (2019). Life Metaphor Song: Metaphor in the Song of Songs.",d:"חיי המטפורה בשיר השירים — דימויי טבע, גן ופריחה",l:"en",url:"https://scholar.google.com/scholar?q=Hendel%20Life%20Metaphor%20Song%20of%20Songs%202019"},
-{c:"Paul, S. M. A Garden of Love: Biblical Metaphor Studies.",d:"גן אהבה — דימויים מעולם הטבע בשירת האהבה במזרח הקדום ובמקרא",l:"en",url:"https://scholar.google.com/scholar?q=Shalom%20Paul%20Garden%20Love%20Biblical%20Metaphor%20Ancient%20Near%20East"},
-{c:"Forti, T. Bee\x27s Honey: From Realia to Metaphor in Biblical Wisdom Literature.",d:"דבש הדבורים — מריאליה למטפורה בספרות החכמה המקראית",l:"en",url:"https://scholar.google.com/scholar?q=Forti%20Bee%20Honey%20Realia%20Metaphor%20Wisdom%20Literature"},
-{c:"Die Gebruik van die Metafore in Psalm 80 en Johannes 15:1-8.",d:"מטפורת הגפן — מתהילים פ׳ ליוחנן ט״ו: השוואה בין מטפורות טבע",l:"en",url:"https://scholar.google.com/scholar?q=Gebruik%20Metafore%20Psalm%2080%20Johannes%2015"}
+{c:"מורג, ש. המטפורה הגדולה — הושע ב:4-17: דברי הפיוס.",d:"מטפורות טבע מרכזיות ביחסי אלוקים-ישראל בנבואת הושע",l:"he",url:"https://scholar.google.com/scholar?q=%D7%A9%D7%9C%D7%9E%D7%94%20%D7%9E%D7%95%D7%A8%D7%92%20%D7%94%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%94%20%D7%94%D7%92%D7%93%D7%95%D7%9C%D7%94%20%D7%94%D7%95%D7%A9%D7%A2"}
 ],
 "נושא 3 — מטפורות מעולם החי":[
-{c:"פורטי, ט. דימויי חיות בספרות החכמה המקראית. (עבודת מחקר)",d:"עבודה מקיפה על דימויי חיות בספרות החכמה — סקירה שיטתית",l:"he",url:"https://scholar.google.com/scholar?q=%D7%98%D7%95%D7%91%D7%94%20%D7%A4%D7%95%D7%A8%D7%98%D7%99%20%D7%93%D7%99%D7%9E%D7%95%D7%99%20%D7%97%D7%99%D7%95%D7%AA%20%D7%A1%D7%A4%D7%A8%D7%95%D7%AA%20%D7%97%D7%9B%D7%9E%D7%94%20%D7%9E%D7%A7%D7%A8%D7%90%D7%99%D7%AA"},
-{c:"ניתוח מטפורי של השועלים — שיר השירים.",d:"'שועלים קטנים מחבלים כרמים' — עושר סמלי ורבדי משמעות",l:"he",url:"https://scholar.google.com/scholar?q=%D7%A0%D7%99%D7%AA%D7%95%D7%97%20%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%99%20%D7%A9%D7%95%D7%A2%D7%9C%D7%99%D7%9D%20%D7%A7%D7%98%D7%A0%D7%99%D7%9D%20%D7%A9%D7%99%D7%A8%20%D7%94%D7%A9%D7%99%D7%A8%D7%99%D7%9D"},
-{c:"Forti, T. Bee\x27s Honey: From Realia to Metaphor in Biblical Wisdom Literature.",d:"הדבורה — מבעל חיים אמיתי למטפורה בספרות החכמה",l:"en",url:"https://scholar.google.com/scholar?q=Forti%20Bee%20Honey%20Realia%20Metaphor%20Wisdom%20Literature"},
-{c:"Forti, T. Female Images in Wisdom Literature. In: Wiley Blackwell Companion.",d:"דימויים נשיים הקשורים לעולם החי והטבע בספרות החכמה המקראית",l:"en",url:"https://scholar.google.com/scholar?q=Forti%20Female%20Images%20Wisdom%20Literature%20Wiley%20Blackwell"}
+{c:"פורטי, ט. דימויי חיות בספרות החכמה המקראית. (עבודת מחקר)",d:"עבודה מקיפה על דימויי חיות בספרות החכמה — סקירה שיטתית",l:"he",url:"https://scholar.google.com/scholar?q=%D7%98%D7%95%D7%91%D7%94%20%D7%A4%D7%95%D7%A8%D7%98%D7%99%20%D7%93%D7%99%D7%9E%D7%95%D7%99%20%D7%97%D7%99%D7%95%D7%AA%20%D7%A1%D7%A4%D7%A8%D7%95%D7%AA%20%D7%97%D7%9B%D7%9E%D7%94%20%D7%9E%D7%A7%D7%A8%D7%90%D7%99%D7%AA"}
 ],
 "נושא 4 — אור וחושך, ראייה ועיוורון":[
-{c:"פרי, נ. מטפורות מושגיות כאמצעי שיח בספר איוב.",d:"מטפורות אור/חושך וראייה/עיוורון בדו-שיח בין איוב לרעיו",l:"he",url:"https://scholar.google.com/scholar?q=%D7%A0%D7%97%D7%9E%D7%99%D7%AA%20%D7%A4%D7%A8%D7%99%20%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%95%D7%AA%20%D7%9E%D7%95%D7%A9%D7%92%D7%99%D7%95%D7%AA%20%D7%A9%D7%99%D7%97%20%D7%A1%D7%A4%D7%A8%20%D7%90%D7%99%D7%95%D7%91"},
-{c:"ספן, ר. משמעות כפשוטה ומשמעות מטאפורית — משנה הוראה בשירת המקרא.",d:"הבחנה בין מילולי למטפורי — ראייה כהבנה בשירה המקראית",l:"he",url:"https://scholar.google.com/scholar?q=%D7%A8%D7%A4%D7%90%D7%9C%20%D7%A1%D7%A4%D7%9F%20%D7%9E%D7%A9%D7%9E%D7%A2%D7%95%D7%AA%20%D7%9B%D7%A4%D7%A9%D7%95%D7%98%D7%94%20%D7%9E%D7%98%D7%90%D7%A4%D7%95%D7%A8%D7%99%D7%AA%20%D7%A9%D7%99%D7%A8%D7%AA%20%D7%94%D7%9E%D7%A7%D7%A8%D7%90"},
-{c:"Krasovec, J. Double Eternity and Poetic Imagery of Jerusalem.",d:"דימויים פואטיים של ירושלים — אור, חושך ונצחיות כפולה",l:"en",url:"https://scholar.google.com/scholar?q=Krasovec%20Double%20Eternity%20Poetic%20Imagery%20Jerusalem"}
+{c:"פרי, נ. מטפורות מושגיות כאמצעי שיח בספר איוב.",d:"מטפורות אור/חושך וראייה/עיוורון בדו-שיח בין איוב לרעיו",l:"he",url:"https://scholar.google.com/scholar?q=%D7%A0%D7%97%D7%9E%D7%99%D7%AA%20%D7%A4%D7%A8%D7%99%20%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%95%D7%AA%20%D7%9E%D7%95%D7%A9%D7%92%D7%99%D7%95%D7%AA%20%D7%A9%D7%99%D7%97%20%D7%A1%D7%A4%D7%A8%20%D7%90%D7%99%D7%95%D7%91"}
 ],
 "נושא 5 — מטפורות מרחביות":[
-{c:"מטפורה במקרא — שיקול מחודש: מטפורה כמודוס לאוריינטציה.",d:"מאמר מרכזי: המטפורה כדרך להתמצא במרחב — גישה חדשנית למטפורה המקראית",l:"he",url:"https://scholar.google.com/scholar?q=%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%94%20%D7%9E%D7%A7%D7%A8%D7%90%20%D7%A9%D7%99%D7%A7%D7%95%D7%9C%20%D7%9E%D7%97%D7%95%D7%93%D7%A9%20%D7%9E%D7%95%D7%93%D7%95%D7%A1%20%D7%90%D7%95%D7%A8%D7%99%D7%99%D7%A0%D7%98%D7%A6%D7%99%D7%94"},
-{c:"Krasovec, J. Double Eternity and Poetic Imagery of Jerusalem.",d:"ירושלים כמרכז העולם — דימויי מרחב פואטיים ונצחיות",l:"en",url:"https://scholar.google.com/scholar?q=Krasovec%20Double%20Eternity%20Poetic%20Imagery%20Jerusalem"},
-{c:"מורג, ש. המטפורה הגדולה — הושע ב:4-17: דברי הפיוס.",d:"מטפורות מרחביות ביחסי אלוקים-ישראל בנבואת הושע",l:"he",url:"https://scholar.google.com/scholar?q=%D7%A9%D7%9C%D7%9E%D7%94%20%D7%9E%D7%95%D7%A8%D7%92%20%D7%94%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%94%20%D7%94%D7%92%D7%93%D7%95%D7%9C%D7%94%20%D7%94%D7%95%D7%A9%D7%A2"}
+{c:"מטפורה במקרא — שיקול מחודש: מטפורה כמודוס לאוריינטציה.",d:"מאמר מרכזי: המטפורה כדרך להתמצא במרחב — גישה חדשנית למטפורה המקראית",l:"he",url:"https://scholar.google.com/scholar?q=%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%94%20%D7%9E%D7%A7%D7%A8%D7%90%20%D7%A9%D7%99%D7%A7%D7%95%D7%9C%20%D7%9E%D7%97%D7%95%D7%93%D7%A9%20%D7%9E%D7%95%D7%93%D7%95%D7%A1%20%D7%90%D7%95%D7%A8%D7%99%D7%99%D7%A0%D7%98%D7%A6%D7%99%D7%94"}
 ],
 "נושא 6 — אלוקים כמלך, לוחם, רועה ואב":[
-{c:"Van Wolde, E. (2020). A Network of Conventional and Deliberate Metaphors in Psalm 22.",d:"מזמור כ״ב — דימויי אלוקים כרועה ומושיע, מטפורות מכוונות",l:"en",url:"https://scholar.google.com/scholar?q=Van%20Wolde%20Network%20Conventional%20Deliberate%20Metaphors%20Psalm%2022"},
-{c:"Ryliskyte, E. (2017). Metaphor and Analogy in Theology.",d:"מטפורה ואנלוגיה בתיאולוגיה — הבנת שפה על אלוקים",l:"en",url:"https://scholar.google.com/scholar?q=Ryliskyte%20Metaphor%20Analogy%20Theology%202017"},
-{c:"מורג, ש. המטפורה הגדולה — הושע ב:4-17: דברי הפיוס.",d:"אלוקים כבעל, כאב — יחסי קרבה ומתח בנבואת הושע",l:"he",url:"https://scholar.google.com/scholar?q=%D7%A9%D7%9C%D7%9E%D7%94%20%D7%9E%D7%95%D7%A8%D7%92%20%D7%94%D7%9E%D7%98%D7%A4%D7%95%D7%A8%D7%94%20%D7%94%D7%92%D7%93%D7%95%D7%9C%D7%94%20%D7%94%D7%95%D7%A9%D7%A2"}
+{c:"Van Wolde, E. (2020). A Network of Conventional and Deliberate Metaphors in Psalm 22.",d:"מזמור כ״ב — דימויי אלוקים כרועה ומושיע, מטפורות מכוונות",l:"en",url:"https://scholar.google.com/scholar?q=Van%20Wolde%20Network%20Conventional%20Deliberate%20Metaphors%20Psalm%2022"}
 ]
 };
 function showTopicArticles(){
@@ -1335,7 +1299,7 @@ panel.innerHTML=html;
 
 /* VALIDATION SYSTEM */
 const stepFields={
-1:{required:['category','verse','source','whyVerse'],labels:{'category':'קטגוריה/נושא','verse':'פסוק','source':'מקור','whyVerse':'סיבת הבחירה'}},
+1:{required:['category','verse','source'],labels:{'category':'קטגוריה/נושא','verse':'פסוק','source':'מקור'}},
 2:{required:['sourceDomain','targetDomain','conceptualMetaphor','mappingExplanation'],labels:{'sourceDomain':'תחום מקור','targetDomain':'תחום יעד','conceptualMetaphor':'מטפורה מושגית','mappingExplanation':'הסבר המיפוי'},mappings:true,minMappings:2},
 3:{required:['promptSubject','promptElements','promptBackground','promptColors'],labels:{'promptSubject':'נושא','promptElements':'אלמנטים','promptBackground':'רקע','promptColors':'צבעים ואווירה'},radio:'artStyle',radioLabel:'סגנון אמנותי'},
 4:{required:['imageRepresents','imageSurprise','lensInvariance','lensBlending','lensEmbodied','aiRole','executionGap'],labels:{'imageRepresents':'מה התמונה מייצגת','imageSurprise':'מה הפתיע','lensInvariance':'שימור מבנה','lensBlending':'משמעות חדשה','lensEmbodied':'בחירות מרחביות','aiRole':'תפקיד ה-AI','executionGap':'פער הבנה-ביצוע'},radio:'aiTool',radioLabel:'כלי AI',image:'image1',imageLabel:'תמונה ראשונית'},
