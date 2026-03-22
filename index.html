@@ -178,6 +178,12 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 .consent-btn.enabled{opacity:1;pointer-events:auto}
 .consent-btn.enabled:hover{transform:scale(1.03)}
 .consent-box .cb-note{text-align:center;font-size:.78rem;color:var(--tl);margin-top:.8rem}
+.consent-research{background:var(--c);border-radius:8px;padding:.9rem 1rem;margin:.8rem 0;border:1.5px solid var(--b)}
+.consent-research strong{font-size:.88rem;display:block;margin-bottom:.5rem;color:var(--p)}
+.consent-research p{font-size:.84rem;color:var(--tl);margin-bottom:.6rem;line-height:1.6}
+.consent-radio{display:flex;align-items:center;gap:.5rem;margin:.35rem 0;font-size:.87rem;cursor:pointer;padding:.35rem .6rem;border-radius:6px;transition:background .15s}
+.consent-radio:hover{background:rgba(0,0,0,.04)}
+.consent-radio input{accent-color:var(--p);width:16px;height:16px;cursor:pointer}
 
 /* INTRO UNIT */
 
@@ -292,21 +298,21 @@ h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700}
 <!-- CONSENT DIALOG -->
 <div class="consent-ov" id="consentOv">
 <div class="consent-box">
-<h3>הסכמה מדעת — שמירת נתונים</h3>
-<div class="cb-sub">ד״ר נאוה כהן | אוניברסיטת בר-אילן</div>
-<p>אפליקציית <strong>״התמונה הטמונה״</strong> שומרת את התוצרים שלכם (טקסטים, תמונות ופרומפטים) באופן מקומי בדפדפן שלכם, ומאפשרת ייצוא לקובץ.</p>
-<p>המידע הנשמר עשוי לשמש למטרות:</p>
-<div class="cb-list">
-<div>מעקב אחרי ההתקדמות האישית שלכם לאורך התהליך</div>
-<div>ייצוא תוצר סופי (PDF / HTML / JSON) להגשה</div>
-<div>מחקר אקדמי ושיפור הקורס (בצורה אנונימית, ללא פרטים מזהים)</div>
-</div>
+<h3>הסכמה מדעת</h3>
+<div class="cb-sub">התמונה הטמונה | ד״ר נאוה כהן | אוניברסיטת בר-אילן</div>
+<p>אפליקציה זו פותחה על ידי <strong>ד״ר נאוה כהן</strong> במסגרת קורס <strong>התמונה הטמונה</strong> באוניברסיטת בר-אילן. היא שומרת את התוצרים שלכם (טקסטים, תמונות ופרומפטים) באופן מקומי בדפדפן שלכם בלבד.</p>
 <label class="consent-lbl">
-<input type="checkbox" id="consentCb" onchange="document.getElementById('consentBtn').classList.toggle('enabled',this.checked)">
-<span>אני מסכים/ה לשמירת הנתונים שלי כמתואר לעיל, ומבין/ה שאוכל למחוק את הנתונים בכל עת מהדפדפן שלי.</span>
+<input type="checkbox" id="consentCb" onchange="updConsentBtn()">
+<span>אני מסכים/ה שהנתונים יישמרו באופן מקומי בדפדפן שלי בלבד — לא נשלח מידע לשרתים חיצוניים.</span>
 </label>
+<div class="consent-research">
+<strong>השתתפות במחקר</strong>
+<p>האם את/ה מסכים/ה שתגובותיך ישמשו לצורכי מחקר אקדמי? כל הנתונים <strong>אנונימיים לחלוטין</strong> ולא יהיה בהם שימוש אחר.</p>
+<label class="consent-radio"><input type="radio" name="hConsent" value="yes" onchange="updConsentBtn()"> כן, אני מסכים/ה לשימוש לצורכי מחקר</label>
+<label class="consent-radio"><input type="radio" name="hConsent" value="no" onchange="updConsentBtn()"> אני מעדיף/ה לא</label>
+</div>
 <button class="consent-btn" id="consentBtn" onclick="acceptConsent()">אישור והמשך →</button>
-<div class="cb-note">ניתן לחזור ולמחוק את הנתונים דרך הגדרות הדפדפן בכל עת</div>
+<div class="cb-note">בשני המקרים תוכל/י להשתמש באפליקציה במלואה</div>
 </div>
 </div>
 <!-- SPLASH SCREEN -->
@@ -1134,7 +1140,17 @@ const sn=['בחירת פסוק','חשיפת המטפורה','בניית פרומ
 /* SPLASH + LANDING */
 setTimeout(()=>{document.getElementById('splash').classList.add('hide');setTimeout(()=>{document.getElementById('landing').classList.add('show')},800)},2500);
 function startApp(){const consent=localStorage.getItem('hatmuna_consent');if(consent){showIntro()}else{document.getElementById('consentOv').classList.add('show')}}
-function acceptConsent(){localStorage.setItem('hatmuna_consent','1');document.getElementById('consentOv').classList.remove('show');showIntro()}
+function updConsentBtn(){
+  const cb=document.getElementById('consentCb');
+  const r=document.querySelector('input[name="hConsent"]:checked');
+  document.getElementById('consentBtn').classList.toggle('enabled',!!(cb&&cb.checked&&r));
+}
+function acceptConsent(){
+  const r=document.querySelector('input[name="hConsent"]:checked');
+  localStorage.setItem('hatmuna_consent','1');
+  localStorage.setItem('hatmuna_research',r?r.value:'no');
+  document.getElementById('consentOv').classList.remove('show');showIntro();
+}
 function enterApp(){document.getElementById('landing').style.display='none';document.getElementById('appWrap').classList.add('show');document.getElementById('nbFab').style.display='flex';initNav();up();showTopicArticles();try{const r=localStorage.getItem('hatmuna_data');if(r)rd(JSON.parse(r))}catch(e){}}
 function initNav(){const c=document.getElementById('snav');c.innerHTML='';c.setAttribute('role','tablist');c.setAttribute('aria-label','ניווט שלבים');sn.forEach((n,i)=>{const b=document.createElement('button');b.className='sbtn'+(i===0?' act':'');b.setAttribute('data-step',i+1);b.setAttribute('role','tab');b.setAttribute('aria-selected',i===0?'true':'false');b.innerHTML=`<span class="sn">${i+1}</span>${n}`;b.onclick=()=>go(i+1);c.appendChild(b)})}
 function go(n){if(n<1||n>ts)return;trackStep(n);document.querySelectorAll('.ss').forEach(s=>s.classList.remove('act'));document.getElementById('s'+n).classList.add('act');cs=n;usb();up();if(n===7)bs();if(n===3)upp();window.scrollTo({top:0,behavior:'smooth'});as()}
