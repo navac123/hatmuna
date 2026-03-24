@@ -1,0 +1,78 @@
+{
+  "studentName": "רחל לוי",
+  "productNum": "נושא 1 — גוף האדם כמטפורה",
+  "category": "מטפורות גוף בתהילים",
+  "verse": "כִּֽי־אַ֭תָּה קָנִ֣יתָ כִלְיֹתָ֑י תְּ֝סֻכֵּ֗נִי בְּבֶ֣טֶן אִמִּֽי",
+  "source": "תהילים קלט, יג",
+  "sourceDomain": "כליות ובטן האם",
+  "targetDomain": "השגחת האל על האדם מלידה",
+  "conceptualMetaphor": "הגוף הפנימי הוא מקום השגחה אלוהית",
+  "mappingExplanation": "הפסוק משתמש באיברים פנימיים (כליות, בטן) כדי לייצג את הקשר האינטימי בין האל לאדם. הכליות, שנחשבו מקום הרגשות העמוקים בתרבות המקראית, מוצגות כיצירה ישירה של האל — מה שמחזק את הרעיון שהאל מכיר את האדם מבפנים, מהרגע הראשון של קיומו.",
+  "artStyle": "Photorealistic",
+  "promptSubject": "ידיים עוטפות עובר קטן ושביר בתוך אור זהוב רך",
+  "promptElements": "כליות מוארות בפנים, קרני אור יורדות מלמעלה",
+  "promptBackground": "רחם, חמימות, גוונים של זהב וכחול עמוק",
+  "promptColors": "זהב, כחול כהה, לבן רך — תחושה של קדושה ואינטימיות",
+  "promptExtra": "High quality, spiritual, detailed anatomy illustration, ancient Hebrew art style",
+  "aiTool": "Nano Banana (Gemini)",
+  "imageRepresents": "התמונה מייצגת ידיים גדולות (של האל) שעוטפות דמות קטנה וחשופה, המוארת מבפנים. הקרינה הפנימית מסמלת את הכליות שנזכרות בפסוק — המקום שבו מתחיל הקשר בין האדם לבוראו.",
+  "imageSurprise": "הופתעתי לגלות שה-AI בחר לצייר את ה'בטן' כמרחב שמימי ולא רחם ריאליסטי. זה יצר מימד נוסף שלא חשבתי עליו — כאילו הלידה היא גם פיזית וגם קוסמית.",
+  "usedPrompt1": "Create an image. High quality, detailed, artistic. Style: Photorealistic. Subject: ידיים עוטפות עובר קטן ושביר בתוך אור זהוב רך. Elements: כליות מוארות בפנים, קרני אור יורדות מלמעלה. Background: רחם, חמימות, גוונים של זהב וכחול עמוק. Colors and mood: זהב, כחול כהה, לבן רך — תחושה של קדושה ואינטימיות. High quality, spiritual, detailed anatomy illustration, ancient Hebrew art style",
+  "lensInvariance": "המבנה של 'מכיל ומוכל' נשמר — הפסוק אומר שהאל 'קנה' את הכליות (יצר, החזיק), והתמונה שומרת על הפעולה הזו: ידיים מחזיקות.",
+  "lensBlending": "ה-AI שילב בין הרחם הביולוגי לבין מרחב שמימי — נוצרה משמעות חדשה: הלידה כאקט אלוהי-קוסמי, לא רק ביולוגי.",
+  "lensEmbodied": "הידיים הגדולות בקדמת התמונה יוצרות תחושת עוטף ומגן — הגוף הצופה חש אוטומטית ביטחון ו'עטיפה'. זה ממש מה שהפסוק מבטא.",
+  "aiRole": "ה-AI תפקד כמתרגם מטפורי — הוא קיבל מונחים מילוליים (כליות, בטן) והפך אותם לסמלים ויזואליים. הוא לא הבין את הטקסט, אבל בחר אסוציאציות שתאמו להפליא.",
+  "executionGap": "ביקשתי 'כליות מוארות' וה-AI יצר 'ניצוצות מבפנים'. זה לא מדויק אנטומית, אבל רגשית — עוד יותר נכון. הוא ביצע את הרגש ולא את האנטומיה.",
+  "commentatorName": "רש\"י על תהילים קלט, יג",
+  "commentaryContent": "רש\"י מפרש 'כליותי' כמקום כוח הרגש והרצון הפנימי. הוא מציין שהכליות הן המקום שבו 'יועץ' האדם לעצמו — כלומר, מקום ההחלטות האמיתיות.",
+  "commentaryImpact": "הפרשנות של רש\"י העמיקה את הבנתי: כשה-AI ציור ידיים מחזיקות את מרכז הגוף, הוא בלי לדעת ייצג את רעיון הכליות כמקום הרצון הפנימי. האל לא מחזיק את הגוף — הוא מחזיק את המקום שבו האדם מחליט.",
+  "imageComparison": "התמונה השנייה אחרי פרשנות רש\"י הוספתי 'ניצוצות של אור בתוך הידיים' — כדי לייצג שהאל מחזיק גם את יכולת הבחירה. ההבדל: בתמונה הראשונה הכוח זורם מבחוץ פנימה, בשנייה — יש אור גם מבפנים החוצה.",
+  "lens2Invariance": "המבנה של חיבוק נשמר, אבל עכשיו יש תנועה דו-כיוונית — הגוף לא רק מוחזק אלא גם מאיר.",
+  "lens2Blending": "שילוב הפרשנות יצר מטפורה חדשה: האדם אינו רק מושא ליצירה — הוא שותף בה. הניצוצות הפנימיים מסמלים אוטונומיה בתוך הקשר.",
+  "lens2Embodied": "הצופה חש בשינוי — בתמונה הראשונה ישבתי ו'קיבלתי'. בשנייה — הרגשתי שיש לי גם תרומה לקשר הזה.",
+  "reflection1": "התהליך גרם לי לראות כיצד שפת הגוף בתנ\"ך היא לא ציורית בלבד — היא פילוסופית. הכליות, הבטן, הלב — אלו לא רק אברים, הם מפות של הנפש.",
+  "reflection2": "הכי קשה היה לבחור פסוק בעל 'כיוון ברור' לתמונה. לבסוף הבנתי שפסוק עם מטפורה גופנית-אלוהית מאפשר ויזואליזציה עשירה יותר.",
+  "reflection3": "ה-AI הפתיע אותי בכך שבחר זווית שלא חשבתי עליה. הייתי בטוחה שהתמונה תהיה 'שמיימית', אבל הוא בנה משהו אינטימי יותר — ברמת הגוף הבודד.",
+  "reflection4": "אם הייתי מתחילה מחדש, הייתי מוסיפה לפרומפט יותר פרטים על הקשר התרבותי המקראי. ה-AI חסר את ההקשר הזה ולפעמים בחר בדימויים נוצריים במקום יהודיים.",
+  "reflection5": "הפעילות הזו לימדה אותי שמטפורה היא כלי חשיבה, לא רק כלי שפה. כשהפכתי את המטפורה לתמונה, הבנתי אותה ברמה אחרת לגמרי — כמעט גופנית.",
+  "mappings": [
+    {
+      "source": "כליות",
+      "target": "מקום הרצון הפנימי"
+    },
+    {
+      "source": "בטן האם",
+      "target": "מרחב ההתהוות האלוהית"
+    },
+    {
+      "source": "קנה",
+      "target": "יצר ושמר"
+    },
+    {
+      "source": "סכך",
+      "target": "הגן והקיף"
+    }
+  ],
+  "imageData": {
+    "image1": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAACQgH/8QAGxAAAQQDAAAAAAAAAAAAAAAAAAECAwUREiH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAAAAAAAAAAAAAAAAAAAAAA==",
+    "image2": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAACQgH/8QAGxAAAQQDAAAAAAAAAAAAAAAAAAECAwUREiH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAAAAAAAAAAAAAAAAAAAAAA==",
+    "ex": [],
+    "articles": [
+      {
+        "name": "Gillmayr-Bucher, S. (2004). Body Images in the Psalms. JSOT 28(3), 301-326."
+      }
+    ]
+  },
+  "currentStep": 7,
+  "timestamp": "2026-03-22T17:01:12.990495",
+  "introQuizScore": "8/10",
+  "articleQuizScore": "9/10",
+  "researchConsent": "yes",
+  "_graderDemo": {
+    "c1": 26,
+    "c2": 17,
+    "c3": 17,
+    "c4": 17,
+    "overall": "עבודה מעמיקה ומחשבתית. הניתוח המטפורי מדויק ומציג הבנה טובה של הקשר בין תחום המקור לתחום היעד. שילוב מעניין בפרשנות רש\"י שהעמיק את ההבנה. התמונות אינן ראליסטיות אבל משקפות את הרגש שבפסוק. הרפלקציה מגלה חשיבה ביקורתית, במיוחד התבוננות בפער שבין הפרומפט לתוצאה. לשיפור: טבלת המיפויים יכלה להיות מפורטת יותר."
+  }
+}
