@@ -1209,6 +1209,9 @@ ${getNbHtml()?'<div class="sb"><h4>המחברת — שאלות ומחשבות</h
 <div style="text-align:center;font-size:.82rem;color:var(--tl);margin-top:1rem;padding-top:1rem;border-top:1px solid var(--b)">ד״ר נאוה כהן, אוניברסיטת בר-אילן | ${ds} | שלמות: ${pct}%</div>`}
 function exH(){bs();const s=document.getElementById('sumC').innerHTML,n=gf('studentName')||'export';
 const h=`<!DOCTYPE html><html lang="he" dir="rtl"><head><meta charset="UTF-8"><title>התמונה הטמונה — ${eh(n)}</title><style>@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Heebo:wght@300;400;500;700&family=Playfair+Display:wght@700;800&display=swap');body{font-family:'Heebo',sans-serif;max-width:800px;margin:2rem auto;padding:1rem;color:#2d2a26;line-height:1.7;background:#f7f4ee}h1,h2,h3,h4{font-family:'Assistant',sans-serif;font-weight:700;color:#2c3e6b}.sb{background:#fff;border:1px solid #ddd5c9;border-radius:8px;padding:1.2rem;margin-bottom:1rem}.sb h4{border-bottom:1px solid #ddd5c9;padding-bottom:.3rem;margin-bottom:.5rem}.fl{margin-bottom:.4rem;font-size:.9rem}.fl strong{color:#2c3e6b}.si{max-width:400px;border-radius:8px;margin:.5rem 0}.pp{background:#1a1a2e;color:#e8e8e8;padding:1rem;border-radius:8px;font-family:monospace;font-size:.85rem;direction:ltr;text-align:left;white-space:pre-wrap}table{width:100%;border-collapse:collapse;margin:.5rem 0}th{background:#2c3e6b;color:#fff;padding:.4rem}td{border:1px solid #ddd;padding:.4rem}</style></head><body>${s}<div class="vld-modal" id="vldM" onclick="if(event.target===this)closeVld()"><div class="vld-box" id="vldBox"></div></div>
+
+<!-- GoatCounter analytics -->
+<script data-goatcounter="https://hatmuna.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body></html>`;
 const b=new Blob([h],{type:'text/html;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`hatmuna_${n}_${new Date().toISOString().slice(0,10)}.html`;a.click();showT('HTML נוצר')}
 function showT(m){const t=document.getElementById('tst');t.textContent=m;t.classList.add('sh');setTimeout(()=>t.classList.remove('sh'),2500)}
@@ -1616,4 +1619,7 @@ else{rd.innerHTML='<div class="quiz-result fail">ציון: '+score+'/'+total+' �
 rd.scrollIntoView({behavior:'smooth',block:'center'});
 }
 </script>
+
+<!-- GoatCounter analytics -->
+<script data-goatcounter="https://hatmuna.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body></html>
